@@ -1,4 +1,6 @@
 class AppConstants{
+  static double zero = 0;
+  static double zero05 = 0.5;
   static double two = 2;
   static double three = 3;
   static double five = 5;
