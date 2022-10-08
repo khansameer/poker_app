@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:poker/utils/app_constants.dart';
 
 //ignore: must_be_immutable
-class CustomTextWidget extends StatelessWidget {
+class CommonTextWidget extends StatelessWidget {
   String? _text;
   Color? _textColor;
   double? _fontSize;
@@ -17,7 +17,7 @@ class CustomTextWidget extends StatelessWidget {
   double? _left;
   double? _right;
 
-  CustomTextWidget(
+  CommonTextWidget(
       {String? text,
       Color? textColor,
       double? fontSize,

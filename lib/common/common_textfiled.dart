@@ -7,6 +7,7 @@ class CommonTextField extends StatelessWidget {
   String? hint;
   FontWeight? fontWeight;
   double? fontSize;
+  double? marginTop;
   Widget? iconWidget;
   double? radius;
   TextInputType? inputTypes;
@@ -22,14 +23,15 @@ class CommonTextField extends StatelessWidget {
     this.inputTypes,
     this.suffixIcon,
     this.onChange,
+    this.marginTop,
   });
 
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: marginTop??AppConstants.five),
       color: Colors.transparent,
-      margin: EdgeInsets.only(left: AppConstants.twenty, right: AppConstants.twenty),
       child: TextField(
         onChanged: onChange,
         keyboardType: inputTypes,

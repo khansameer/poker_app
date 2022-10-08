@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:poker/utils/app_color.dart';
+import 'package:poker/utils/app_constants.dart';
 class CommonBgPage extends StatelessWidget {
 
    String?  imagePath;
@@ -30,7 +31,9 @@ class CommonBgPage extends StatelessWidget {
                     AppColor.colorBlue,
                   ])),
         ),
-        widget!,
+        Container(
+            margin: EdgeInsets.symmetric(horizontal: AppConstants.twenty),
+            child: widget!),
       ],
     );
   }
