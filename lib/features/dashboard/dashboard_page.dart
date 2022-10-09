@@ -86,21 +86,21 @@ class DashboardPageState extends State<DashboardPage> {
                   ),
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     commonGridView(),
                     commonGridView()
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     commonGridView(),
                     commonGridView()
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     commonGridView(),
                     commonGridView()
@@ -380,14 +380,14 @@ class DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  Widget commonBg({Widget? widget,bool? showBorder}) {
+  Widget commonBg({Widget? widget,bool? showBorder,Color? color}) {
     return Container(
       margin: const EdgeInsets.only(left: 16,top: 10),
 
       padding: const EdgeInsets.all(10),
       decoration: AppUtils.containerDecoration(
           isBorder:showBorder?? false,
-          radius: 8, color: AppColor.colorWhiteLight),
+          radius: 8, color: color??AppColor.colorWhiteLight),
       child: widget,
     );
   }
@@ -402,29 +402,33 @@ class DashboardPageState extends State<DashboardPage> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           image: const DecorationImage(
-              image: AssetImage(icImge), fit: BoxFit.cover)),
+              image: AssetImage(icGrid), fit: BoxFit.cover)),
 
       child: Container(
 
-        // padding: const EdgeInsets.only(left: 5,right: 5,top: 40,bottom: 40),
         decoration: BoxDecoration(
-            color: AppColor.colorFbLight,
+            color: Color.fromRGBO(215, 91, 74, 0.54),
             borderRadius: BorderRadius.circular(16),
             border:
-            Border.all(color: AppColor.colorWhiteLight, width: 5)),
+            Border.all(color: AppColor.colorWhiteLight, width: 3)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
             commonBg(
+                color: Color.fromRGBO(0, 0, 0, 0.32),
                 showBorder: true,
                 widget: const Icon(Icons.ac_unit_outlined)),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                commonBg(widget: CommonTextWidget(text: "What’s On",fontWeight: FontWeight.w700,fontSize: 14,)),
-                commonBg(widget: Icon(Icons.arrow_forward_ios_outlined,color: AppColor.colorWhite,size: 15,))
+                commonBg(
+                    color: Color.fromRGBO(0, 0, 0, 0.32),
+                    widget: CommonTextWidget(text: "What’s On",fontWeight: FontWeight.w700,fontSize: 14,)),
+                commonBg(
+                    color: Color.fromRGBO(0, 0, 0, 0.32),
+                    widget: const Icon(Icons.arrow_forward_ios_outlined,color: AppColor.colorWhite,size: 15,))
               ],
             )
           ],
