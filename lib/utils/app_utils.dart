@@ -65,13 +65,15 @@ class AppUtils {
       Alignment? alignment,
       Color? iconColor,
       BoxFit? boxFit}) {
-    return Image.asset(
-      path!,
-      width: width,
-      height: height,
-      alignment: alignment ?? Alignment.center,
-      color: iconColor,
-      fit: boxFit ?? BoxFit.cover,
+    return Center(
+      child: Image.asset(
+        path!,
+        width: width,
+        height: height,
+        alignment: alignment ?? Alignment.center,
+        color: iconColor,
+        fit: boxFit ?? BoxFit.cover,
+      ),
     );
   }
 }

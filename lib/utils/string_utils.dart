@@ -11,6 +11,7 @@ class StringUtils{
   static const String signup="Signup";
   static const String firstName="First Name";
   static const String lastName="Last Name";
+  static const String your="Your ";
 
   static const String signTerm="By signing up you agree to our Terms & Condition and Privacy Policy.*";
   static const String alreadySignup="Already signed up ?";

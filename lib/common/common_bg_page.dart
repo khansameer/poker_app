@@ -5,9 +5,11 @@ class CommonBgPage extends StatelessWidget {
 
    String?  imagePath;
    Widget? widget;
+   Alignment? alignment;
    CommonBgPage({super.key,
     this.imagePath,
      this.widget,
+     this.alignment,
 });
 
   @override
@@ -32,6 +34,7 @@ class CommonBgPage extends StatelessWidget {
                   ])),
         ),
         Container(
+          alignment: alignment??Alignment.center,
             margin: EdgeInsets.symmetric(horizontal: AppConstants.twenty),
             child: widget!),
       ],

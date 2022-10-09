@@ -33,7 +33,7 @@ class CommonButtonWidget extends StatelessWidget {
                   BorderRadius.circular(radius ?? AppConstants.sixteen),
             )),
             padding: MaterialStateProperty.all<EdgeInsets>(
-                EdgeInsets.all(padding ?? AppConstants.twenty)),
+                EdgeInsets.all(padding ?? AppConstants.eighteen)),
             backgroundColor: MaterialStateProperty.all<Color>(Colors.blue)),
         onPressed: onPressed,
         child: Center(

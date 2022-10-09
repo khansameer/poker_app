@@ -13,6 +13,7 @@ class CommonTextField extends StatelessWidget {
   TextInputType? inputTypes;
   Widget? suffixIcon;
   ValueChanged? onChange;
+  bool? obscureText;
   TextInputAction? textInputAction;
   CommonTextField({
     this.hint,
@@ -24,6 +25,7 @@ class CommonTextField extends StatelessWidget {
     this.suffixIcon,
     this.onChange,
     this.marginTop,
+    this.obscureText,
   });
 
 
@@ -36,6 +38,7 @@ class CommonTextField extends StatelessWidget {
         onChanged: onChange,
         keyboardType: inputTypes,
         autocorrect: true,
+        obscureText: obscureText??false,
         textInputAction: textInputAction,
         style: TextStyle(
           fontWeight: fontWeight,
@@ -48,7 +51,10 @@ class CommonTextField extends StatelessWidget {
             hintText:hint,
             suffixIcon:suffixIcon,
             prefixIcon:iconWidget ,
-            hintStyle: TextStyle(color: Colors.white),
+
+            hintStyle: TextStyle(fontWeight: fontWeight,
+              color: AppColor.colorWhite,
+              fontSize: fontSize,),
             filled: true,
             fillColor: AppColor.colorGrayLight1,
             enabledBorder: OutlineInputBorder(

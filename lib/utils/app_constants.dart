@@ -13,4 +13,12 @@ class AppConstants{
   static double eighteen = 18;
   static double nineteen = 19;
   static double twenty = 20;
+  static double twentyFour = 24;
+  static double thirty = 30;
+  static double thirtyFive = 35;
+  static double fortyFive = 45;
+  static double sixty = 60;
+  static double eightyFour = 84;
+  static double ninetySeven = 97;
+  static double oneHundredTwentyTwo = 122;
 }
