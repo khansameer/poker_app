@@ -19,18 +19,39 @@ class AppUtils {
     );
   }
 
+  static BoxDecoration sa(){
+
+    return  BoxDecoration(
+        image: DecorationImage(image: AssetImage(icDashboardimg),fit: BoxFit.fill),
+        gradient: LinearGradient(
+            stops: [0.4, 0.9],
+            tileMode: TileMode.repeated,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppColor.colorBlue,
+              AppColor.colorBlueLight,
+
+            ]));
+
+  }
+
   static BoxDecoration containerDecoration({
     double radius = 13,
     Color color = Colors.white,
+    bool isBorder=false,
 
     BoxShape boxShape = BoxShape.rectangle,
   }) {
     return BoxDecoration(
         color: color,
         shape: boxShape,
-        border: Border.all(
+        border: isBorder?Border.all(
           color: AppColor.colorBlueLight,
           width: 3,
+        ):Border.all(
+          color: AppColor.colorBlueLight,
+          width: 0,
         ),
         borderRadius: BorderRadius.all(Radius.circular(radius)));
   }
