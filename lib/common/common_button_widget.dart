@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:poker/common/common_text_widget.dart';
 import 'package:poker/utils/app_constants.dart';
 import 'package:poker/utils/app_utils.dart';
 
@@ -37,7 +38,7 @@ class CommonButtonWidget extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(Colors.blue)),
         onPressed: onPressed,
         child: Center(
-          child: AppUtils.commonTextWidget(
+          child: CommonTextWidget(
               text: text,
               fontWeight: fontWeight ?? FontWeight.w600,
               fontSize: fontSize ?? AppConstants.fourteen),

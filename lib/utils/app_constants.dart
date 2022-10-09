@@ -18,6 +18,7 @@ class AppConstants{
   static double thirtyFive = 35;
   static double fortyFive = 45;
   static double sixty = 60;
+  static double sixtyFive = 65;
   static double eightyFour = 84;
   static double ninetySeven = 97;
   static double oneHundredTwentyTwo = 122;

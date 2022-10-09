@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:poker/utils/app_color.dart';
 import 'package:poker/utils/app_constants.dart';
 
 //ignore: must_be_immutable
@@ -11,7 +12,7 @@ class CommonTextWidget extends StatelessWidget {
   TextDecoration? _textDecoration;
   double? _letterSpacing;
   TextAlign? _textAlign;
-  double? _margintopSize;
+  double? _top;
   double? _height;
   double? _widht;
   double? _left;
@@ -25,8 +26,7 @@ class CommonTextWidget extends StatelessWidget {
       TextDecoration? textDecoration,
       double? letterSpacing,
       TextAlign? textAlign,
-      bool? isClickable,
-      double? margintopSize,
+      double? margintop,
       double? height,
       double? widht,
       double? left,
@@ -42,7 +42,7 @@ class CommonTextWidget extends StatelessWidget {
     _textAlign = textAlign;
     _height = height;
     _widht = widht;
-    _margintopSize = margintopSize;
+    _top = margintop;
     _left = left;
     _right = right;
   }
@@ -53,7 +53,7 @@ class CommonTextWidget extends StatelessWidget {
       height: _height,
       width: _widht,
       margin: EdgeInsets.only(
-        top: _margintopSize ?? AppConstants.zero,
+        top: _top ?? AppConstants.zero,
         left: _left ?? AppConstants.zero,
         right: _right ?? AppConstants.zero,
       ),
@@ -62,9 +62,9 @@ class CommonTextWidget extends StatelessWidget {
         textAlign: _textAlign,
         style: TextStyle(
             fontFamily: 'SFProDisplay',
-            letterSpacing: _letterSpacing ?? 0.1,
+            letterSpacing: _letterSpacing ?? 0.5,
             fontSize: _fontSize,
-            color: _textColor,
+            color: _textColor?? AppColor.colorWhite,
             fontWeight: _fontWeight,
             decoration: _textDecoration),
       ),

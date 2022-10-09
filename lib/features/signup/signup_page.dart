@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:poker/common/common_bg_page.dart';
 import 'package:poker/common/common_button_widget.dart';
+import 'package:poker/common/common_text_widget.dart';
 import 'package:poker/common/common_textfield.dart';
+import 'package:poker/core/route.dart';
 import 'package:poker/utils/app_color.dart';
 import 'package:poker/utils/app_constants.dart';
 import 'package:poker/utils/app_utils.dart';
@@ -9,6 +11,8 @@ import 'package:poker/utils/image_path.dart';
 import 'package:poker/utils/string_utils.dart';
 
 class SignupPage extends StatefulWidget{
+  const SignupPage({super.key});
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -39,15 +43,15 @@ class SignupPageState extends State<SignupPage>{
                       alignment: Alignment.topLeft,
                       child:Icon(Icons.arrow_back_ios,size: AppConstants.twentyFour,color: AppColor.colorWhite,),
                     ),
-                    AppUtils.commonTextWidget(
+                    CommonTextWidget(
                       text: StringUtils.signup,
                       fontWeight: FontWeight.w700,
-                      top: AppConstants.fortyFive,
+                      margintop: AppConstants.fortyFive,
                       fontSize: AppConstants.twenty,
                     ),
-                    AppUtils.commonTextWidget(
+                    CommonTextWidget(
                       text: StringUtils.firstName,
-                      top: AppConstants.sixteen,
+                      margintop: AppConstants.sixteen,
                     ),
                     CommonTextField(
                         inputTypes: TextInputType.name,
@@ -57,9 +61,9 @@ class SignupPageState extends State<SignupPage>{
                         fontSize: AppConstants.fourteen,
                         fontWeight: FontWeight.w500,
                         radius: AppConstants.eight),
-                    AppUtils.commonTextWidget(
+                    CommonTextWidget(
                       text: StringUtils.lastName,
-                      top: AppConstants.sixteen,
+                      margintop: AppConstants.sixteen,
                     ),
                     CommonTextField(
                         marginTop: AppConstants.ten,
@@ -69,9 +73,9 @@ class SignupPageState extends State<SignupPage>{
                         fontSize: AppConstants.fourteen,
                         fontWeight: FontWeight.w500,
                         radius: AppConstants.eight),
-                    AppUtils.commonTextWidget(
+                    CommonTextWidget(
                       text: StringUtils.password,
-                      top: AppConstants.sixteen,
+                      margintop: AppConstants.sixteen,
                     ),
 
 
@@ -106,33 +110,21 @@ class SignupPageState extends State<SignupPage>{
                         fontSize: AppConstants.fourteen,
                         fontWeight: FontWeight.w500,
                         radius: AppConstants.eight),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        AppUtils.commonTextWidget(
-                            top: AppConstants.thirty,
-                            fontWeight: FontWeight.w500,
-                            text: "By signing up you agree to our"),
-                        Expanded(
-                          child: AppUtils.commonTextWidget(
-                              top: AppConstants.thirty,
-                              fontWeight: FontWeight.w700,
-                              textDecoration: TextDecoration.underline,
-                              text: "Terms & Condition"),
-                        ),
-                        Expanded(
-                          child: AppUtils.commonTextWidget(
-                              top: AppConstants.thirty,
-                              fontWeight: FontWeight.w600,
-                              textDecoration: TextDecoration.underline,
-                              text: "and Privacy Policy."),
-                        ),
-                      ],
-                    ),
+
                     CommonButtonWidget(
-                        text: StringUtils.login,
-                        marginTop: AppConstants.twenty),
+                      onPressed: (){
+                        Navigator.of(context).pushNamed(RouteName.verification);
+                      },
+                        text: StringUtils.signup,
+                        marginTop: AppConstants.fortyFive),
+                    Center(
+                      child: AppUtils.richText(top: AppConstants.thirty,
+                          text:StringUtils.alreadySignup,
+                          onTap: (){
+                              Navigator.pop(context);
+                          },
+                          linkText: StringUtils.login),
+                    ),
 
 
                   ],

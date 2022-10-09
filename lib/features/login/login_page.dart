@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:poker/common/common_bg_page.dart';
 import 'package:poker/common/common_button_widget.dart';
+import 'package:poker/common/common_text_widget.dart';
 import 'package:poker/common/common_textfield.dart';
 import 'package:poker/common/context_extension.dart';
+import 'package:poker/core/route.dart';
 import 'package:poker/utils/app_color.dart';
 import 'package:poker/utils/app_constants.dart';
 import 'package:poker/utils/app_utils.dart';
@@ -29,9 +31,7 @@ class LoginPageState extends State<LoginPage> {
           CommonBgPage(
               imagePath: icBackground,
               widget: SingleChildScrollView(
-                // margin: EdgeInsets.only(top: 56),
-
-                child: Column(
+               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
@@ -44,15 +44,15 @@ class LoginPageState extends State<LoginPage> {
                           height: AppConstants.eightyFour,
                           width: AppConstants.oneHundredTwentyTwo),
                     ),
-                    AppUtils.commonTextWidget(
+                    CommonTextWidget(
                       text: StringUtils.login,
                       fontWeight: FontWeight.w700,
-                      top: AppConstants.fortyFive,
+                      margintop: AppConstants.fortyFive,
                       fontSize: AppConstants.twenty,
                     ),
-                    AppUtils.commonTextWidget(
+                    CommonTextWidget(
                       text: StringUtils.email,
-                      top: AppConstants.sixteen,
+                      margintop: AppConstants.sixteen,
                     ),
                     CommonTextField(
                         marginTop: AppConstants.ten,
@@ -64,8 +64,8 @@ class LoginPageState extends State<LoginPage> {
                         fontSize: AppConstants.fourteen,
                         fontWeight: FontWeight.w500,
                         radius: AppConstants.eight),
-                    AppUtils.commonTextWidget(
-                        text: StringUtils.password, top: AppConstants.eighteen),
+                    CommonTextWidget(
+                        text: StringUtils.password, margintop: AppConstants.eighteen),
                     CommonTextField(
                         obscureText: obscureText,
                         suffixIcon: InkWell(
@@ -98,9 +98,9 @@ class LoginPageState extends State<LoginPage> {
                         radius: AppConstants.eight),
                     Align(
                       alignment: Alignment.centerRight,
-                      child: AppUtils.commonTextWidget(
+                      child: CommonTextWidget(
                           text: StringUtils.forgotPassword,
-                          top: AppConstants.sixteen),
+                          margintop: AppConstants.sixteen),
                     ),
                     CommonButtonWidget(
                         text: StringUtils.login,
@@ -118,7 +118,7 @@ class LoginPageState extends State<LoginPage> {
                                 height: AppConstants.two,
                                 thickness: AppConstants.two),
                           ),
-                          AppUtils.commonTextWidget(
+                          CommonTextWidget(
                               left: AppConstants.ten,
                               right: AppConstants.ten,
                               text: StringUtils.connectWith.toCapitalize()),
@@ -148,24 +148,15 @@ class LoginPageState extends State<LoginPage> {
                             path: icLinkedin),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        AppUtils.commonTextWidget(
-                            top: AppConstants.thirty,
-                            fontWeight: FontWeight.w500,
-                            text: StringUtils.anAccount),
-                        TextButton(
-                          onPressed: () {},
-                          child: AppUtils.commonTextWidget(
-                              top: AppConstants.thirty,
-                              fontWeight: FontWeight.w700,
-                              textDecoration: TextDecoration.underline,
-                              text: StringUtils.signup),
-                        ),
-                      ],
+                    Center(
+                      child: AppUtils.richText(top: AppConstants.thirty,
+                      text:StringUtils.anAccount,
+                      onTap: (){
+                        Navigator.of(context).pushNamed(RouteName.signup);
+                      },
+                      linkText: StringUtils.signup),
                     ),
+
                   ],
                 ),
               )),
