@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:poker/common/common_bg_page.dart';
+import 'package:poker/core/common/common_bg_page.dart';
 import 'package:poker/core/route.dart';
-import 'package:poker/utils/app_utils.dart';
-import 'package:poker/utils/image_path.dart';
+import 'package:poker/core/utils/app_utils.dart';
+import 'package:poker/core/utils/image_path.dart';
 
 class SplashPage extends StatefulWidget{
   const SplashPage({super.key});

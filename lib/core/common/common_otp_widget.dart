@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:poker/utils/app_color.dart';
-import 'package:poker/utils/app_constants.dart';
-import 'package:poker/utils/app_utils.dart';
+import 'package:poker/core/utils/app_color.dart';
+import 'package:poker/core/common/common_text_widget.dart';
+import 'package:poker/core/utils/app_constants.dart';
+import 'package:poker/core/utils/app_utils.dart';
 
 class CommonOtpWidget extends StatelessWidget {
   final TextEditingController? textEditingController;

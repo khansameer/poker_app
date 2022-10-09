@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:poker/common/common_bg_page.dart';
-import 'package:poker/common/common_button_widget.dart';
-import 'package:poker/common/common_otp_widget.dart';
-import 'package:poker/common/common_text_widget.dart';
-import 'package:poker/common/common_textfield.dart';
-import 'package:poker/utils/app_color.dart';
-import 'package:poker/utils/app_constants.dart';
-import 'package:poker/utils/app_utils.dart';
-import 'package:poker/utils/image_path.dart';
-import 'package:poker/utils/string_utils.dart';
+import 'package:poker/core/common/common_bg_page.dart';
+import 'package:poker/core/common/common_button_widget.dart';
+import 'package:poker/core/common/common_otp_widget.dart';
+import 'package:poker/core/common/common_text_widget.dart';
+import 'package:poker/core/common/common_textfield.dart';
+import 'package:poker/core/utils/app_color.dart';
+import 'package:poker/core/utils/app_constants.dart';
+import 'package:poker/core/utils/app_utils.dart';
+import 'package:poker/core/utils/image_path.dart';
+import 'package:poker/core/utils/string_utils.dart';
 
 class VarificationPage extends StatefulWidget{
   const VarificationPage({super.key});

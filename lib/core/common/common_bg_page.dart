@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:poker/utils/app_color.dart';
-import 'package:poker/utils/app_constants.dart';
+import 'package:poker/core/utils/app_color.dart';
+import 'package:poker/core/utils/app_constants.dart';
 class CommonBgPage extends StatelessWidget {
 
    String?  imagePath;

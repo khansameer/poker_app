@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:poker/common/common_bg_page.dart';
-import 'package:poker/common/common_button_widget.dart';
-import 'package:poker/common/common_text_widget.dart';
-import 'package:poker/common/common_textfield.dart';
-import 'package:poker/common/context_extension.dart';
+import 'package:poker/core/common/common_bg_page.dart';
+import 'package:poker/core/common/common_button_widget.dart';
+import 'package:poker/core/common/common_text_widget.dart';
+import 'package:poker/core/common/common_textfield.dart';
+import 'package:poker/core/common/context_extension.dart';
 import 'package:poker/core/route.dart';
-import 'package:poker/utils/app_color.dart';
-import 'package:poker/utils/app_constants.dart';
-import 'package:poker/utils/app_utils.dart';
-import 'package:poker/utils/image_path.dart';
-import 'package:poker/utils/string_utils.dart';
+import 'package:poker/core/utils/app_color.dart';
+import 'package:poker/core/utils/app_constants.dart';
+import 'package:poker/core/utils/app_utils.dart';
+import 'package:poker/core/utils/image_path.dart';
+import 'package:poker/core/utils/string_utils.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -104,6 +104,9 @@ class LoginPageState extends State<LoginPage> {
                     ),
                     CommonButtonWidget(
                         text: StringUtils.login,
+                        onPressed: (){
+                          Navigator.of(context).pushNamed(RouteName.dashboard);
+                        },
                         marginTop: AppConstants.twenty),
                     Container(
                       alignment: Alignment.center,

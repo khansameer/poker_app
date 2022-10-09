@@ -1,30 +1,37 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:poker/utils/app_color.dart';
-import 'package:poker/utils/app_constants.dart';
-import 'package:poker/utils/string_utils.dart';
+import 'package:poker/core/utils/app_color.dart';
+import 'package:poker/core/common/common_text_widget.dart';
+import 'package:poker/core/utils/app_constants.dart';
+import 'package:poker/core/utils/image_path.dart';
 
 class AppUtils {
   static BoxDecoration containerDecorationBg() {
-    return const BoxDecoration(
-      gradient: LinearGradient(
+    return  BoxDecoration(
+      image: DecorationImage(image: AssetImage(icDashboardBg),fit: BoxFit.fill),
+     /* gradient: LinearGradient(
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
-        stops: [0.0, 2],
-        tileMode: TileMode.mirror,
-        colors: [AppColor.colorBlueLight, AppColor.colorBlue],
-      ),
+       stops: [0.6, 1],
+
+        colors: [AppColor.colorBlue, AppColor.colorBlueLight],
+      ),*/
     );
   }
 
   static BoxDecoration containerDecoration({
     double radius = 13,
     Color color = Colors.white,
+
     BoxShape boxShape = BoxShape.rectangle,
   }) {
     return BoxDecoration(
         color: color,
         shape: boxShape,
+        border: Border.all(
+          color: AppColor.colorBlueLight,
+          width: 3,
+        ),
         borderRadius: BorderRadius.all(Radius.circular(radius)));
   }
 

@@ -4,3 +4,6 @@ const icBackground = '$baseIconPath/ic_background.png';
 const icGoogle = '$baseIconPath/ic_google.png';
 const icLinkedin = '$baseIconPath/ic_linkedin.png';
 const icFacebook = '$baseIconPath/ic_facebook.png';
+const icDashboardBg = '$baseIconPath/ic_bg_tras.png';
+const icDashboardimg = '$baseIconPath/ic_dashboard.png';
+const icImge = '$baseIconPath/ic_img.png';
