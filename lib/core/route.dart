@@ -5,5 +5,7 @@ class RouteName {
   static const String signup = '/signup';
   static const String verification = '/verification';
   static const String dashboard = '/dashboard';
+  static const String termCondition = '/termCondition';
+  static const String privacyPolicy = '/privacyPolicy';
 
 }

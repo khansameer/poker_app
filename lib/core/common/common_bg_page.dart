@@ -15,8 +15,13 @@ class CommonBgPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Stack(
+      clipBehavior: Clip.antiAlias,
+      fit: StackFit.passthrough,
       children: [
         Container(
+
+          width: double.infinity,
+          height: double.infinity,
           decoration:  BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(imagePath!), fit: BoxFit.cover)),

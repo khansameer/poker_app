@@ -5,6 +5,7 @@ import 'package:poker/features/dashboard/dashboard_page.dart';
 import 'package:poker/features/login/login_page.dart';
 import 'package:poker/features/login/varification_page.dart';
 import 'package:poker/features/signup/signup_page.dart';
+import 'package:poker/features/signup/term_codition_page.dart';
 import 'package:poker/features/splash/splash_page.dart';
 
 class RouteGenerator {
@@ -31,6 +32,10 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (_) =>  const DashboardPage(),
             settings: const RouteSettings(name: RouteName.dashboard));
+      case RouteName.termCondition:
+        return MaterialPageRoute(
+            builder: (_) =>  const TermCoditionPage(),
+            settings: const RouteSettings(name: RouteName.termCondition));
 
 
       default:

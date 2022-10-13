@@ -27,6 +27,7 @@ class VarificationPageState extends State<VarificationPage>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: CommonBgPage(
         alignment: Alignment.topLeft,
           imagePath: icBackground,

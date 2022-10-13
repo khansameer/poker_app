@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:poker/core/common/common_bg_page.dart';
 import 'package:poker/core/route.dart';
+import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
 
@@ -21,13 +22,15 @@ class SplashPageState extends State<SplashPage>{
   initState() {
     super.initState();
 
-    gotoLogin();
+   gotoLogin();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: CommonBgPage(
+
         imagePath: icBackground,
         widget: SizedBox(
           width: 200,
