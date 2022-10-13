@@ -21,18 +21,24 @@ class AppUtils {
 
   static BoxDecoration sa(){
 
-    return  BoxDecoration(
-        image: DecorationImage(image: AssetImage(icDashboardimg),fit: BoxFit.fill),
+    return   BoxDecoration(
+        image: const DecorationImage(
+            opacity: 0.2,
+            image: AssetImage(icDashboardimg),fit: BoxFit.fill),
         gradient: LinearGradient(
-            stops: [0.4, 0.9],
+            stops: [0.4, 0.5, 0.1],
             tileMode: TileMode.repeated,
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              AppColor.colorBlue,
-              AppColor.colorBlueLight,
+              AppColor.colorBlue.withOpacity(1.0),
+              AppColor.colorBlueLight.withOpacity(0.8),
+              AppColor.colorBlueLight.withOpacity(0.8),
 
-            ]));
+
+
+            ])
+    );
 
   }
 

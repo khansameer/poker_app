@@ -19,6 +19,17 @@ class StringUtils{
   static const String verify="Verify";
   static const String resendCode="Resend in 32s";
   static const String recieved="Didn’t recieve code?";
+  static const String whatOn="What’s On";
+  static const String events="Events";
+  static const String creditFile="Credit File";
+  static const String chatRoom="Chat Room";
+  static const String venueInfo="Venue Info";
+  static const String liveStream="Live Stream";
+
+
+
+
+
 
 
 

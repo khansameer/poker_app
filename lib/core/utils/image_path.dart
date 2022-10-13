@@ -8,3 +8,4 @@ const icDashboardBg = '$baseIconPath/ic_bg_tras.png';
 const icDashboardimg = '$baseIconPath/ic_dashboard.png';
 const icImge = '$baseIconPath/ic_img.png';
 const icGrid = '$baseIconPath/ic_grid.png';
+const icEventBg = '$baseIconPath/ic_event_bg.png';
