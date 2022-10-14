@@ -47,7 +47,7 @@ class CustomProfileWidgetState extends State<CustomProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
-    const color = AppColor.colorBlue;
+    const color = AppColor.colorWhite;
     return Center(
       child: Stack(
         children: [
@@ -55,8 +55,8 @@ class CustomProfileWidgetState extends State<CustomProfileWidget> {
           Visibility(
             visible:widget.isEdit,
             child: Positioned(
-              bottom: AppConstants.four,
-              right: AppConstants.four,
+              top: AppConstants.zero,
+              right: AppConstants.zero,
               child: InkWell(
                   onTap: () {
                     setState(() {
@@ -119,14 +119,14 @@ class CustomProfileWidgetState extends State<CustomProfileWidget> {
   }
 
   Widget buildEditIcon(Color color) => buildCircle(
-        color: Colors.white,
+        color: Colors.black,
         all: 0,
         child: buildCircle(
           color: color,
-          all: AppConstants.five,
+          all: AppConstants.ten,
           child: Icon(
-            widget.isEdit ? Icons.add : Icons.camera_alt_sharp,
-            color: Colors.white,
+            Icons.camera_alt_sharp,
+            color: Colors.black,
             size: AppConstants.twenty,
           ),
         ),
@@ -139,6 +139,7 @@ class CustomProfileWidgetState extends State<CustomProfileWidget> {
   }) =>
       ClipOval(
         child: Container(
+
           padding: EdgeInsets.all(all),
           color: color,
           child: child,
