@@ -4,6 +4,7 @@ class AppConstants{
   static double two = 2;
   static double three = 3;
   static double five = 5;
+  static double four = 5;
   static double sixteen = 16;
   static double eight = 8;
   static double ten = 10;
@@ -21,5 +22,7 @@ class AppConstants{
   static double sixtyFive = 65;
   static double eightyFour = 84;
   static double ninetySeven = 97;
+  static double ninety = 90;
+  static double oneHundred = 100;
   static double oneHundredTwentyTwo = 122;
 }

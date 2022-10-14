@@ -17,3 +17,5 @@ const icStar = '$baseIconPath/star.svg';
 const icLogout = '$baseIconPath/logout.svg';
 const icFb = '$baseIconPath/ic_fb.svg';
 const icInsta = '$baseIconPath/icsa.svg';
+/*const icAvtaar = '$baseIconPath/ic_avtar.svg';*/
+const icKey = '$baseIconPath/ic_key.svg';

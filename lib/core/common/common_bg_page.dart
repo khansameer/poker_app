@@ -6,11 +6,15 @@ class CommonBgPage extends StatelessWidget {
 
    String?  imagePath;
    Widget? widget;
+   double ? margin;
    Alignment? alignment;
+   String? backImagePath;
    CommonBgPage({super.key,
     this.imagePath,
      this.widget,
      this.alignment,
+     this.margin,
+     this.backImagePath,
 });
 
   @override
@@ -30,20 +34,11 @@ class CommonBgPage extends StatelessWidget {
         Container(
           decoration:  BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(icLoginBg!), fit: BoxFit.fill)
-              /*gradient: LinearGradient(
-                  stops: [0.0, 0.7],
-                  tileMode: TileMode.clamp,
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    AppColor.colorBlueLight.withOpacity(0.2),
-                    AppColor.colorBlue.withOpacity(1),
-                  ])*/),
+                  image: AssetImage(backImagePath??icLoginBg!), fit: BoxFit.fill)),
         ),
         Container(
           alignment: alignment??Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal: AppConstants.twenty),
+            margin: EdgeInsets.symmetric(horizontal:margin?? AppConstants.twenty),
             child: widget!),
       ],
     );

@@ -60,9 +60,9 @@ class DashboardPageState extends State<DashboardPage> {
                       indent: AppConstants.zero,
                       endIndent: AppConstants.zero,
                       color: AppColor.colorWhite1),
-                  commonMenuItem(text: StringUtils.profile,onTap: onClickProfile),
+                  AppUtils.commonMenuItem(text: StringUtils.profile,onTap: onClickProfile),
                   AppUtils.commonDivider(color: AppColor.colorWhite1),
-                  commonMenuItem(text:StringUtils.profile,imagePath: icReservations),
+                  AppUtils.commonMenuItem(text:StringUtils.profile,imagePath: icReservations),
                 ],
               ),
               Align(
@@ -118,9 +118,9 @@ class DashboardPageState extends State<DashboardPage> {
                         color: AppColor.colorWhite1,
                         endIndent: AppConstants.zero,
                         indent: AppConstants.zero),
-                    commonMenuItem(text: "Rate us on the app store",imagePath: icStar),
+                    AppUtils.commonMenuItem(text: "Rate us on the app store",imagePath: icStar),
                     AppUtils.commonDivider(color: AppColor.colorWhite1),
-                    commonMenuItem(text: "Log Out",imagePath: icLogout,textColor: AppColor.colorLogout),
+                    AppUtils.commonMenuItem(text: "Log Out",imagePath: icLogout,textColor: AppColor.colorLogout),
                   ],
                 ),
               )
@@ -129,7 +129,7 @@ class DashboardPageState extends State<DashboardPage> {
         ),
       ),
       body: Container(
-        decoration: AppUtils.sa(),
+        decoration: AppUtils.dashboard(),
         child: Container(
           width: double.infinity,
           height: double.infinity,
@@ -381,30 +381,5 @@ class DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  Widget commonMenuItem(
-      {String? text,
-      Color? textColor,
-        String? imagePath,
-      Color? leadingColor,
-      Color? trailingColor,
-      VoidCallback? onTap}) {
-    return ListTile(
-      onTap: onTap,
-      leading: AppUtils.commonImageAssetWidget1(
-          path: imagePath??icPerson,
-          width: AppConstants.twentyFour,
-          height: AppConstants.twentyFour,
-          alignment: Alignment.centerLeft),
-      trailing: Icon(
-        Icons.arrow_forward_ios_outlined,
-        color: trailingColor ?? AppColor.colorWhite1,
-        size: AppConstants.twenty,
-      ),
-      title: CommonTextWidget(
-        text: text,
-        textColor: textColor ?? AppColor.colorWhite,
-        fontWeight: FontWeight.w500,
-      ),
-    );
-  }
+
 }

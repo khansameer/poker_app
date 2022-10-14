@@ -12,6 +12,7 @@ class StringUtils{
   static const String firstName="First Name";
   static const String lastName="Last Name";
   static const String your="Your ";
+  static const String edit="Edit";
   static const String signupTerm="By signing up you agree to our ";
   static const String termsCondition="Terms & Condition";
 
@@ -23,6 +24,10 @@ class StringUtils{
   static const String recieved="Didn’t recieve code?";
   static const String whatOn="What’s On";
   static const String events="Events";
+  static const String selectAction="Select an action";
+  static const String gallery="gallery";
+  static const String camera="Camera";
+  static const String cancel="Cancel";
   static const String creditFile="Credit File";
   static const String chatRoom="Chat Room";
   static const String venueInfo="Venue Info";
@@ -31,11 +36,12 @@ class StringUtils{
   static const String profile="Profile";
   static const String reservations="Reservations";
   static const String followUs="Follow us on";
+  static const String logout="Log Out";
+  static const String changePassword="Change password";
   static const String desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut finibus pellentesque diam sed laoreet. ";
 
   static const String desc1="Lorem ipsum dolor sit amet";
   static const String desc2="Nullam semper magna quis sem semper, eget pellentesque nibh tempr. Integer lectus enim, cursus non vulputate vel, fermentum vehicula purus. Nam a lectus vel metus hendrerit dictum nec sed massa. In sed dictum diam, sed feugiat odio. Proin bibendum ipsum tellus, tincidunt blandit mi vulputate quis. Mauris at nulla sit amet nisi sollicitudin iaculis eu a risus. Vivamus mollis tristique commodo. Nunc rhoncus pulvinar lectus vel suscipit.";
-
 
 
 

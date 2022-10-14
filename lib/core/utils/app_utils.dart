@@ -1,12 +1,48 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/image_path.dart';
 import 'package:poker/core/utils/string_utils.dart';
 
 class AppUtils {
+
+  static AppBar commonAppBar({required BuildContext context,String? title,bool? isShowEdit,String? actionTitle}){
+    return AppBar(
+      toolbarHeight: 70,
+      actions: [
+
+        Visibility(
+          visible: isShowEdit ?? false,
+          child: Center(
+            child: CommonTextWidget(
+
+              textAlign: TextAlign.center,
+              right: AppConstants.twentyFour,
+              fontSize: AppConstants.eighteen,
+              fontWeight: FontWeight.w600,
+              text: actionTitle,
+            ),
+          ),
+        )
+      ],
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back_ios, color: Colors.white,size: AppConstants.twentyFour,),
+        onPressed: () => Navigator.of(context).pop(),
+      ),
+      backgroundColor: AppColor.colorToolBar,
+      elevation: 0,
+
+      centerTitle: true,
+      title: CommonTextWidget(
+        fontSize: AppConstants.eighteen,
+        fontWeight: FontWeight.w600,
+        text: "Profile",
+      ),
+    );
+  }
   static BoxDecoration commonDecoration(
       {String? image, double? first, double? end,Color? colorStart,Color? colorEnd}) {
     return BoxDecoration(
@@ -37,7 +73,7 @@ class AppUtils {
     );
   }
 
-  static BoxDecoration sa() {
+  static BoxDecoration dashboard() {
     return BoxDecoration(
         image: const DecorationImage(
             opacity: 0.2, image: AssetImage(icDashboardimg), fit: BoxFit.fill),
@@ -199,8 +235,37 @@ class AppUtils {
     );
   }
 
-  static Widget commonDivider({Color? color,double? indent,double?  endIndent }){
-    return Divider(color: color?? AppColor.colorWhite,indent: indent??15, endIndent: endIndent??15);
+  static Widget commonDivider({Color? color,double? indent,double?  endIndent,double? top }){
+    return Divider(color: color?? AppColor.colorWhite,indent: indent??15, endIndent: endIndent??15,height: top??0,);
+  }
+
+ static Widget commonMenuItem(
+      {String? text,
+        Color? textColor,
+        String? imagePath,
+        Color? leadingColor,
+        double? fontSize,
+        Color? trailingColor,
+        VoidCallback? onTap}) {
+    return ListTile(
+      onTap: onTap,
+      leading: AppUtils.commonImageAssetWidget1(
+          path: imagePath??icPerson,
+          width: AppConstants.twenty,
+          height: AppConstants.twenty,
+          alignment: Alignment.centerLeft),
+      trailing: Icon(
+        Icons.arrow_forward_ios_outlined,
+        color: trailingColor ?? AppColor.colorWhite1,
+        size: AppConstants.twenty,
+      ),
+      title: CommonTextWidget(
+        text: text,
+        fontSize:fontSize?? AppConstants.fourteen,
+        textColor: textColor ?? AppColor.colorWhite,
+        fontWeight: FontWeight.w500,
+      ),
+    );
   }
 }
 

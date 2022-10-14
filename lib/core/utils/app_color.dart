@@ -18,6 +18,7 @@ class AppColor{
   static const Color colorYellowLight= Color.fromRGBO(180, 111, 37, 0.54);
   static const Color colorWt= Color.fromRGBO(38, 59, 108, 0);
   static const Color colorLogout= Color.fromRGBO(235, 87, 87, 1);
+  static const Color colorToolBar= Color.fromRGBO(40, 56, 110, 1);
 
 
 
