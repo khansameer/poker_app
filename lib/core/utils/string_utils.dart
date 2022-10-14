@@ -17,6 +17,8 @@ class StringUtils{
   static const String newPassword="New Password";
   static const String reEnterPassword="Re-Type New Password";
   static const String edit="Edit";
+  static const String history="History";
+  static const String addChipsAmount="Add Chips amount";
   static const String signupTerm="By signing up you agree to our ";
   static const String termsCondition="Terms & Condition";
 
@@ -38,9 +40,11 @@ class StringUtils{
   static const String liveStream="Live Stream";
   static const String privacyPolicy="Privacy Policy";
   static const String profile="Profile";
+  static const String sendReqest="Send Reqest";
   static const String reservations="Reservations";
   static const String followUs="Follow us on";
   static const String logout="Log Out";
+  static const String requestChips="Request Chips";
   static const String changePassword="Change password";
   static const String desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut finibus pellentesque diam sed laoreet. ";
 

@@ -99,13 +99,14 @@ class AppUtils {
   static BoxDecoration containerDecoration({
     double radius = 13,
     Color color = Colors.white,
+    double? borderWidth,
     Color colorBorder=AppColor.colorWhiteLight,
     BoxShape boxShape = BoxShape.rectangle,
   }) {
     return BoxDecoration(
         color: color,
         shape: boxShape,
-        border: Border.all(color: colorBorder?? AppColor.colorWhiteLight, width: 2),
+        border: Border.all(color: colorBorder?? AppColor.colorWhiteLight, width: borderWidth??2),
         borderRadius: BorderRadius.all(Radius.circular(radius)));
   }
 

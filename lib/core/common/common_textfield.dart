@@ -15,6 +15,10 @@ class CommonTextField extends StatelessWidget {
   Widget? suffixIcon;
   ValueChanged? onChange;
   bool? obscureText;
+  Color? colorFill;
+  Color? colorText;
+  double? left;
+  double? rigth;
   TextEditingController? controller;
   TextInputAction? textInputAction;
   CommonTextField({
@@ -29,24 +33,29 @@ class CommonTextField extends StatelessWidget {
     this.marginTop,
     this.obscureText,
     this.controller,
+    this.colorFill,
+    this.colorText,
+    this.left,
+    this.rigth,
   });
 
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: marginTop??AppConstants.five),
+      margin: EdgeInsets.only(top: marginTop??AppConstants.five,left: left??0,right:rigth??0),
       color: Colors.transparent,
       child: TextField(
         controller: controller,
         onChanged: onChange,
         keyboardType: inputTypes,
         autocorrect: true,
+
         obscureText: obscureText??false,
         textInputAction: textInputAction,
         style: TextStyle(
           fontWeight: fontWeight,
-          color: AppColor.colorWhite,
+          color: colorText?? AppColor.colorWhite,
           fontSize: fontSize,
 
         ),
@@ -60,11 +69,17 @@ class CommonTextField extends StatelessWidget {
               color: AppColor.colorWhite,
               fontSize: fontSize,),
             filled: true,
-            fillColor: AppColor.colorGrayLight1,
+            fillColor: colorFill?? AppColor.colorGrayLight1,
             enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.transparent
+              ),
               borderRadius: BorderRadius.all(Radius.circular(radius!)),
             ),
             focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: Colors.transparent
+              ),
               borderRadius: BorderRadius.all(Radius.circular(radius!)),
             )),
       ),
