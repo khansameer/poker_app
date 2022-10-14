@@ -7,5 +7,6 @@ class RouteName {
   static const String dashboard = '/dashboard';
   static const String termCondition = '/termCondition';
   static const String privacyPolicy = '/privacyPolicy';
+  static const String profile = '/profile';
 
 }

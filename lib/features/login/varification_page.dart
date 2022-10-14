@@ -41,7 +41,11 @@ class VarificationPageState extends State<VarificationPage>{
                 SizedBox(height: AppConstants.sixty,),
                 Align(
                   alignment: Alignment.topLeft,
-                  child:Icon(Icons.arrow_back_ios,size: AppConstants.twentyFour,color: AppColor.colorWhite,),
+                  child:InkWell(
+                      onTap: (){
+                        AppUtils.onBack(context);
+                      },
+                      child: Icon(Icons.arrow_back_ios,size: AppConstants.twentyFour,color: AppColor.colorWhite,)),
                 ),
                 CommonTextWidget(
                   text: StringUtils.forgotPassword,
@@ -52,13 +56,15 @@ class VarificationPageState extends State<VarificationPage>{
                 CommonTextWidget(
 
                   text: 'We,ve sent a 6-digit confirmation code to johndoe@gmail.com. Make sure you enter \nx`correct code.',
-                  margintop: AppConstants.twenty,
+                  margintop: AppConstants.thirtyFive,
                 ),
+                SizedBox(height: AppConstants.twentyFour,),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     CommonOtpWidget(
+
                         textEditingController: textEditingController,
                         first: true,
                         last: false),
@@ -85,14 +91,17 @@ class VarificationPageState extends State<VarificationPage>{
                   ],
                 ),
                 CommonButtonWidget(
+                    onPressed: (){
+                      AppUtils.onBack(context);
+                    },
                     text: StringUtils.verify,
-                    marginTop: AppConstants.thirty),
+                    marginTop: AppConstants.thirtyFive),
 
                 Center(
-                  child: AppUtils.richText(top: AppConstants.thirty,
+                  child: AppUtils.richText(top: AppConstants.fortyFive,
                       text:StringUtils.recieved,
                       onTap: (){
-                      //  Navigator.of(context).pushNamed(RouteName.signup);
+
                       },
                       linkText: StringUtils.resendCode),
                 ),

@@ -7,7 +7,8 @@ import 'package:poker/core/utils/image_path.dart';
 import 'package:poker/core/utils/string_utils.dart';
 
 class TermCoditionPage extends StatefulWidget{
-  const TermCoditionPage({super.key});
+  final String? title;
+  const TermCoditionPage( {super.key, this.title});
 
   @override
   State<StatefulWidget> createState() {
@@ -29,13 +30,19 @@ class TermCoditionPageState extends State<TermCoditionPage>{
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              SizedBox(height: AppConstants.fortyFive,),
+              SizedBox(height: AppConstants.thirtyFive,),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     AppUtils.commonImageAssetWidget(path: icLogo,height: AppConstants.sixty,boxFit: BoxFit.cover),
-                    Icon(Icons.close,color: Colors.white,size: AppConstants.twentyFour,)
+                    InkWell(
+                      onTap: (){
+                        AppUtils.onBack(context);
+                      },
+                      child: Icon(
+                        Icons.close,color: Colors.white,size: AppConstants.twentyFour,),
+                    )
                   ],
                 ),
                 CommonTextWidget(
@@ -44,7 +51,8 @@ class TermCoditionPageState extends State<TermCoditionPage>{
                   margintop: AppConstants.fourteen,
                   letterSpacing:  1.5,
                   fontSize: AppConstants.twentyFour,
-                  text:StringUtils.privacyPolicy,
+                  /*text:StringUtils.privacyPolicy,*/
+                  text: widget.title,
                 ),
                 CommonTextWidget(
                   textAlign: TextAlign.start,
@@ -57,7 +65,7 @@ class TermCoditionPageState extends State<TermCoditionPage>{
                 CommonTextWidget(
                   textAlign: TextAlign.start,
                   fontWeight: FontWeight.w600,
-                  margintop: AppConstants.twenty,
+                  margintop: AppConstants.twentyFour,
 
                   fontSize: AppConstants.sixteen,
                   text:StringUtils.desc1,
@@ -65,7 +73,42 @@ class TermCoditionPageState extends State<TermCoditionPage>{
                 CommonTextWidget(
                   textAlign: TextAlign.start,
                   fontWeight: FontWeight.w400,
-                  margintop: AppConstants.ten,
+                  margintop: AppConstants.twentyFour,
+                  letterSpacing: 0.5,
+
+                  fontSize: AppConstants.sixteen,
+                  text:StringUtils.desc2,
+                ),
+                CommonTextWidget(
+                  textAlign: TextAlign.start,
+                  fontWeight: FontWeight.w600,
+                  margintop: AppConstants.twentyFour,
+
+                  fontSize: AppConstants.sixteen,
+                  text:StringUtils.desc1,
+                ),
+                CommonTextWidget(
+                  textAlign: TextAlign.start,
+                  fontWeight: FontWeight.w400,
+                  margintop: AppConstants.twentyFour,
+                  letterSpacing: 0.5,
+
+                  fontSize: AppConstants.sixteen,
+                  text:StringUtils.desc2,
+                ),
+                CommonTextWidget(
+                  textAlign: TextAlign.start,
+                  fontWeight: FontWeight.w600,
+                  margintop: AppConstants.twentyFour,
+
+                  fontSize: AppConstants.sixteen,
+                  text:StringUtils.desc1,
+                ),
+                CommonTextWidget(
+                  textAlign: TextAlign.start,
+                  fontWeight: FontWeight.w400,
+                  margintop: AppConstants.twentyFour,
+                  letterSpacing: 0.5,
 
                   fontSize: AppConstants.sixteen,
                   text:StringUtils.desc2,

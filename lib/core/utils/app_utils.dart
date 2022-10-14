@@ -1,8 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/image_path.dart';
+import 'package:poker/core/utils/string_utils.dart';
 
 class AppUtils {
   static BoxDecoration commonDecoration(
@@ -21,10 +23,10 @@ class AppUtils {
             ]));
   }
 
-  static BoxDecoration containerDecorationBg() {
+  static BoxDecoration containerDecorationBg({String? image}) {
     return BoxDecoration(
       image:
-          DecorationImage(image: AssetImage(icDashboardBg), fit: BoxFit.fill),
+          DecorationImage(image: AssetImage(image??icDashboardBg), fit: BoxFit.fill),
       /* gradient: LinearGradient(
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
@@ -54,21 +56,13 @@ class AppUtils {
   static BoxDecoration containerDecoration({
     double radius = 13,
     Color color = Colors.white,
-    bool isBorder = false,
+    Color colorBorder=AppColor.colorWhiteLight,
     BoxShape boxShape = BoxShape.rectangle,
   }) {
     return BoxDecoration(
         color: color,
         shape: boxShape,
-        border: isBorder
-            ? Border.all(
-                color: AppColor.colorBlueLight,
-                width: 3,
-              )
-            : Border.all(
-                color: AppColor.colorBlueLight,
-                width: 0,
-              ),
+        border: Border.all(color: colorBorder?? AppColor.colorWhiteLight, width: 2),
         borderRadius: BorderRadius.all(Radius.circular(radius)));
   }
 
@@ -88,7 +82,7 @@ class AppUtils {
           //style: TextStyle(color: Colors.black, fontSize: 14),
           children: <TextSpan>[
             TextSpan(
-                text: text,
+                text: '${text} ' ,
                 style: TextStyle(
                     letterSpacing: 0.5,
                     color: Colors.white,
@@ -131,7 +125,23 @@ class AppUtils {
       ),
     );
   }
+  static Widget commonImageAssetWidget1(
 
+      {String? path,
+        double? width,
+        double? height,
+        Alignment? alignment,
+        Color? iconColor,
+        BoxFit? boxFit}) {
+    return SvgPicture.asset(
+      path!,
+      width: width,
+      height: height,
+      alignment: alignment ?? Alignment.center,
+      color: iconColor,
+      fit: boxFit ?? BoxFit.cover,
+    );
+  }
   static textStyle(
       {double? letterSpacing,
       FontWeight? fontWeight,
@@ -145,4 +155,53 @@ class AppUtils {
         fontWeight: fontWeight ?? FontWeight.w500,
         decoration: textDecoration ?? TextDecoration.none);
   }
+  static void onBack(BuildContext context){
+    Navigator.pop(context);
+  }
+  static void redirectToNextScreen({BuildContext? context,String? screenName,String? arguments }){
+    Navigator.of(context!).pushNamed(screenName!,arguments: arguments);
+  }
+
+ static Widget privacyPolicyLinkAndTermsOfService({VoidCallback? onTapTermsCondition,VoidCallback? onTapPrivacyPolicy}) {
+    return Container(
+      margin: EdgeInsets.only(top: AppConstants.thirtyFive),
+      child: Text.rich(TextSpan(
+          text: StringUtils.signupTerm,
+          style: AppUtils.textStyle(
+              fontSize: AppConstants.fourteen, textColor: AppColor.colorWhite1),
+          children: <TextSpan>[
+            TextSpan(
+                text: StringUtils.termsCondition,
+                style: AppUtils.textStyle(
+                    textDecoration: TextDecoration.underline,
+                    fontSize: AppConstants.fourteen, textColor: AppColor.colorWhite),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = onTapTermsCondition),
+            TextSpan(
+                text: '  and ',
+                style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    letterSpacing: 0.5,
+                    fontSize: AppConstants.fourteen,
+                    color: AppColor.colorWhite1),
+                children: <TextSpan>[
+                  TextSpan(
+                      text: StringUtils.privacyPolicy,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: AppConstants.fourteen,
+                          color: Colors.white,
+                          decoration: TextDecoration.underline),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = onTapPrivacyPolicy)
+                ])
+          ])),
+    );
+  }
+
+  static Widget commonDivider({Color? color,double? indent,double?  endIndent }){
+    return Divider(color: color?? AppColor.colorWhite,indent: indent??15, endIndent: endIndent??15);
+  }
 }
+
+
