@@ -57,6 +57,8 @@ class LoginPageState extends State<LoginPage> {
                     margintop: AppConstants.thirtyFive,
                   ),
                   CommonTextField(
+                      controller: AppUtils.tetEmail,
+                      inputTypes: TextInputType.emailAddress,
                       marginTop: AppConstants.ten,
                       hint: StringUtils.emailHint,
                       iconWidget: const Icon(
@@ -70,6 +72,7 @@ class LoginPageState extends State<LoginPage> {
                       text: StringUtils.password,
                       margintop: AppConstants.eighteen),
                   CommonTextField(
+                      controller: AppUtils.tetPassword,
                       obscureText: obscureText,
                       suffixIcon: InkWell(
                         onTap: () {

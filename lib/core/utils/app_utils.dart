@@ -1,7 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:poker/core/common/common_list_bean.dart';
 import 'package:poker/core/common/common_text_widget.dart';
+import 'package:poker/core/route.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/image_path.dart';
@@ -9,7 +11,28 @@ import 'package:poker/core/utils/string_utils.dart';
 
 class AppUtils {
 
-  static AppBar commonAppBar({required BuildContext context,String? title,bool? isShowEdit,String? actionTitle}){
+  static TextEditingController tetEmail=TextEditingController();
+  static TextEditingController tetPassword=TextEditingController();
+  static TextEditingController tetConfrimPassword=TextEditingController();
+  static TextEditingController tetNewPassword=TextEditingController();
+  static TextEditingController tetReInterPassword=TextEditingController();
+  static TextEditingController tetFirstName=TextEditingController();
+  static TextEditingController tetLastName=TextEditingController();
+  static TextEditingController tetOtp=TextEditingController();
+
+
+ static List<CommonList> commonList = [];
+
+ static getUserList() {
+    commonList.add(CommonList("In","25 Aug, 23:52","+ 500","Pending",true));
+    commonList.add(CommonList("In","25 Aug, 23:52","+ 500","Failed",true));
+    commonList.add(CommonList("Out","25 Aug, 23:52","+ 500","Completed",false));
+    commonList.add(CommonList("Out","25 Aug, 23:52","+ 500","Completed",false));
+    commonList.add(CommonList("In","25 Aug, 23:52","+ 500","Pending",true));
+  }
+
+
+  static AppBar commonAppBar({required BuildContext context,String? title,bool? isShowEdit,String? actionTitle,VoidCallback? onTap}){
     return AppBar(
       toolbarHeight: 70,
       actions: [
@@ -17,13 +40,19 @@ class AppUtils {
         Visibility(
           visible: isShowEdit ?? false,
           child: Center(
-            child: CommonTextWidget(
+            child: TextButton(
+              onPressed: (){
+                AppUtils.redirectToNextScreen(context: context,screenName: RouteName.editProfile);
 
-              textAlign: TextAlign.center,
-              right: AppConstants.twentyFour,
-              fontSize: AppConstants.eighteen,
-              fontWeight: FontWeight.w600,
-              text: actionTitle,
+              },
+              child: CommonTextWidget(
+
+                textAlign: TextAlign.center,
+                right: AppConstants.twentyFour,
+                fontSize: AppConstants.eighteen,
+                fontWeight: FontWeight.w600,
+                text: actionTitle,
+              ),
             ),
           ),
         )
@@ -39,37 +68,15 @@ class AppUtils {
       title: CommonTextWidget(
         fontSize: AppConstants.eighteen,
         fontWeight: FontWeight.w600,
-        text: "Profile",
+        text:title ,
       ),
     );
-  }
-  static BoxDecoration commonDecoration(
-      {String? image, double? first, double? end,Color? colorStart,Color? colorEnd}) {
-    return BoxDecoration(
-        /*image: const DecorationImage(
-             image: AssetImage(icBackground), fit: BoxFit.fill),*/
-        gradient: LinearGradient(
-            stops: [0.1, 0.7],
-            tileMode: TileMode.clamp,
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              AppColor.colorBlueLight,
-              AppColor.colorBlue,
-            ]));
   }
 
   static BoxDecoration containerDecorationBg({String? image}) {
     return BoxDecoration(
       image:
           DecorationImage(image: AssetImage(image??icDashboardBg), fit: BoxFit.fill),
-      /* gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-       stops: [0.6, 1],
-
-        colors: [AppColor.colorBlue, AppColor.colorBlueLight],
-      ),*/
     );
   }
 
@@ -239,6 +246,7 @@ class AppUtils {
     return Divider(color: color?? AppColor.colorWhite,indent: indent??15, endIndent: endIndent??15,height: top??0,);
   }
 
+
  static Widget commonMenuItem(
       {String? text,
         Color? textColor,
@@ -267,6 +275,25 @@ class AppUtils {
       ),
     );
   }
+
+ static Widget commonBg({
+    Widget? widget,
+    Color? color,
+   double? left,
+   double? top,
+   double? radius,
+   double?padding,
+  }) {
+    return Container(
+      margin:  EdgeInsets.only(left:left?? 16, top: top??10),
+      padding:  EdgeInsets.all(padding?? 10),
+      decoration: AppUtils.containerDecoration(
+          radius: radius??8, color: color ?? AppColor.colorWhiteLight),
+      child: widget,
+    );
+  }
+
 }
+
 
 

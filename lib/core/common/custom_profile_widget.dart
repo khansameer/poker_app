@@ -94,7 +94,7 @@ class CustomProfileWidgetState extends State<CustomProfileWidget> {
       //when i am used  AppUtils.containerDecoration UI was not rendring perfact then i am used this normal box BoxDecoration
       return commonContainerBox(Image.asset(
         icImge,
-        fit: BoxFit.cover,
+        fit: BoxFit.fill,
       ));
     }
   }
@@ -107,7 +107,7 @@ class CustomProfileWidgetState extends State<CustomProfileWidget> {
         shape: BoxShape.circle,
         border: Border.all(
           color: AppColor.colorWhite,
-          width: AppConstants.three,
+          width: AppConstants.two,
         ),
       ),
       child: CircleAvatar(
@@ -125,7 +125,7 @@ class CustomProfileWidgetState extends State<CustomProfileWidget> {
           color: color,
           all: AppConstants.ten,
           child: Icon(
-            Icons.camera_alt_sharp,
+            Icons.camera_alt_outlined,
             color: Colors.black,
             size: AppConstants.twenty,
           ),

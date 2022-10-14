@@ -8,5 +8,8 @@ class RouteName {
   static const String termCondition = '/termCondition';
   static const String privacyPolicy = '/privacyPolicy';
   static const String profile = '/profile';
+  static const String editProfile = '/editProfile';
+  static const String changePassword = '/changePassword';
+  static const String clubBalance = '/clubBalance';
 
 }

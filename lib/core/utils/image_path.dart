@@ -19,3 +19,4 @@ const icFb = '$baseIconPath/ic_fb.svg';
 const icInsta = '$baseIconPath/icsa.svg';
 /*const icAvtaar = '$baseIconPath/ic_avtar.svg';*/
 const icKey = '$baseIconPath/ic_key.svg';
+const icUser = '$baseIconPath/user.svg';

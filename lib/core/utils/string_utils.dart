@@ -9,9 +9,13 @@ class StringUtils{
   static const String connectWith="or continue with";
   static const String anAccount="Don,t have an account?";
   static const String signup="Signup";
+  static const String update="Update";
   static const String firstName="First Name";
   static const String lastName="Last Name";
   static const String your="Your ";
+  static const String currentPassword="Current Password";
+  static const String newPassword="New Password";
+  static const String reEnterPassword="Re-Type New Password";
   static const String edit="Edit";
   static const String signupTerm="By signing up you agree to our ";
   static const String termsCondition="Terms & Condition";

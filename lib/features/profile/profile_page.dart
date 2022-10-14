@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:poker/core/common/common_bg_page.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/common/custom_profile_widget.dart';
+import 'package:poker/core/route.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
@@ -22,6 +23,7 @@ class ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppUtils.commonAppBar(
           context: context,
           title: StringUtils.profile,
@@ -73,14 +75,17 @@ class ProfilePageState extends State<ProfilePage> {
                     endIndent: AppConstants.zero,
                     top: AppConstants.thirtyFive),
                 AppUtils.commonMenuItem(
+                      onTap: onClickChangePassword,
                     text: StringUtils.changePassword,
                     fontSize: AppConstants.sixteen,
                     imagePath: icKey),
                 AppUtils.commonDivider(
+
                     indent: AppConstants.zero,
                     endIndent: AppConstants.zero,
                     top: AppConstants.thirtyFive),
                 AppUtils.commonMenuItem(
+                  onTap: onClickLogout,
                     text: StringUtils.logout,
                     textColor: AppColor.colorLogout,
                     imagePath: icLogout,
@@ -92,4 +97,12 @@ class ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
+  void onClickChangePassword(){
+    AppUtils.redirectToNextScreen(context: context,screenName: RouteName.changePassword);
+  }
+  void onClickLogout(){
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil(RouteName.login, (route) => false);
+  }
+
 }

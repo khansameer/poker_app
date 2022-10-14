@@ -15,6 +15,7 @@ class CommonTextField extends StatelessWidget {
   Widget? suffixIcon;
   ValueChanged? onChange;
   bool? obscureText;
+  TextEditingController? controller;
   TextInputAction? textInputAction;
   CommonTextField({
     this.hint,
@@ -27,6 +28,7 @@ class CommonTextField extends StatelessWidget {
     this.onChange,
     this.marginTop,
     this.obscureText,
+    this.controller,
   });
 
 
@@ -36,6 +38,7 @@ class CommonTextField extends StatelessWidget {
       margin: EdgeInsets.only(top: marginTop??AppConstants.five),
       color: Colors.transparent,
       child: TextField(
+        controller: controller,
         onChanged: onChange,
         keyboardType: inputTypes,
         autocorrect: true,
