@@ -20,3 +20,6 @@ const icInsta = '$baseIconPath/icsa.svg';
 /*const icAvtaar = '$baseIconPath/ic_avtar.svg';*/
 const icKey = '$baseIconPath/ic_key.svg';
 const icUser = '$baseIconPath/user.svg';
+const icDone = '$baseIconPath/ic_done.svg';
+const icEvent = '$baseIconPath/ic_event.png';
+const icEvent1 = '$baseIconPath/ic_event1.png';

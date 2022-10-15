@@ -25,6 +25,9 @@ class DashboardPageState extends State<DashboardPage> {
   void onClickClubBalance(){
     AppUtils.redirectToNextScreen(context: context,screenName: RouteName.clubBalance);
   }
+  void onClickEvent(){
+    AppUtils.redirectToNextScreen(context: context,screenName: RouteName.event);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +58,7 @@ class DashboardPageState extends State<DashboardPage> {
                           icon: Icon(
                             Icons.close,
                             color: AppColor.colorWhite,
-                            size: 24,
+                            size: AppConstants.twentyFour,
                           )),
                     ],
                   )),
@@ -65,7 +68,7 @@ class DashboardPageState extends State<DashboardPage> {
                       color: AppColor.colorWhite1),
                   AppUtils.commonMenuItem(text: StringUtils.profile,onTap: onClickProfile),
                   AppUtils.commonDivider(color: AppColor.colorWhite1),
-                  AppUtils.commonMenuItem(text:StringUtils.reservations,imagePath: icReservations),
+                  AppUtils.commonMenuItem(text:StringUtils.reservations,imagePath: icReservations,onTap: onClickEvent),
                 ],
               ),
               Align(
@@ -77,7 +80,7 @@ class DashboardPageState extends State<DashboardPage> {
                     CommonTextWidget(
                       textAlign: TextAlign.center,
                       text:StringUtils.followUs,
-                      left: 24,
+                      left: AppConstants.twentyFour,
                       textColor: AppColor.colorWhite1,
                       fontSize: AppConstants.sixteen,
                       fontWeight: FontWeight.w500,
@@ -86,14 +89,14 @@ class DashboardPageState extends State<DashboardPage> {
                       height: AppConstants.sixteen,
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 24),
+                      margin: EdgeInsets.only(left: AppConstants.twentyFour),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           commonTopView(
                             width: 70,
                             height: 70,
-                            widget: AppUtils.commonImageAssetWidget1(
+                            widget: AppUtils.commonImageSVGWidget(
                               boxFit: BoxFit.scaleDown,
                                 path: icFb,
                                 width: AppConstants.thirty,
@@ -105,7 +108,7 @@ class DashboardPageState extends State<DashboardPage> {
                           commonTopView(
                               width: 70,
                               height: 70,
-                              widget: AppUtils.commonImageAssetWidget1(
+                              widget: AppUtils.commonImageSVGWidget(
                                   path: icInsta,
 
                                   boxFit: BoxFit.scaleDown,
@@ -240,6 +243,7 @@ class DashboardPageState extends State<DashboardPage> {
                         )),
                   ],
                 ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

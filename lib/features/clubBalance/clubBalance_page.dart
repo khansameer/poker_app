@@ -16,7 +16,6 @@ class ClubBalancePage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return ClubBalancePageState();
   }
 }
@@ -53,6 +52,7 @@ class ClubBalancePageState extends State<ClubBalancePage> {
               onPressed: () {
                 showModalBottomSheet(
                     context: context,
+                    isScrollControlled: true,
                     backgroundColor: AppColor.colorBottom,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
@@ -95,6 +95,9 @@ class ClubBalancePageState extends State<ClubBalancePage> {
                               fontWeight: FontWeight.w500,
                               radius: AppConstants.eight),
                           CommonButtonWidget(
+                            onPressed: () {
+                              AppUtils.showAlertDialog( context: context);
+                            },
                             bottom: AppConstants.twenty,
                             marginTop: AppConstants.twentyFour,
                             text: StringUtils.sendReqest,
@@ -116,7 +119,7 @@ class ClubBalancePageState extends State<ClubBalancePage> {
       ),
       appBar: AppUtils.commonAppBar(
           context: context,
-          title: StringUtils.profile,
+          title: StringUtils.clubBalance,
           isShowEdit: false,
           actionTitle: StringUtils.edit),
       body: Container(
@@ -288,4 +291,6 @@ class ClubBalancePageState extends State<ClubBalancePage> {
           );
         });
   }
+
+
 }

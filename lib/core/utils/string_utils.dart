@@ -41,9 +41,12 @@ class StringUtils{
   static const String privacyPolicy="Privacy Policy";
   static const String profile="Profile";
   static const String sendReqest="Send Reqest";
+  static const String clubBalance="Club Balance";
   static const String reservations="Reservations";
   static const String followUs="Follow us on";
   static const String logout="Log Out";
+  static const String done="Done";
+  static const String event="Event";
   static const String requestChips="Request Chips";
   static const String changePassword="Change password";
   static const String desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut finibus pellentesque diam sed laoreet. ";
