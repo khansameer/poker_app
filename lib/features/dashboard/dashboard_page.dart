@@ -6,8 +6,6 @@ import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
 import 'package:poker/core/utils/string_utils.dart';
-import 'dart:math' as math;
-
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
 
@@ -33,7 +31,7 @@ class DashboardPageState extends State<DashboardPage> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: Drawer(
-        elevation: 0,
+        elevation: AppConstants.zero,
         backgroundColor: Colors.transparent,
         child: Container(
           decoration: AppUtils.containerDecorationBg(image: icMenuBg),
@@ -50,8 +48,8 @@ class DashboardPageState extends State<DashboardPage> {
                       Expanded(
                           child: Image.asset(
                         icLogo,
-                        width: 77,
-                        height: 53,
+                        width: AppConstants.seventySeven,
+                        height: AppConstants.fiftyThree,
                       )),
                       IconButton(
                           onPressed: () {},
@@ -94,8 +92,8 @@ class DashboardPageState extends State<DashboardPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           commonTopView(
-                            width: 70,
-                            height: 70,
+                            width: AppConstants.seventy,
+                            height: AppConstants.seventy,
                             widget: AppUtils.commonImageSVGWidget(
                               boxFit: BoxFit.scaleDown,
                                 path: icFb,
@@ -103,11 +101,11 @@ class DashboardPageState extends State<DashboardPage> {
                                 height: AppConstants.thirty),
                           ),
                           SizedBox(
-                            width: 20,
+                            width: AppConstants.twenty,
                           ),
                           commonTopView(
-                              width: 70,
-                              height: 70,
+                              width: AppConstants.seventy,
+                              height: AppConstants.seventy,
                               widget: AppUtils.commonImageSVGWidget(
                                   path: icInsta,
 
@@ -118,15 +116,15 @@ class DashboardPageState extends State<DashboardPage> {
                       ),
                     ),
                     SizedBox(
-                      height: 32,
+                      height: AppConstants.thirty,
                     ),
                     AppUtils.commonDivider(
                         color: AppColor.colorWhite1,
                         endIndent: AppConstants.zero,
                         indent: AppConstants.zero),
-                    AppUtils.commonMenuItem(text: "Rate us on the app store",imagePath: icStar),
+                    AppUtils.commonMenuItem(text: StringUtils.rateUs,imagePath: icStar),
                     AppUtils.commonDivider(color: AppColor.colorWhite1),
-                    AppUtils.commonMenuItem(text: "Log Out",imagePath: icLogout,textColor: AppColor.colorLogout),
+                    AppUtils.commonMenuItem(text:StringUtils.logout,imagePath: icLogout,textColor: AppColor.colorLogout),
                   ],
                 ),
               )
@@ -166,8 +164,8 @@ class DashboardPageState extends State<DashboardPage> {
                         AppUtils.commonImageAssetWidget(
                             alignment: Alignment.center,
                             path: icLogo,
-                            width: 77,
-                            height: 53),
+                            width: AppConstants.seventySeven,
+                            height: AppConstants.fiftyThree),
                       ],
                     ),
                   ],
@@ -225,22 +223,16 @@ class DashboardPageState extends State<DashboardPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     commonGridView(
+                        imageTrans: icWhatOnTrans,
                         imagePath: icGrid,
                         text: StringUtils.whatOn,
-                        widget: Image.asset(
-                          icGoogle,
-                          width: 20,
-                          height: 20,
-                        )),
+                        widget:commonLoadSvg(path: event) ),
                     commonGridView(
+                        imageTrans: icEventTrans,
                         imagePath: icEventBg,
                         text: StringUtils.events,
                         colorBg: AppColor.colorBlueLight1,
-                        widget: Image.asset(
-                          icGoogle,
-                          width: 20,
-                          height: 20,
-                        )),
+                        widget: commonLoadSvg(path: celebration)),
                   ],
                 ),
 
@@ -248,31 +240,32 @@ class DashboardPageState extends State<DashboardPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     commonGridView(
+                        imageTrans: icCreditTrans,
+                        imagePath: icCredit,
                         text: StringUtils.creditFile,
-                        widget: Image.asset(
-                          icGoogle,
-                          width: 20,
-                          height: 20,
-                        )),
+                        widget: commonLoadSvg(path: difference)),
                     commonGridView(
+                        imageTrans: icChatTrans,
+                        imagePath: icCredit,
                         text: StringUtils.chatRoom,
-                        widget: Image.asset(
-                          icGoogle,
-                          width: 20,
-                          height: 20,
-                        )),
+                        widget: commonLoadSvg(path: chat)),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     commonGridView(
+                        imageTrans: icVenueTrans,
+                        imagePath: icVenue,
+                        text: StringUtils.venueInfo,
+                        widget: commonLoadSvg(path: venue)),
+                  /*  commonGridView(
                         text: StringUtils.venueInfo,
                         widget: Image.asset(
                           icGoogle,
                           width: 20,
                           height: 20,
-                        )),
+                        )),*/
                     commonGridView(
                         text: StringUtils.liveStream,
                         widget: Image.asset(
@@ -304,10 +297,7 @@ class DashboardPageState extends State<DashboardPage> {
           color: color ?? AppColor.colorBlue,
           radius: radius ??
               AppConstants
-                  .twelve) /*BoxDecoration(
-          border: Border.all(color: AppColor.colorWhiteLight, width: 2),
-          borderRadius: BorderRadius.all(Radius.circular(13)),
-          color: AppColor.colorBlue)*/
+                  .twelve)
       ,
       child: InkWell(
         onTap: onTap,
@@ -325,29 +315,22 @@ class DashboardPageState extends State<DashboardPage> {
 
 
   Widget commonGridView(
-      {String? text, Widget? widget, String? imagePath, Color? colorBg,String}) {
+      {String? text, Widget? widget, String? imagePath, Color? colorBg,String? imageTrans}) {
     return Container(
       alignment: Alignment.topLeft,
-      margin: EdgeInsets.only(top: 10),
-      width: 178,
-      height: 140,
+      margin: EdgeInsets.only(top: AppConstants.sixteen),
+      width: AppConstants.oneHundredSeventyEight,
+      height: AppConstants.oneHundredFourty,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           image: DecorationImage(
-              image: AssetImage(imagePath ?? icGrid), fit: BoxFit.cover)),
+              image: AssetImage(imagePath ?? icWhatOn), fit: BoxFit.cover)),
       child: Container(
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                stops: [0.1, 0.5, 0.8, 0.9],
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: [
-                  AppColor.colorBlueLight1,
-                  AppColor.colorBlueLight1,
-                  AppColor.colorWt,
-                  AppColor.colorWt
-                ]),
-            color: colorBg ?? AppColor.colorRedLight,
+              image:  DecorationImage(
+                image: AssetImage(imageTrans??icWhatOnTrans),fit: BoxFit.cover
+              ),
+           /* color: colorBg ?? AppColor.colorRedLight,*/
             borderRadius: BorderRadius.circular(16),
             border: Border.all(color: AppColor.colorWhiteLight, width: 3)),
         child: Column(
@@ -380,5 +363,11 @@ class DashboardPageState extends State<DashboardPage> {
     );
   }
 
-
+Widget commonLoadSvg({double? width, double? height, String? path}){
+      return AppUtils.commonImageSVGWidget(
+        path: path??event ,
+        width: width??AppConstants.twenty,
+        height:height?? AppConstants.twenty,
+      );
+}
 }

@@ -12,5 +12,6 @@ class RouteName {
   static const String changePassword = '/changePassword';
   static const String clubBalance = '/clubBalance';
   static const String event = '/event';
+  static const String eventDetails = '/eventDetails';
 
 }

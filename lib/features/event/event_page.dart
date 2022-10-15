@@ -5,6 +5,7 @@ import 'package:poker/core/common/common_list_bean.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/common/common_textfield.dart';
 import 'package:poker/core/common/context_extension.dart';
+import 'package:poker/core/route.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
@@ -63,26 +64,33 @@ class EventPageState extends State<EventPage>{
 
   Widget bindListView() {
     return ListView.builder(
+
         shrinkWrap: true,
         primary: false,
         itemCount: commonList.length,
         padding: EdgeInsets.zero,
         itemBuilder: (context, index) {
-          return Container(
-            height: 200,
-            decoration: AppUtils.containerDecoration(
-                borderWidth: AppConstants.four,
-                radius: AppConstants.sixteen,
-                color: AppColor.colorBlueClub),
-            margin: EdgeInsets.all(AppConstants.five),
-            padding: EdgeInsets.only(
-                left: AppConstants.zero,
-                right: AppConstants.zero,
-                top: AppConstants.zero,
-                bottom: AppConstants.zero),
-            child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(AppConstants.sixteen)),
-                child: AppUtils.commonImageAssetWidget(width:double.infinity,path: commonList[index].title,boxFit: BoxFit.cover)),
+          return InkWell(
+            onTap: (){
+              AppUtils.redirectToNextScreen(context: context,screenName: RouteName.eventDetails);
+
+            },
+            child: Container(
+              height: 200,
+              decoration: AppUtils.containerDecoration(
+                  borderWidth: AppConstants.four,
+                  radius: AppConstants.sixteen,
+                  color: AppColor.colorBlueClub),
+              margin: EdgeInsets.all(AppConstants.five),
+              padding: EdgeInsets.only(
+                  left: AppConstants.zero,
+                  right: AppConstants.zero,
+                  top: AppConstants.zero,
+                  bottom: AppConstants.zero),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(AppConstants.sixteen)),
+                  child: AppUtils.commonImageAssetWidget(width:double.infinity,path: commonList[index].title,boxFit: BoxFit.cover)),
+            ),
           );
         });
   }

@@ -4,6 +4,7 @@ import 'package:poker/core/route.dart';
 import 'package:poker/features/change_password_page.dart';
 import 'package:poker/features/clubBalance/clubBalance_page.dart';
 import 'package:poker/features/dashboard/dashboard_page.dart';
+import 'package:poker/features/event/event_details_page.dart';
 import 'package:poker/features/event/event_page.dart';
 import 'package:poker/features/login/login_page.dart';
 import 'package:poker/features/login/varification_page.dart';
@@ -63,6 +64,10 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (_) =>  const EventPage(),
             settings: const RouteSettings(name: RouteName.event));
+      case RouteName.eventDetails:
+        return MaterialPageRoute(
+            builder: (_) =>  const EventDetailsPage(),
+            settings: const RouteSettings(name: RouteName.eventDetails));
 
       default:
         return MaterialPageRoute(
