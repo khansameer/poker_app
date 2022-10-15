@@ -85,6 +85,12 @@ class AppUtils {
           image: AssetImage(image ?? icDashboardBg), fit: BoxFit.fill),
     );
   }
+  static BoxDecoration decorationCircle({Color? color}) {
+    return BoxDecoration(
+        color: color,
+        shape: BoxShape.circle
+    );
+  }
 
   static BoxDecoration dashboard() {
     return BoxDecoration(
@@ -107,15 +113,15 @@ class AppUtils {
     Color color = Colors.white,
     double? borderWidth,
     Color colorBorder = AppColor.colorWhiteLight,
-    BoxShape boxShape = BoxShape.rectangle,
+
   }) {
     return BoxDecoration(
         color: color,
-        shape: boxShape,
+        borderRadius: BorderRadius.all(Radius.circular(radius)),
         border: Border.all(
-            color: colorBorder ?? AppColor.colorWhiteLight,
+            color: colorBorder,
             width: borderWidth ?? 2),
-        borderRadius: BorderRadius.all(Radius.circular(radius)));
+    /*    */);
   }
 
   static Widget richText({
@@ -299,14 +305,17 @@ class AppUtils {
     Widget? widget,
     Color? color,
     double? left,
+    double? right,
     double? top,
     double? radius,
+    double? borderWidth,
     double? padding,
   }) {
     return Container(
-      margin: EdgeInsets.only(left: left ?? 16, top: top ?? 10),
+      margin: EdgeInsets.only(left: left ?? 16, top: top ?? 10,right: right??0),
       padding: EdgeInsets.all(padding ?? 10),
       decoration: AppUtils.containerDecoration(
+            borderWidth:borderWidth??0 ,
           radius: radius ?? 8, color: color ?? AppColor.colorWhiteLight),
       child: widget,
     );
@@ -371,4 +380,83 @@ class AppUtils {
       },
     );
   }
+ static Widget commonGridView(
+      {String? text,
+        Widget? widget,
+        String? imagePath,
+        Color? colorBg,
+        String? imageTrans}) {
+    return Container(
+      alignment: Alignment.topLeft,
+      margin: EdgeInsets.only(top: AppConstants.sixteen),
+      width: AppConstants.oneHundredSeventyEight,
+      height: AppConstants.oneHundredFourty,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppConstants.sixteen),
+          image: DecorationImage(
+              image: AssetImage(imagePath ?? icWhatOn), fit: BoxFit.cover)),
+      child: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(imageTrans ?? icWhatOnTrans),
+                fit: BoxFit.cover),
+            /* color: colorBg ?? AppColor.colorRedLight,*/
+            borderRadius: BorderRadius.circular(AppConstants.sixteen),
+            border: Border.all(color: AppColor.colorWhiteLight, width: AppConstants.three)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppUtils.commonBg(
+                left: AppConstants.ten,
+                color:AppColor.colorBlackLight, widget: widget),
+            SizedBox(height: AppConstants.sixteen,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                AppUtils.commonBg(
+
+                    left:AppConstants.ten ,
+                    top: 0,
+
+                    color: AppColor.colorBlackLight,
+                    widget: CommonTextWidget(
+                      text: text,
+
+                      fontWeight: FontWeight.w700,
+                      fontSize: AppConstants.fourteen,
+                    )),
+
+             Container(
+               margin: EdgeInsets.only(left:AppConstants.fourteen),
+               alignment: Alignment.center,
+               padding: EdgeInsets.all(AppConstants.twelve),
+               decoration: const BoxDecoration(
+                   color: AppColor.colorBlackLight,
+                   shape: BoxShape.circle
+               ),
+               child: Icon(
+                 Icons.arrow_forward_ios_outlined,
+                 color: AppColor.colorWhite,
+                 size: AppConstants.fourteen,
+               ),
+             )
+             /*   AppUtils.commonBg(
+
+                    color: AppColor.colorBlackLight,
+                    widget:  Icon(
+                      Icons.arrow_forward_ios_outlined,
+                      color: AppColor.colorWhite,
+                      size: AppConstants.fourteen,
+                    ))*/
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+
 }

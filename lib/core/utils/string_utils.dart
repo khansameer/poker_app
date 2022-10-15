@@ -47,6 +47,7 @@ class StringUtils{
   static const String logout="Log Out";
   static const String done="Done";
   static const String event="Event";
+  static const String schedule="Schedule";
   static const String rateUs="Rate us on the app store";
   static const String eventDetails="Event Details";
   static const String requestChips="Request Chips";

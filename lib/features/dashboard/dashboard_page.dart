@@ -6,6 +6,8 @@ import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
 import 'package:poker/core/utils/string_utils.dart';
+import 'package:poker/features/dashboard/model/dashbord_bean.dart';
+
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
 
@@ -16,16 +18,62 @@ class DashboardPage extends StatefulWidget {
 }
 
 class DashboardPageState extends State<DashboardPage> {
+  List<DashboardBean> dashboardList = [];
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-    void onClickProfile(){
-      AppUtils.redirectToNextScreen(context: context,screenName: RouteName.profile);
-    }
-  void onClickClubBalance(){
-    AppUtils.redirectToNextScreen(context: context,screenName: RouteName.clubBalance);
+  void onClickProfile() {
+    AppUtils.redirectToNextScreen(
+        context: context, screenName: RouteName.profile);
   }
-  void onClickEvent(){
-    AppUtils.redirectToNextScreen(context: context,screenName: RouteName.event);
+
+  void onClickClubBalance() {
+    AppUtils.redirectToNextScreen(
+        context: context, screenName: RouteName.clubBalance);
   }
+
+  void onClickEvent() {
+
+  }
+
+  loadVIew() {
+    dashboardList.add(DashboardBean(
+        image: icWhatOn,
+        icon: event,
+        text: StringUtils.whatOn,
+        imageTrans: icWhatOnTrans));
+    dashboardList.add(DashboardBean(
+        image: icEventBg,
+        icon: celebration,
+        text: StringUtils.event,
+        imageTrans: icEventTrans));
+    dashboardList.add(DashboardBean(
+        image: icCredit,
+        icon: difference,
+        text: StringUtils.creditFile,
+        imageTrans: icCreditTrans));
+    dashboardList.add(DashboardBean(
+        image: icChatRoom,
+        icon: chat,
+        text: StringUtils.chatRoom,
+        imageTrans: icChatTrans));
+    dashboardList.add(DashboardBean(
+        image: icVenue,
+        icon: venue,
+        text: StringUtils.venueInfo,
+        imageTrans: icVenueTrans));
+    dashboardList.add(DashboardBean(
+        image: icLiveStrem,
+        icon: video,
+        text: StringUtils.liveStream,
+        imageTrans: icLiveStreamTrans));
+  }
+
+  @override
+  void initState() {
+
+    super.initState();
+    loadVIew();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,9 +112,13 @@ class DashboardPageState extends State<DashboardPage> {
                       indent: AppConstants.zero,
                       endIndent: AppConstants.zero,
                       color: AppColor.colorWhite1),
-                  AppUtils.commonMenuItem(text: StringUtils.profile,onTap: onClickProfile),
+                  AppUtils.commonMenuItem(
+                      text: StringUtils.profile, onTap: onClickProfile),
                   AppUtils.commonDivider(color: AppColor.colorWhite1),
-                  AppUtils.commonMenuItem(text:StringUtils.reservations,imagePath: icReservations,onTap: onClickEvent),
+                  AppUtils.commonMenuItem(
+                      text: StringUtils.reservations,
+                      imagePath: icReservations,
+                      onTap: onClickEvent),
                 ],
               ),
               Align(
@@ -77,7 +129,7 @@ class DashboardPageState extends State<DashboardPage> {
                   children: [
                     CommonTextWidget(
                       textAlign: TextAlign.center,
-                      text:StringUtils.followUs,
+                      text: StringUtils.followUs,
                       left: AppConstants.twentyFour,
                       textColor: AppColor.colorWhite1,
                       fontSize: AppConstants.sixteen,
@@ -95,7 +147,7 @@ class DashboardPageState extends State<DashboardPage> {
                             width: AppConstants.seventy,
                             height: AppConstants.seventy,
                             widget: AppUtils.commonImageSVGWidget(
-                              boxFit: BoxFit.scaleDown,
+                                boxFit: BoxFit.scaleDown,
                                 path: icFb,
                                 width: AppConstants.thirty,
                                 height: AppConstants.thirty),
@@ -108,7 +160,6 @@ class DashboardPageState extends State<DashboardPage> {
                               height: AppConstants.seventy,
                               widget: AppUtils.commonImageSVGWidget(
                                   path: icInsta,
-
                                   boxFit: BoxFit.scaleDown,
                                   width: AppConstants.thirty,
                                   height: AppConstants.thirty))
@@ -122,9 +173,13 @@ class DashboardPageState extends State<DashboardPage> {
                         color: AppColor.colorWhite1,
                         endIndent: AppConstants.zero,
                         indent: AppConstants.zero),
-                    AppUtils.commonMenuItem(text: StringUtils.rateUs,imagePath: icStar),
+                    AppUtils.commonMenuItem(
+                        text: StringUtils.rateUs, imagePath: icStar),
                     AppUtils.commonDivider(color: AppColor.colorWhite1),
-                    AppUtils.commonMenuItem(text:StringUtils.logout,imagePath: icLogout,textColor: AppColor.colorLogout),
+                    AppUtils.commonMenuItem(
+                        text: StringUtils.logout,
+                        imagePath: icLogout,
+                        textColor: AppColor.colorLogout),
                   ],
                 ),
               )
@@ -147,8 +202,8 @@ class DashboardPageState extends State<DashboardPage> {
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     commonTopView(onTap: () {
                       if (_scaffoldKey.currentState!.isDrawerOpen) {
@@ -157,19 +212,16 @@ class DashboardPageState extends State<DashboardPage> {
                         _scaffoldKey.currentState!.openDrawer();
                       }
                     }),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        AppUtils.commonImageAssetWidget(
-                            alignment: Alignment.center,
-                            path: icLogo,
-                            width: AppConstants.seventySeven,
-                            height: AppConstants.fiftyThree),
-                      ],
-                    ),
+                    Expanded(
+                        child: Image.asset(
+                          icLogo,
+                          width: AppConstants.seventySeven,
+                          height: AppConstants.fiftyThree,
+                        )),
+
                   ],
                 ),
+
                 InkWell(
                   onTap: onClickClubBalance,
                   child: Container(
@@ -219,62 +271,8 @@ class DashboardPageState extends State<DashboardPage> {
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    commonGridView(
-                        imageTrans: icWhatOnTrans,
-                        imagePath: icGrid,
-                        text: StringUtils.whatOn,
-                        widget:commonLoadSvg(path: event) ),
-                    commonGridView(
-                        imageTrans: icEventTrans,
-                        imagePath: icEventBg,
-                        text: StringUtils.events,
-                        colorBg: AppColor.colorBlueLight1,
-                        widget: commonLoadSvg(path: celebration)),
-                  ],
-                ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    commonGridView(
-                        imageTrans: icCreditTrans,
-                        imagePath: icCredit,
-                        text: StringUtils.creditFile,
-                        widget: commonLoadSvg(path: difference)),
-                    commonGridView(
-                        imageTrans: icChatTrans,
-                        imagePath: icCredit,
-                        text: StringUtils.chatRoom,
-                        widget: commonLoadSvg(path: chat)),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    commonGridView(
-                        imageTrans: icVenueTrans,
-                        imagePath: icVenue,
-                        text: StringUtils.venueInfo,
-                        widget: commonLoadSvg(path: venue)),
-                  /*  commonGridView(
-                        text: StringUtils.venueInfo,
-                        widget: Image.asset(
-                          icGoogle,
-                          width: 20,
-                          height: 20,
-                        )),*/
-                    commonGridView(
-                        text: StringUtils.liveStream,
-                        widget: Image.asset(
-                          icGoogle,
-                          width: 20,
-                          height: 20,
-                        )),
-                  ],
-                ),
+                gridView(),
               ],
             ),
           ),
@@ -295,17 +293,16 @@ class DashboardPageState extends State<DashboardPage> {
       height: height ?? 55,
       decoration: AppUtils.containerDecoration(
           color: color ?? AppColor.colorBlue,
-          radius: radius ??
-              AppConstants
-                  .twelve)
-      ,
+          radius: radius ?? AppConstants.twelve),
       child: InkWell(
         onTap: onTap,
         child: widget ??
             Center(
               child: Icon(
+
                 Icons.menu,
                 color: AppColor.colorButton,
+                size: AppConstants.twenty,
               ),
             ),
       ),
@@ -313,61 +310,58 @@ class DashboardPageState extends State<DashboardPage> {
   }
 
 
-
-  Widget commonGridView(
-      {String? text, Widget? widget, String? imagePath, Color? colorBg,String? imageTrans}) {
-    return Container(
-      alignment: Alignment.topLeft,
-      margin: EdgeInsets.only(top: AppConstants.sixteen),
-      width: AppConstants.oneHundredSeventyEight,
-      height: AppConstants.oneHundredFourty,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          image: DecorationImage(
-              image: AssetImage(imagePath ?? icWhatOn), fit: BoxFit.cover)),
-      child: Container(
-        decoration: BoxDecoration(
-              image:  DecorationImage(
-                image: AssetImage(imageTrans??icWhatOnTrans),fit: BoxFit.cover
-              ),
-           /* color: colorBg ?? AppColor.colorRedLight,*/
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColor.colorWhiteLight, width: 3)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AppUtils.commonBg(color: Color.fromRGBO(0, 0, 0, 0.32), widget: widget),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                AppUtils.commonBg(
-                    color: Color.fromRGBO(0, 0, 0, 0.32),
-                    widget: CommonTextWidget(
-                      text: text,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                    )),
-                AppUtils.commonBg(
-                    color: Color.fromRGBO(0, 0, 0, 0.32),
-                    widget: const Icon(
-                      Icons.arrow_forward_ios_outlined,
-                      color: AppColor.colorWhite,
-                      size: 15,
-                    ))
-              ],
-            )
-          ],
-        ),
-      ),
+  Widget commonLoadSvg({double? width, double? height, String? path}) {
+    return AppUtils.commonImageSVGWidget(
+      path: path ?? event,
+      width: width ?? AppConstants.eighteen,
+      height: height ?? AppConstants.eighteen,
     );
   }
 
-Widget commonLoadSvg({double? width, double? height, String? path}){
-      return AppUtils.commonImageSVGWidget(
-        path: path??event ,
-        width: width??AppConstants.twenty,
-        height:height?? AppConstants.twenty,
-      );
-}
+  Widget gridView() {
+    return GridView.builder(
+        shrinkWrap: true,
+        itemCount: dashboardList.length,
+        padding: EdgeInsets.all(AppConstants.five),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: AppConstants.two.toInt(),
+            crossAxisSpacing: AppConstants.ten,
+            mainAxisSpacing: AppConstants.one),
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: (){
+              if(index==0){
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.whatOn);
+              }
+              if(index==1){
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.event);
+              }
+              if(index==2){
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.clubBalance);
+              }
+              if(index==3){
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.chatRoom);
+              }
+              if(index==4){
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.venueInfo);
+              }
+              if(index==5){
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.liveStream);
+              }
+            },
+            child: AppUtils.commonGridView(
+
+                imageTrans: dashboardList[index].imageTrans,
+                imagePath: dashboardList[index].image,
+                text: dashboardList[index].text,
+                widget: commonLoadSvg(path: dashboardList[index].icon)),
+          );
+        });
+  }
 }
