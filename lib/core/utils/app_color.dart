@@ -13,7 +13,7 @@ class AppColor{
   static const Color colorFbLight= Color.fromRGBO(100, 81, 238, 0.9);
   static const Color colorRedLight= Color.fromRGBO(215, 91, 74, 0.54);
   static const Color colorBlueLight1= Color.fromRGBO(86, 204, 255, 0.54);
-  static const Color colorGreen= Color.fromRGBO(5, 84, 63, 0.54);
+  static const Color colorGreenLight= Color.fromRGBO(5, 84, 63, 0.54);
   static const Color colorCredit= Color.fromRGBO(1, 12, 47, 0.59);
   static const Color colorYellowLight= Color.fromRGBO(180, 111, 37, 0.54);
   static const Color colorWt= Color.fromRGBO(38, 59, 108, 0);
@@ -26,6 +26,8 @@ class AppColor{
   static const Color colorBottom= Color.fromRGBO(81, 91, 123, 1);
   static const Color colorDialog= Color.fromRGBO(21, 39, 98, 0.5);
   static const Color colorBlackLight= Color.fromRGBO(0, 0, 0, 0.32);
+  static const Color colorEdit= Color.fromRGBO(144, 130, 255, 1);
+  static const Color colorGreen= Color.fromRGBO(39, 174, 96, 1);
 
 
 

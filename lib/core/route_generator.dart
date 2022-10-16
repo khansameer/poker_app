@@ -16,7 +16,7 @@ import 'package:poker/features/signup/signup_page.dart';
 import 'package:poker/features/signup/term_codition_page.dart';
 import 'package:poker/features/splash/splash_page.dart';
 import 'package:poker/features/venue_info/venue_info_page.dart';
-import 'package:poker/features/whaton/what_on_page.dart';
+import 'package:poker/features/whaton/schedule_page.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -78,7 +78,7 @@ class RouteGenerator {
             settings: const RouteSettings(name: RouteName.chatRoom));
       case RouteName.whatOn:
         return MaterialPageRoute(
-            builder: (_) =>  const WhatOnPage(),
+            builder: (_) =>  const SchedulePage(),
             settings: const RouteSettings(name: RouteName.whatOn));
 
       case RouteName.venueInfo:

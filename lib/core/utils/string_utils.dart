@@ -18,6 +18,7 @@ class StringUtils{
   static const String reEnterPassword="Re-Type New Password";
   static const String edit="Edit";
   static const String history="History";
+  static const String selectTime="Select Time for Reservation";
   static const String addChipsAmount="Add Chips amount";
   static const String signupTerm="By signing up you agree to our ";
   static const String termsCondition="Terms & Condition";
@@ -30,6 +31,7 @@ class StringUtils{
   static const String recieved="Didn’t recieve code?";
   static const String whatOn="What’s On";
   static const String events="Events";
+  static const String reserved="Reserved";
   static const String selectAction="Select an action";
   static const String gallery="gallery";
   static const String camera="Camera";

@@ -219,7 +219,7 @@ class CustomProfileWidgetState extends State<CustomProfileWidget> {
                   ),
                 ),
                 Divider(
-                  color: AppColor.colorGreen,
+                  color: AppColor.colorGreenLight,
                   height: AppConstants.two,
                 ),
                 SimpleDialogOption(
@@ -250,7 +250,7 @@ class CustomProfileWidgetState extends State<CustomProfileWidget> {
       uiSettings: [
         AndroidUiSettings(
             toolbarTitle: 'Cropper',
-            toolbarColor: AppColor.colorGreen,
+            toolbarColor: AppColor.colorGreenLight,
             toolbarWidgetColor: Colors.white,
             initAspectRatio: CropAspectRatioPreset.original,
             lockAspectRatio: false),

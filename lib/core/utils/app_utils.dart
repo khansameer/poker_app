@@ -263,8 +263,10 @@ class AppUtils {
   }
 
   static Widget commonDivider(
-      {Color? color, double? indent, double? endIndent, double? top}) {
+
+      {Color? color, double? indent, double? endIndent, double? top,double? thickness}) {
     return Divider(
+      thickness: thickness??2,
       color: color ?? AppColor.colorWhite,
       indent: indent ?? 15,
       endIndent: endIndent ?? 15,
@@ -388,7 +390,7 @@ class AppUtils {
         String? imageTrans}) {
     return Container(
       alignment: Alignment.topLeft,
-      margin: EdgeInsets.only(top: AppConstants.sixteen),
+      margin: EdgeInsets.only(top: AppConstants.eighteen),
       width: AppConstants.oneHundredSeventyEight,
       height: AppConstants.oneHundredFourty,
       decoration: BoxDecoration(
@@ -396,18 +398,20 @@ class AppUtils {
           image: DecorationImage(
               image: AssetImage(imagePath ?? icWhatOn), fit: BoxFit.cover)),
       child: Container(
+        height: double.infinity,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(imageTrans ?? icWhatOnTrans),
-                fit: BoxFit.cover),
+                fit: BoxFit.fill),
             /* color: colorBg ?? AppColor.colorRedLight,*/
             borderRadius: BorderRadius.circular(AppConstants.sixteen),
-            border: Border.all(color: AppColor.colorWhiteLight, width: AppConstants.three)),
+            border: Border.all(color: AppColor.colorWhiteLight, width: AppConstants.one)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AppUtils.commonBg(
+                top: 0,
                 left: AppConstants.ten,
                 color:AppColor.colorBlackLight, widget: widget),
             SizedBox(height: AppConstants.sixteen,),

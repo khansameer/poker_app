@@ -28,6 +28,7 @@ class CommonButtonWidget extends StatelessWidget {
     this.left,
     this.right,
     this.bottom,
+    this.padding,
   });
 
   @override
