@@ -140,7 +140,7 @@ class VenueInfoPageState extends State<VenueInfoPage>{
                    ),
                    SizedBox(height: 13,),
                    AppUtils.commonDivider(color: AppColor.colorWhiteLight,indent: 0),
-                   ListTile(
+                  /* ListTile(
                      dense: false,
 
                      visualDensity: VisualDensity(
@@ -157,7 +157,7 @@ class VenueInfoPageState extends State<VenueInfoPage>{
                        fontWeight: FontWeight.w500,
                        textColor: AppColor.colorWhite1,
                      ),
-                   ),
+                   ),*/
                  ],
                )
               ],

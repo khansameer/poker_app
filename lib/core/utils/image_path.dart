@@ -47,4 +47,5 @@ const icCasino = '$baseIconPath/casino.svg';
 const icDoneCircle= '$baseIconPath/check_circle.svg';
 const icDelete= '$baseIconPath/delete.svg';
 const icMap= '$baseIconPath/ic_map.svg';
+const img= '$baseIconPath/img.png';
 const icEdit= '$baseIconPath/drive_file_rename_outline.svg';
