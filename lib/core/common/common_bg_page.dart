@@ -10,6 +10,8 @@ class CommonBgPage extends StatelessWidget {
    double ? margin;
    Alignment? alignment;
    String? backImagePath;
+
+
    CommonBgPage({super.key,
     this.imagePath,
      this.widget,

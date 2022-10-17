@@ -53,6 +53,7 @@ const icMap= '$baseIconPath/ic_map.svg';
 const icCoin= '$baseIconPath/ic_coin.png';
 
 const icDirectionsIcon= '$baseIconPath/directions.svg';
+const img= '$baseIconPath/img.png';
 const icEdit= '$baseIconPath/drive_file_rename_outline.svg';
 const icInstagram= '$baseIconPath/instagram.png';
 const icUsers= '$baseIconPath/ic_users.png';

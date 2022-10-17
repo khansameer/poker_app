@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poker/core/common/common_bg_page.dart';
+import 'package:poker/core/common/common_button_widget.dart';
+import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
@@ -34,7 +36,61 @@ class LiveStreamPageState extends State<LiveStreamPage>{
           margin: AppConstants.zero,
           alignment: Alignment.topCenter,
           imagePath: icDashboardimg,
-          widget: Container(),
+          widget: Stack(
+
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: AssetImage(img)
+                    )
+                  ),
+                  margin: EdgeInsets.only(bottom: AppConstants.oneHundredTwentyTwo),
+                  height: double.infinity,
+
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+              child: Container(
+                height: AppConstants.oneHundred,
+                alignment: Alignment.topCenter,
+                color: Colors.transparent,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 18,top: 10,right: 18,bottom: 10),
+                      decoration: AppUtils.containerDecoration(
+                          borderWidth: AppConstants.two,
+                          radius: AppConstants.eight,
+                          color: AppColor.colorBlueClub),
+                      child: Row(
+                        children: [
+                          Icon(Icons.remove_red_eye_outlined,color: AppColor.colorWhite,size: AppConstants.twenty,),
+                          CommonTextWidget(text: '50',left: AppConstants.ten,)
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: AppConstants.fourteen,),
+                    SizedBox(
+                        width: AppConstants.twoHundredFiftyFive,
+                        height: AppConstants.fortyFive,
+                        child: CommonButtonWidget(
+                          onPressed: (){
+                            AppUtils.onBack(context);
+                          },
+                          text: 'End Stream',padding: AppConstants.ten, ))
+                  ],
+                ),
+              ),
+              )
+            ],
+          ),
         ),
       ),
     );
