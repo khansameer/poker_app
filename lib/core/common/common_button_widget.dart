@@ -9,9 +9,13 @@ class CommonButtonWidget extends StatelessWidget {
   FontWeight? fontWeight;
   double? fontSize;
   double? marginTop;
+  double? left;
+  double? right;
+  double? bottom;
   double? radius;
   double? padding;
   VoidCallback? onPressed;
+  Color? colorButton;
 
   CommonButtonWidget({
     this.text,
@@ -20,22 +24,30 @@ class CommonButtonWidget extends StatelessWidget {
     this.radius,
     this.marginTop,
     this.onPressed,
+    this.colorButton,
+    this.left,
+    this.right,
+    this.bottom,
+    this.padding,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: marginTop ?? AppConstants.zero),
+      margin: EdgeInsets.only(
+          top: marginTop ?? AppConstants.zero,
+          left: left ?? AppConstants.zero,
+          bottom: bottom??AppConstants.zero,
+          right: right ?? AppConstants.zero),
       child: TextButton(
-        style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular(radius ?? AppConstants.sixteen),
-            )),
-            padding: MaterialStateProperty.all<EdgeInsets>(
-                EdgeInsets.all(padding ?? AppConstants.eighteen)),
-            backgroundColor: MaterialStateProperty.all<Color>(AppColor.colorButton)),
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.all(padding ?? AppConstants.eighteen),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(radius ?? AppConstants.eight),
+          ),
+          backgroundColor:
+              colorButton ?? AppColor.colorButton, // Background Color
+        ),
         onPressed: onPressed,
         child: Center(
           child: CommonTextWidget(

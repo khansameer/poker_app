@@ -13,11 +13,13 @@ class CommonTextWidget extends StatelessWidget {
   TextDecoration? _textDecoration;
   double? _letterSpacing;
   TextAlign? _textAlign;
+
   double? _top;
   double? _height;
   double? _widht;
   double? _left;
   double? _right;
+  double? _lineHeight;
 
   CommonTextWidget(
       {String? text,
@@ -32,6 +34,7 @@ class CommonTextWidget extends StatelessWidget {
       double? widht,
       double? left,
       double? right,
+        double? lineHeight,
       Key? key})
       : super(key: key) {
     _text = text;
@@ -46,6 +49,7 @@ class CommonTextWidget extends StatelessWidget {
     _top = margintop;
     _left = left;
     _right = right;
+    _lineHeight=lineHeight;
   }
 
   @override
@@ -62,6 +66,8 @@ class CommonTextWidget extends StatelessWidget {
         _text ?? "",
         textAlign: _textAlign,
         style: TextStyle(
+          height:_lineHeight??0,
+
             fontFamily: 'SFProDisplay',
             letterSpacing: _letterSpacing ?? 0.5,
             fontSize: _fontSize,

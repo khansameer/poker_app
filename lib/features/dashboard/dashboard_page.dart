@@ -6,7 +6,7 @@ import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
 import 'package:poker/core/utils/string_utils.dart';
-import 'dart:math' as math;
+import 'package:poker/features/dashboard/model/dashbord_bean.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -18,16 +18,68 @@ class DashboardPage extends StatefulWidget {
 }
 
 class DashboardPageState extends State<DashboardPage> {
+  List<DashboardBean> dashboardList = [];
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-    void onClickProfile(){
-      AppUtils.redirectToNextScreen(context: context,screenName: RouteName.profile);
-    }
+  void onClickProfile() {
+    AppUtils.redirectToNextScreen(
+        context: context, screenName: RouteName.profile);
+  }
+
+  void onClickClubBalance() {
+    AppUtils.redirectToNextScreen(
+        context: context, screenName: RouteName.clubBalance);
+  }
+
+  void onClickEvent() {
+
+  }
+
+  loadVIew() {
+    dashboardList.add(DashboardBean(
+        image: icWhatOn,
+        icon: event,
+        text: StringUtils.whatOn,
+        imageTrans: icWhatOnTrans));
+    dashboardList.add(DashboardBean(
+        image: icEventBg,
+        icon: celebration,
+        text: StringUtils.event,
+        imageTrans: icEventTrans));
+    dashboardList.add(DashboardBean(
+        image: icCredit,
+        icon: difference,
+        text: StringUtils.creditFile,
+        imageTrans: icCreditTrans));
+    dashboardList.add(DashboardBean(
+        image: icChatRoom,
+        icon: chat,
+        text: StringUtils.chatRoom,
+        imageTrans: icChatTrans));
+    dashboardList.add(DashboardBean(
+        image: icVenue,
+        icon: venue,
+        text: StringUtils.venueInfo,
+        imageTrans: icVenueTrans));
+    dashboardList.add(DashboardBean(
+        image: icLiveStrem,
+        icon: video,
+        text: StringUtils.liveStream,
+        imageTrans: icLiveStreamTrans));
+  }
+
+  @override
+  void initState() {
+
+    super.initState();
+    loadVIew();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       drawer: Drawer(
-        elevation: 0,
+        elevation: AppConstants.zero,
         backgroundColor: Colors.transparent,
         child: Container(
           decoration: AppUtils.containerDecorationBg(image: icMenuBg),
@@ -44,15 +96,15 @@ class DashboardPageState extends State<DashboardPage> {
                       Expanded(
                           child: Image.asset(
                         icLogo,
-                        width: 77,
-                        height: 53,
+                        width: AppConstants.seventySeven,
+                        height: AppConstants.fiftyThree,
                       )),
                       IconButton(
                           onPressed: () {},
                           icon: Icon(
                             Icons.close,
                             color: AppColor.colorWhite,
-                            size: 24,
+                            size: AppConstants.twentyFour,
                           )),
                     ],
                   )),
@@ -60,9 +112,13 @@ class DashboardPageState extends State<DashboardPage> {
                       indent: AppConstants.zero,
                       endIndent: AppConstants.zero,
                       color: AppColor.colorWhite1),
-                  AppUtils.commonMenuItem(text: StringUtils.profile,onTap: onClickProfile),
+                  AppUtils.commonMenuItem(
+                      text: StringUtils.profile, onTap: onClickProfile),
                   AppUtils.commonDivider(color: AppColor.colorWhite1),
-                  AppUtils.commonMenuItem(text:StringUtils.profile,imagePath: icReservations),
+                  AppUtils.commonMenuItem(
+                      text: StringUtils.reservations,
+                      imagePath: icReservations,
+                      onTap: onClickEvent),
                 ],
               ),
               Align(
@@ -73,8 +129,8 @@ class DashboardPageState extends State<DashboardPage> {
                   children: [
                     CommonTextWidget(
                       textAlign: TextAlign.center,
-                      text:StringUtils.followUs,
-                      left: 24,
+                      text: StringUtils.followUs,
+                      left: AppConstants.twentyFour,
                       textColor: AppColor.colorWhite1,
                       fontSize: AppConstants.sixteen,
                       fontWeight: FontWeight.w500,
@@ -83,28 +139,27 @@ class DashboardPageState extends State<DashboardPage> {
                       height: AppConstants.sixteen,
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 24),
+                      margin: EdgeInsets.only(left: AppConstants.twentyFour),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           commonTopView(
-                            width: 70,
-                            height: 70,
-                            widget: AppUtils.commonImageAssetWidget1(
-                              boxFit: BoxFit.scaleDown,
+                            width: AppConstants.seventy,
+                            height: AppConstants.seventy,
+                            widget: AppUtils.commonImageSVGWidget(
+                                boxFit: BoxFit.scaleDown,
                                 path: icFb,
                                 width: AppConstants.thirty,
                                 height: AppConstants.thirty),
                           ),
                           SizedBox(
-                            width: 20,
+                            width: AppConstants.twenty,
                           ),
                           commonTopView(
-                              width: 70,
-                              height: 70,
-                              widget: AppUtils.commonImageAssetWidget1(
+                              width: AppConstants.seventy,
+                              height: AppConstants.seventy,
+                              widget: AppUtils.commonImageSVGWidget(
                                   path: icInsta,
-
                                   boxFit: BoxFit.scaleDown,
                                   width: AppConstants.thirty,
                                   height: AppConstants.thirty))
@@ -112,15 +167,19 @@ class DashboardPageState extends State<DashboardPage> {
                       ),
                     ),
                     SizedBox(
-                      height: 32,
+                      height: AppConstants.thirty,
                     ),
                     AppUtils.commonDivider(
                         color: AppColor.colorWhite1,
                         endIndent: AppConstants.zero,
                         indent: AppConstants.zero),
-                    AppUtils.commonMenuItem(text: "Rate us on the app store",imagePath: icStar),
+                    AppUtils.commonMenuItem(
+                        text: StringUtils.rateUs, imagePath: icStar),
                     AppUtils.commonDivider(color: AppColor.colorWhite1),
-                    AppUtils.commonMenuItem(text: "Log Out",imagePath: icLogout,textColor: AppColor.colorLogout),
+                    AppUtils.commonMenuItem(
+                        text: StringUtils.logout,
+                        imagePath: icLogout,
+                        textColor: AppColor.colorLogout),
                   ],
                 ),
               )
@@ -143,8 +202,8 @@ class DashboardPageState extends State<DashboardPage> {
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     commonTopView(onTap: () {
                       if (_scaffoldKey.currentState!.isDrawerOpen) {
@@ -153,125 +212,67 @@ class DashboardPageState extends State<DashboardPage> {
                         _scaffoldKey.currentState!.openDrawer();
                       }
                     }),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        AppUtils.commonImageAssetWidget(
-                            alignment: Alignment.center,
-                            path: icLogo,
-                            width: 77,
-                            height: 53),
-                      ],
-                    ),
+                    Expanded(
+                        child: Image.asset(
+                          icLogo,
+                          width: AppConstants.seventySeven,
+                          height: AppConstants.fiftyThree,
+                        )),
+
                   ],
                 ),
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.only(top: 40),
-                  height: 130,
-                  // padding: EdgeInsets.all(50),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      image: const DecorationImage(
-                          image: AssetImage(icImge), fit: BoxFit.cover)),
+
+                InkWell(
+                  onTap: onClickClubBalance,
                   child: Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.only(top: 40),
+                    height: 130,
+                    // padding: EdgeInsets.all(50),
                     decoration: BoxDecoration(
-                        color: AppColor.colorFbLight,
                         borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                            color: AppColor.colorWhiteLight, width: 5)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CommonTextWidget(
-                          left: AppConstants.sixteen,
-                          text: "👋 Hi, John",
-                          fontWeight: FontWeight.w800,
-                          fontSize: AppConstants.eighteen,
-                        ),
-                        commonBg(
-                            widget: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            CommonTextWidget(
-                              text: "Current Credit",
-                              textColor: AppColor.colorWhite,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            CommonTextWidget(
-                              text: "500",
-                              left: AppConstants.five,
-                              textColor: AppColor.colorWhite,
-                              fontWeight: FontWeight.w700,
-                            )
-                          ],
-                        ))
-                      ],
+                        image: const DecorationImage(
+                            image: AssetImage(icImge), fit: BoxFit.cover)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: AppColor.colorFbLight,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                              color: AppColor.colorWhiteLight, width: 5)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CommonTextWidget(
+                            left: AppConstants.sixteen,
+                            text: "👋 Hi, John",
+                            fontWeight: FontWeight.w800,
+                            fontSize: AppConstants.eighteen,
+                          ),
+                          AppUtils.commonBg(
+                              widget: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CommonTextWidget(
+                                text: "Current Credit",
+                                textColor: AppColor.colorWhite,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              CommonTextWidget(
+                                text: "500",
+                                left: AppConstants.five,
+                                textColor: AppColor.colorWhite,
+                                fontWeight: FontWeight.w700,
+                              )
+                            ],
+                          ))
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    commonGridView(
-                        imagePath: icGrid,
-                        text: StringUtils.whatOn,
-                        widget: Image.asset(
-                          icGoogle,
-                          width: 20,
-                          height: 20,
-                        )),
-                    commonGridView(
-                        imagePath: icEventBg,
-                        text: StringUtils.events,
-                        colorBg: AppColor.colorBlueLight1,
-                        widget: Image.asset(
-                          icGoogle,
-                          width: 20,
-                          height: 20,
-                        )),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    commonGridView(
-                        text: StringUtils.creditFile,
-                        widget: Image.asset(
-                          icGoogle,
-                          width: 20,
-                          height: 20,
-                        )),
-                    commonGridView(
-                        text: StringUtils.chatRoom,
-                        widget: Image.asset(
-                          icGoogle,
-                          width: 20,
-                          height: 20,
-                        )),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    commonGridView(
-                        text: StringUtils.venueInfo,
-                        widget: Image.asset(
-                          icGoogle,
-                          width: 20,
-                          height: 20,
-                        )),
-                    commonGridView(
-                        text: StringUtils.liveStream,
-                        widget: Image.asset(
-                          icGoogle,
-                          width: 20,
-                          height: 20,
-                        )),
-                  ],
-                ),
+
+                gridView(),
               ],
             ),
           ),
@@ -292,94 +293,75 @@ class DashboardPageState extends State<DashboardPage> {
       height: height ?? 55,
       decoration: AppUtils.containerDecoration(
           color: color ?? AppColor.colorBlue,
-          radius: radius ??
-              AppConstants
-                  .twelve) /*BoxDecoration(
-          border: Border.all(color: AppColor.colorWhiteLight, width: 2),
-          borderRadius: BorderRadius.all(Radius.circular(13)),
-          color: AppColor.colorBlue)*/
-      ,
+          radius: radius ?? AppConstants.twelve),
       child: InkWell(
         onTap: onTap,
         child: widget ??
             Center(
               child: Icon(
+
                 Icons.menu,
                 color: AppColor.colorButton,
+                size: AppConstants.twenty,
               ),
             ),
       ),
     );
   }
 
-  Widget commonBg({
-    Widget? widget,
-    Color? color,
-  }) {
-    return Container(
-      margin: const EdgeInsets.only(left: 16, top: 10),
-      padding: const EdgeInsets.all(10),
-      decoration: AppUtils.containerDecoration(
-          radius: 8, color: color ?? AppColor.colorWhiteLight),
-      child: widget,
+
+  Widget commonLoadSvg({double? width, double? height, String? path}) {
+    return AppUtils.commonImageSVGWidget(
+      path: path ?? event,
+      width: width ?? AppConstants.eighteen,
+      height: height ?? AppConstants.eighteen,
     );
   }
 
-  Widget commonGridView(
-      {String? text, Widget? widget, String? imagePath, Color? colorBg,String}) {
-    return Container(
-      alignment: Alignment.topLeft,
-      margin: EdgeInsets.only(top: 10),
-      width: 178,
-      height: 140,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          image: DecorationImage(
-              image: AssetImage(imagePath ?? icGrid), fit: BoxFit.cover)),
-      child: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                stops: [0.1, 0.5, 0.8, 0.9],
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: [
-                  AppColor.colorBlueLight1,
-                  AppColor.colorBlueLight1,
-                  AppColor.colorWt,
-                  AppColor.colorWt
-                ]),
-            color: colorBg ?? AppColor.colorRedLight,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColor.colorWhiteLight, width: 3)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            commonBg(color: Color.fromRGBO(0, 0, 0, 0.32), widget: widget),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                commonBg(
-                    color: Color.fromRGBO(0, 0, 0, 0.32),
-                    widget: CommonTextWidget(
-                      text: text,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                    )),
-                commonBg(
-                    color: Color.fromRGBO(0, 0, 0, 0.32),
-                    widget: const Icon(
-                      Icons.arrow_forward_ios_outlined,
-                      color: AppColor.colorWhite,
-                      size: 15,
-                    ))
-              ],
-            )
-          ],
-        ),
-      ),
-    );
+  Widget gridView() {
+    return GridView.builder(
+        shrinkWrap: true,
+        itemCount: dashboardList.length,
+        padding: EdgeInsets.all(AppConstants.five),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: AppConstants.two.toInt(),
+            crossAxisSpacing: AppConstants.ten,
+            mainAxisSpacing: AppConstants.one),
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: (){
+              if(index==0){
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.whatOn);
+              }
+              if(index==1){
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.event);
+              }
+              if(index==2){
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.clubBalance);
+              }
+              if(index==3){
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.chatRoom);
+              }
+              if(index==4){
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.venueInfo);
+              }
+              if(index==5){
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.liveStream);
+              }
+            },
+            child: AppUtils.commonGridView(
+
+                imageTrans: dashboardList[index].imageTrans,
+                imagePath: dashboardList[index].image,
+                text: dashboardList[index].text,
+                widget: commonLoadSvg(path: dashboardList[index].icon)),
+          );
+        });
   }
-
-
 }
