@@ -40,8 +40,9 @@ class RouteGenerator {
             builder: (_) =>  const VarificationPage(),
             settings: const RouteSettings(name: RouteName.verification));
       case RouteName.dashboard:
+        bool isAdmin = args as bool;
         return MaterialPageRoute(
-            builder: (_) =>  const DashboardPage(),
+            builder: (_) =>  DashboardPage(isAdmin: isAdmin),
             settings: const RouteSettings(name: RouteName.dashboard));
       case RouteName.termCondition:
         String? title = args == null ? null : args as String;

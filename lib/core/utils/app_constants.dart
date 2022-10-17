@@ -15,6 +15,7 @@ class AppConstants{
   static double eleven = 11;
   static double twelve = 12;
   static double fourteen = 14;
+  static double fifteen = 15;
   static double eighteen = 18;
   static double nineteen = 19;
   static double twenty = 20;

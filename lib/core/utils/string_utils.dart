@@ -59,7 +59,12 @@ class StringUtils{
 
   static const String desc1="Lorem ipsum dolor sit amet";
   static const String desc2="Nullam semper magna quis sem semper, eget pellentesque nibh tempr. Integer lectus enim, cursus non vulputate vel, fermentum vehicula purus. Nam a lectus vel metus hendrerit dictum nec sed massa. In sed dictum diam, sed feugiat odio. Proin bibendum ipsum tellus, tincidunt blandit mi vulputate quis. Mauris at nulla sit amet nisi sollicitudin iaculis eu a risus. Vivamus mollis tristique commodo. Nunc rhoncus pulvinar lectus vel suscipit.";
-
+  static const String members="Members";
+  static const String counter="Counter";
+  static const String addMember="Add Member";
+  static const String settings="Settings";
+  static const String hiMartin="Hi, Martin";
+  static const String welToPokerRoom="Welcome to poker room";
 
 
 

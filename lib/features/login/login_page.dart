@@ -22,13 +22,13 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   bool obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return CommonBgPage(
       imagePath: icBackground,
       widget: Scaffold(
         backgroundColor: Colors.transparent,
-
         body: Container(
           alignment: Alignment.center,
           child: SingleChildScrollView(
@@ -176,10 +176,10 @@ class LoginPageState extends State<LoginPage> {
 
   Widget commonButton(
       {double? left,
-      double? right,
-      double? top,
-      String? path,
-      VoidCallback? onTap}) {
+        double? right,
+        double? top,
+        String? path,
+        VoidCallback? onTap}) {
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -202,8 +202,11 @@ class LoginPageState extends State<LoginPage> {
   }
 
   void onClickLogin() {
-    AppUtils.redirectToNextScreen(
-        context: context, screenName: RouteName.dashboard);
+    AppUtils.tetEmail.text == 'rahul'
+        ? AppUtils.redirectToNextScreen(
+        context: context, screenName: RouteName.dashboard, arguments: true)
+        : AppUtils.redirectToNextScreen(
+        context: context, screenName: RouteName.dashboard, arguments: false);
   }
 
   void onClickForgot() {

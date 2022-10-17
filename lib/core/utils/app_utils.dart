@@ -277,7 +277,7 @@ class AppUtils {
 
   }
 
-  static void redirectToNextScreen({required BuildContext context, String? screenName, String? arguments}) {
+  static void redirectToNextScreen({required BuildContext context, String? screenName, dynamic arguments}) {
     closeKeyBoard(context);
     Navigator.of(context).pushNamed(screenName!, arguments: arguments);
 
