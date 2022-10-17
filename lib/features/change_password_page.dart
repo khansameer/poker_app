@@ -24,27 +24,25 @@ class ChangePasswordPage extends StatefulWidget{
 class ChangePasswordPageState extends State<ChangePasswordPage>{
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppUtils.commonAppBar(
-          context: context,
-          title: StringUtils.changePassword.toCapitalize(),
+    return CommonBgPage(
+      backImagePath: icDashboardBg,
+      margin: AppConstants.zero,
+      alignment: Alignment.topCenter,
+      imagePath: icDashboardimg,
+      widget: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppUtils.commonAppBar(
+            context: context,
+            title: StringUtils.changePassword.toCapitalize(),
 
-          isShowEdit: false,
-          actionTitle: StringUtils.edit),
-      body: Container(
-
-        decoration:
-        AppUtils.containerDecoration(color: AppColor.colorDarkBlue, radius: 0),
-        child: CommonBgPage(
-          backImagePath: icDashboardBg,
-          margin: AppConstants.zero,
-          alignment: Alignment.topCenter,
-          imagePath: icDashboardimg,
-          widget: Container(
+            isShowEdit: false,
+            actionTitle: StringUtils.edit),
+        body: SingleChildScrollView(
+          child: Container(
             margin: EdgeInsets.only(left: AppConstants.sixteen,right: AppConstants.sixteen),
             child: SafeArea(
               child: Column(
+                mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -57,7 +55,7 @@ class ChangePasswordPageState extends State<ChangePasswordPage>{
                     margintop: AppConstants.thirtyFive,
                   ),
                   CommonTextField(
-                    obscureText: true,
+                      obscureText: true,
                       inputTypes: TextInputType.visiblePassword,
                       marginTop: AppConstants.ten,
                       controller: AppUtils.tetPassword,
@@ -104,7 +102,7 @@ class ChangePasswordPageState extends State<ChangePasswordPage>{
 
                   CommonButtonWidget(
                       onPressed: () {
-                          AppUtils.onBack(context);
+                        AppUtils.onBack(context);
                       },
                       colorButton: AppColor.colorButtonUpdate,
                       text: StringUtils.changePassword.toCapitalize(),

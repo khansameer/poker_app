@@ -93,7 +93,7 @@ class CustomProfileWidgetState extends State<CustomProfileWidget> {
     } else {
       //when i am used  AppUtils.containerDecoration UI was not rendring perfact then i am used this normal box BoxDecoration
       return commonContainerBox(Image.asset(
-        icImge,
+        icUsers,
         fit: BoxFit.fill,
       ));
     }

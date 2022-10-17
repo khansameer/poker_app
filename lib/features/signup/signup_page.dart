@@ -25,131 +25,136 @@ class SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Container(
-        child: CommonBgPage(
-            alignment: Alignment.topLeft,
-            imagePath: icBackground,
-            widget: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  SizedBox(
-                    height: AppConstants.sixty,
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Icon(
-                      Icons.arrow_back_ios,
+    return CommonBgPage(
+      alignment: Alignment.topLeft,
+      imagePath: icBackground,
+      widget: Scaffold(
+        resizeToAvoidBottomInset: true,
+        backgroundColor: Colors.transparent,
+
+        body: SingleChildScrollView(
+
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              SizedBox(
+                height: AppConstants.fifty,
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                  onPressed: (){
+                        AppUtils.onBack(context);
+                  },
+                  icon: Icon(Icons.arrow_back_ios,
                       size: AppConstants.twentyFour,
+                      color: AppColor.colorWhite),
+                ),
+              ),
+              CommonTextWidget(
+                text: StringUtils.signup,
+                fontWeight: FontWeight.w700,
+                margintop: AppConstants.fifty,
+                fontSize: AppConstants.twenty,
+              ),
+              CommonTextWidget(
+                text: StringUtils.firstName,
+                margintop: AppConstants.thirtyFive,
+              ),
+              CommonTextField(
+                  controller: AppUtils.tetFirstName,
+
+                  inputTypes: TextInputType.name,
+                  marginTop: AppConstants.ten,
+                  hint: StringUtils.your + StringUtils.firstName,
+                  fontSize: AppConstants.fourteen,
+                  fontWeight: FontWeight.w500,
+                  radius: AppConstants.eight),
+              CommonTextWidget(
+                text: StringUtils.lastName,
+                margintop: AppConstants.sixteen,
+              ),
+              CommonTextField(
+                  marginTop: AppConstants.ten,
+                  controller: AppUtils.tetLastName,
+                  inputTypes: TextInputType.name,
+                  hint: StringUtils.your + StringUtils.lastName,
+                  fontSize: AppConstants.fourteen,
+                  fontWeight: FontWeight.w500,
+                  radius: AppConstants.eight),
+              CommonTextWidget(
+                text: StringUtils.email,
+                margintop: AppConstants.sixteen,
+              ),
+              CommonTextField(
+                  controller: AppUtils.tetEmail,
+                  marginTop: AppConstants.ten,
+                  hint: StringUtils.emailHint,
+                  iconWidget: const Icon(
+                    Icons.email_outlined,
+                    color: AppColor.colorWhite,
+                  ),
+                  fontSize: AppConstants.fourteen,
+                  fontWeight: FontWeight.w500,
+                  radius: AppConstants.eight),
+              CommonTextWidget(
+                text: StringUtils.password,
+                margintop: AppConstants.sixteen,
+              ),
+              CommonTextField(
+                  controller: AppUtils.tetPassword,
+                  obscureText: obscureText,
+                  suffixIcon: InkWell(
+                    onTap: () {
+                      setState(() {
+                        obscureText = !obscureText;
+                      });
+                    },
+                    child: !obscureText
+                        ? Icon(
+                      Icons.visibility,
                       color: AppColor.colorWhite,
+                      size: AppConstants.twenty,
+                    )
+                        : Icon(
+                      Icons.visibility_off,
+                      color: AppColor.colorWhite,
+                      size: AppConstants.twenty,
                     ),
                   ),
-                  CommonTextWidget(
-                    text: StringUtils.signup,
-                    fontWeight: FontWeight.w700,
-                    margintop: AppConstants.sixty,
-                    fontSize: AppConstants.twenty,
+                  inputTypes: TextInputType.visiblePassword,
+                  marginTop: AppConstants.ten,
+                  hint: StringUtils.password,
+                  iconWidget: const Icon(
+                    Icons.lock_outline,
+                    color: AppColor.colorWhite,
                   ),
-                  CommonTextWidget(
-                    text: StringUtils.firstName,
-                    margintop: AppConstants.thirtyFive,
-                  ),
-                  CommonTextField(
-                      controller: AppUtils.tetFirstName,
-
-                      inputTypes: TextInputType.name,
-                      marginTop: AppConstants.ten,
-                      hint: StringUtils.your + StringUtils.firstName,
-                      fontSize: AppConstants.fourteen,
-                      fontWeight: FontWeight.w500,
-                      radius: AppConstants.eight),
-                  CommonTextWidget(
-                    text: StringUtils.lastName,
-                    margintop: AppConstants.sixteen,
-                  ),
-                  CommonTextField(
-                      marginTop: AppConstants.ten,
-                      controller: AppUtils.tetLastName,
-                      inputTypes: TextInputType.name,
-                      hint: StringUtils.your + StringUtils.lastName,
-                      fontSize: AppConstants.fourteen,
-                      fontWeight: FontWeight.w500,
-                      radius: AppConstants.eight),
-                  CommonTextWidget(
-                    text: StringUtils.email,
-                    margintop: AppConstants.sixteen,
-                  ),
-                  CommonTextField(
-                      controller: AppUtils.tetEmail,
-                      marginTop: AppConstants.ten,
-                      hint: StringUtils.emailHint,
-                      iconWidget: const Icon(
-                        Icons.email_outlined,
-                        color: AppColor.colorWhite,
-                      ),
-                      fontSize: AppConstants.fourteen,
-                      fontWeight: FontWeight.w500,
-                      radius: AppConstants.eight),
-                  CommonTextWidget(
-                    text: StringUtils.password,
-                    margintop: AppConstants.sixteen,
-                  ),
-                  CommonTextField(
-                      controller: AppUtils.tetPassword,
-                      obscureText: obscureText,
-                      suffixIcon: InkWell(
-                        onTap: () {
-                          setState(() {
-                            obscureText = !obscureText;
-                          });
-                        },
-                        child: !obscureText
-                            ? Icon(
-                                Icons.visibility,
-                                color: AppColor.colorWhite,
-                                size: AppConstants.twenty,
-                              )
-                            : Icon(
-                                Icons.visibility_off,
-                                color: AppColor.colorWhite,
-                                size: AppConstants.twenty,
-                              ),
-                      ),
-                      inputTypes: TextInputType.visiblePassword,
-                      marginTop: AppConstants.ten,
-                      hint: StringUtils.password,
-                      iconWidget: const Icon(
-                        Icons.lock_outline,
-                        color: AppColor.colorWhite,
-                      ),
-                      fontSize: AppConstants.fourteen,
-                      fontWeight: FontWeight.w500,
-                      radius: AppConstants.eight),
-                  AppUtils.privacyPolicyLinkAndTermsOfService(
-                      onTapTermsCondition: onClickTermCondition,
-                      onTapPrivacyPolicy: onClickPolicy),
-                  CommonButtonWidget(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(RouteName.verification);
-                      },
-                      text: StringUtils.signup,
-                      marginTop: AppConstants.fortyFive),
-                  Center(
-                    child: AppUtils.richText(
-                        top: AppConstants.thirty,
-                        text: StringUtils.alreadySignup,
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        linkText: StringUtils.login),
-                  ),
-                ],
+                  fontSize: AppConstants.fourteen,
+                  fontWeight: FontWeight.w500,
+                  radius: AppConstants.eight),
+              AppUtils.privacyPolicyLinkAndTermsOfService(
+                  onTapTermsCondition: onClickTermCondition,
+                  onTapPrivacyPolicy: onClickPolicy),
+              CommonButtonWidget(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(RouteName.verification);
+                  },
+                  text: StringUtils.signup,
+                  marginTop: AppConstants.fortyFive),
+              Center(
+                child: AppUtils.richText(
+                    top: AppConstants.thirty,
+                    text: StringUtils.alreadySignup,
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    linkText: StringUtils.login),
               ),
-            )),
+            ],
+          ),
+        ),
       ),
     );
   }

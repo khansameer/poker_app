@@ -178,6 +178,7 @@ class SchedulePageState extends State<SchedulePage> {
                                             fontWeight: FontWeight.w800,
                                           ),
                                         ),
+
                                       ],
                                     ),
 

@@ -100,7 +100,9 @@ class DashboardPageState extends State<DashboardPage> {
                         height: AppConstants.fiftyThree,
                       )),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            _scaffoldKey.currentState!.closeDrawer();
+                          },
                           icon: Icon(
                             Icons.close,
                             color: AppColor.colorWhite,
@@ -111,10 +113,13 @@ class DashboardPageState extends State<DashboardPage> {
                   AppUtils.commonDivider(
                       indent: AppConstants.zero,
                       endIndent: AppConstants.zero,
-                      color: AppColor.colorWhite1),
+                      color: AppColor.colorWhiteLight),
+
+                  SizedBox(height: AppConstants.sixteen,),
                   AppUtils.commonMenuItem(
                       text: StringUtils.profile, onTap: onClickProfile),
-                  AppUtils.commonDivider(color: AppColor.colorWhite1),
+                  AppUtils.commonDivider(color: AppColor.colorWhiteLight),
+                  SizedBox(height: AppConstants.sixteen,),
                   AppUtils.commonMenuItem(
                       text: StringUtils.reservations,
                       imagePath: icReservations,
@@ -158,8 +163,8 @@ class DashboardPageState extends State<DashboardPage> {
                           commonTopView(
                               width: AppConstants.seventy,
                               height: AppConstants.seventy,
-                              widget: AppUtils.commonImageSVGWidget(
-                                  path: icInsta,
+                              widget: AppUtils.commonImageAssetWidget(
+                                  path: icInstagram,
                                   boxFit: BoxFit.scaleDown,
                                   width: AppConstants.thirty,
                                   height: AppConstants.thirty))
@@ -170,12 +175,12 @@ class DashboardPageState extends State<DashboardPage> {
                       height: AppConstants.thirty,
                     ),
                     AppUtils.commonDivider(
-                        color: AppColor.colorWhite1,
+                        color: AppColor.colorWhiteLight,
                         endIndent: AppConstants.zero,
                         indent: AppConstants.zero),
                     AppUtils.commonMenuItem(
                         text: StringUtils.rateUs, imagePath: icStar),
-                    AppUtils.commonDivider(color: AppColor.colorWhite1),
+                    AppUtils.commonDivider(color: AppColor.colorWhiteLight),
                     AppUtils.commonMenuItem(
                         text: StringUtils.logout,
                         imagePath: icLogout,
@@ -221,73 +226,8 @@ class DashboardPageState extends State<DashboardPage> {
 
                   ],
                 ),
+                AppUtils.commonCoinView(onTap: onClickClubBalance),
 
-                Container(
-                  margin: EdgeInsets.only(top: AppConstants.twenty),
-                  child: Stack(
-                    children: [
-                      InkWell(
-                        onTap: onClickClubBalance,
-                        child: Container(
-                          width: double.infinity,
-
-                          height: 150,
-                          // padding: EdgeInsets.all(50),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(AppConstants.sixteen),
-                              image: const DecorationImage(
-                                  image: AssetImage(icImge), fit: BoxFit.cover)),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: AppColor.colorFbLight,
-                                borderRadius: BorderRadius.circular(AppConstants.sixteen),
-                                border: Border.all(
-                                    color: AppColor.colorWhiteLight, width: AppConstants.five)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CommonTextWidget(
-                                  left: AppConstants.sixteen,
-                                  text: "👋 Hi, John",
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: AppConstants.eighteen,
-                                ),
-                                AppUtils.commonBg(
-                                    widget: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        CommonTextWidget(
-                                          text: "Current Credit",
-                                          textColor: AppColor.colorWhite,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                        CommonTextWidget(
-                                          text: "500",
-                                          left: AppConstants.five,
-                                          textColor: AppColor.colorWhite,
-                                          fontWeight: FontWeight.w700,
-                                        )
-                                      ],
-                                    ))
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Row(mainAxisAlignment: MainAxisAlignment.end,mainAxisSize: MainAxisSize.max,
-                        children: [
-                        AppUtils.commonImageAssetWidget(path: icCoin,height: AppConstants.oneHundredSixty,boxFit: BoxFit.scaleDown)],),
-                    /*  Padding(
-                        padding:  EdgeInsets.only(right: AppConstants.thirtyFive),
-                        child: Row(mainAxisAlignment: MainAxisAlignment.end,mainAxisSize: MainAxisSize.max,
-                          children: [
-                            AppUtils.commonImageAssetWidget(path: icCoin1,height:AppConstants.oneHundredFifty,boxFit: BoxFit.scaleDown)],),
-                      ),*/
-                    ],
-
-                  ),
-                ),
 
                 gridView(),
               ],
@@ -337,6 +277,7 @@ class DashboardPageState extends State<DashboardPage> {
 
   Widget gridView() {
     return GridView.builder(
+        physics:const BouncingScrollPhysics(),
         shrinkWrap: true,
         itemCount: dashboardList.length,
         padding: EdgeInsets.all(AppConstants.five),

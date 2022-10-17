@@ -92,8 +92,8 @@ class VenueInfoPageState extends State<VenueInfoPage> {
                   textAlign: TextAlign.left,
                 ),
                 Container(
-                  margin: EdgeInsets.only(bottom: AppConstants.ten),
-                  child: bindListtContact(),
+                  margin: EdgeInsets.only(bottom: AppConstants.twenty),
+                  child: bindListContact(),
                 ),
               ],
             ),
@@ -171,26 +171,36 @@ class VenueInfoPageState extends State<VenueInfoPage> {
                   ),
                   Column(
                     children: [
-                      Container(
-                        width: AppConstants.eighty,
-                        height: AppConstants.eighty,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage(icDirection))),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            AppUtils.commonImageSVGWidget(
-                                path: icDirectionsIcon),
-                            CommonTextWidget(
-                              margintop: AppConstants.five,
-                              text: StringUtils.direction,
-                              fontWeight: FontWeight.w500,
-                              textAlign: TextAlign.right,
-                            ),
-                          ],
+                      InkWell(
+                        onTap: () async {
+                          const url ='https://www.google.com/maps/dir/?api=1&origin=43.7967876,-79.5331616&destination=43.5184049,-79.8473993&waypoints=43.1941283,-79.59179|43.7991083,-79.5339667|43.8387033,-79.3453417|43.836424,-79.3024487&travelmode=driving';
+                          if (await canLaunch(url)) {
+                          await launch(url);
+                          } else {
+                          throw "Couldn't launch Map";
+                          }
+                        },
+                        child: Container(
+                          width: AppConstants.eighty,
+                          height: AppConstants.eighty,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(icDirection))),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              AppUtils.commonImageSVGWidget(
+                                  path: icDirectionsIcon),
+                              CommonTextWidget(
+                                margintop: AppConstants.five,
+                                text: StringUtils.direction,
+                                fontWeight: FontWeight.w500,
+                                textAlign: TextAlign.right,
+                              ),
+                            ],
+                          ),
                         ),
                       )
                     ],
@@ -200,7 +210,7 @@ class VenueInfoPageState extends State<VenueInfoPage> {
         });
   }
 
-  Widget bindListtContact() {
+  Widget bindListContact() {
     return ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
@@ -240,21 +250,14 @@ class VenueInfoPageState extends State<VenueInfoPage> {
                 trailing: ClipRRect(
                   borderRadius: BorderRadius.circular(AppConstants.twenty),
                   child: Container(
-                    width: AppConstants.sixty,
-                    height: AppConstants.sixty,
+                    width: AppConstants.fifty,
+                    height: AppConstants.fifty,
                     decoration: const BoxDecoration(
                       color: AppColor.colorButton,
                     ),
                     child:IconButton(
                       onPressed: (){
-                        _makePhoneCall('+917383044605');
-                     /*  canLaunchUrl(Uri(scheme: 'tel',path: '7984512507')).then((bool result){
-                         setState(() {
-                           _hasCallSupport = result;
-
-                         });
-
-                       });*/
+                        AppUtils.launchContent();
                       },
                       icon: AppUtils.commonImageSVGWidget(path: icCall,boxFit: BoxFit.scaleDown),
                     ) ,
@@ -286,12 +289,14 @@ class VenueInfoPageState extends State<VenueInfoPage> {
         });
   }
 
-  Future<void> _makePhoneCall(String phoneNumber) async {
-    final Uri launchUri = Uri(
-      scheme: 'tel',
-      path: phoneNumber,
-    );
-    await launchUrl(launchUri);
+
+
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
 }

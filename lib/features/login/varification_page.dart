@@ -29,86 +29,84 @@ class VarificationPageState extends State<VarificationPage> {
       body: CommonBgPage(
           alignment: Alignment.topLeft,
           imagePath: icBackground,
-          widget: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                SizedBox(
-                  height: AppConstants.sixty,
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: InkWell(
-                      onTap: () {
-                        AppUtils.onBack(context);
-                      },
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        size: AppConstants.twentyFour,
-                        color: AppColor.colorWhite,
-                      )),
-                ),
-                CommonTextWidget(
-                  text: StringUtils.forgotPassword,
-                  fontWeight: FontWeight.w700,
-                  margintop: AppConstants.fortyFive,
-                  fontSize: AppConstants.twenty,
-                ),
-                CommonTextWidget(
-                  text:
-                      'We,ve sent a 6-digit confirmation code to johndoe@gmail.com. Make sure you enter \nx`correct code.',
-                  margintop: AppConstants.thirtyFive,
-                ),
-                SizedBox(
-                  height: AppConstants.twentyFour,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CommonOtpWidget(
-                        textEditingController: textEditingController,
-                        first: true,
-                        last: false),
-                    CommonOtpWidget(
-                        textEditingController: textEditingController,
-                        first: true,
-                        last: false),
-                    CommonOtpWidget(
-                        textEditingController: textEditingController,
-                        first: true,
-                        last: false),
-                    CommonOtpWidget(
-                        textEditingController: textEditingController,
-                        first: true,
-                        last: false),
-                    CommonOtpWidget(
-                        textEditingController: textEditingController,
-                        first: true,
-                        last: false),
-                    CommonOtpWidget(
-                        textEditingController: textEditingController,
-                        first: true,
-                        last: false),
-                  ],
-                ),
-                CommonButtonWidget(
-                    onPressed: () {
+          widget: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: AppConstants.sixty,
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: InkWell(
+                    onTap: () {
                       AppUtils.onBack(context);
                     },
-                    text: StringUtils.verify,
-                    marginTop: AppConstants.thirtyFive),
-                Center(
-                  child: AppUtils.richText(
-                      top: AppConstants.fortyFive,
-                      text: StringUtils.recieved,
-                      onTap: () {},
-                      linkText: StringUtils.resendCode),
-                ),
-              ],
-            ),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      size: AppConstants.twentyFour,
+                      color: AppColor.colorWhite,
+                    )),
+              ),
+              CommonTextWidget(
+                text: StringUtils.forgotPassword,
+                fontWeight: FontWeight.w700,
+                margintop: AppConstants.fortyFive,
+                fontSize: AppConstants.twenty,
+              ),
+              CommonTextWidget(
+                text:
+                    'We,ve sent a 6-digit confirmation code to johndoe@gmail.com. Make sure you enter \nx`correct code.',
+                margintop: AppConstants.thirtyFive,
+              ),
+              SizedBox(
+                height: AppConstants.twentyFour,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CommonOtpWidget(
+                      textEditingController: textEditingController,
+                      first: true,
+                      last: false),
+                  CommonOtpWidget(
+                      textEditingController: textEditingController,
+                      first: true,
+                      last: false),
+                  CommonOtpWidget(
+                      textEditingController: textEditingController,
+                      first: true,
+                      last: false),
+                  CommonOtpWidget(
+                      textEditingController: textEditingController,
+                      first: true,
+                      last: false),
+                  CommonOtpWidget(
+                      textEditingController: textEditingController,
+                      first: true,
+                      last: false),
+                  CommonOtpWidget(
+                      textEditingController: textEditingController,
+                      first: true,
+                      last: false),
+                ],
+              ),
+              CommonButtonWidget(
+                  onPressed: () {
+                    AppUtils.onBack(context);
+                  },
+                  text: StringUtils.verify,
+                  marginTop: AppConstants.thirtyFive),
+              Center(
+                child: AppUtils.richText(
+                    top: AppConstants.fortyFive,
+                    text: StringUtils.recieved,
+                    onTap: () {},
+                    linkText: StringUtils.resendCode),
+              ),
+            ],
           )),
     );
   }
