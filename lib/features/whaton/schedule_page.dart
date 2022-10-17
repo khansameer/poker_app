@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:poker/core/common/common_bg_page.dart';
 import 'package:poker/core/common/common_button_widget.dart';
@@ -176,6 +177,19 @@ class SchedulePageState extends State<SchedulePage> {
                                             fontWeight: FontWeight.w800,
                                           ),
                                         ),
+
+                                        SizedBox(
+                                          height: 200,
+                                          child: CupertinoDatePicker(
+
+                                            backgroundColor: Colors.red,
+                                            mode: CupertinoDatePickerMode.dateAndTime,
+                                            onDateTimeChanged: (value) {
+
+                                            },
+                                            initialDateTime: DateTime.now(),
+                                          ),
+                                        )
 
                                       ],
                                     ),
