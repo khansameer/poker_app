@@ -12,6 +12,7 @@ import 'package:poker/features/login/login_page.dart';
 import 'package:poker/features/login/varification_page.dart';
 import 'package:poker/features/profile/edit_profile_page.dart';
 import 'package:poker/features/profile/profile_page.dart';
+import 'package:poker/features/reservations/reservations_page.dart';
 import 'package:poker/features/signup/signup_page.dart';
 import 'package:poker/features/signup/term_codition_page.dart';
 import 'package:poker/features/splash/splash_page.dart';
@@ -89,6 +90,11 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (_) =>  const LiveStreamPage(),
             settings: const RouteSettings(name: RouteName.liveStream));
+
+      case RouteName.reservations:
+        return MaterialPageRoute(
+            builder: (_) =>  const ReservationsPage(),
+            settings: const RouteSettings(name: RouteName.reservations));
 
       default:
         return MaterialPageRoute(

@@ -24,7 +24,10 @@ class DashboardPageState extends State<DashboardPage> {
     AppUtils.redirectToNextScreen(
         context: context, screenName: RouteName.profile);
   }
-
+  void onClickReservations() {
+    AppUtils.redirectToNextScreen(
+        context: context, screenName: RouteName.reservations);
+  }
   void onClickClubBalance() {
     AppUtils.redirectToNextScreen(
         context: context, screenName: RouteName.clubBalance);
@@ -123,7 +126,7 @@ class DashboardPageState extends State<DashboardPage> {
                   AppUtils.commonMenuItem(
                       text: StringUtils.reservations,
                       imagePath: icReservations,
-                      onTap: onClickEvent),
+                      onTap: onClickReservations),
                 ],
               ),
               Align(
@@ -182,6 +185,10 @@ class DashboardPageState extends State<DashboardPage> {
                         text: StringUtils.rateUs, imagePath: icStar),
                     AppUtils.commonDivider(color: AppColor.colorWhiteLight),
                     AppUtils.commonMenuItem(
+                        onTap: (){
+                          Navigator.of(context)
+                              .pushNamedAndRemoveUntil(RouteName.login, (route) => false);
+                        },
                         text: StringUtils.logout,
                         imagePath: icLogout,
                         textColor: AppColor.colorLogout),
