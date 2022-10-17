@@ -7,8 +7,9 @@ import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
 import 'package:poker/core/utils/string_utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class VenueInfoPage extends StatefulWidget{
+class VenueInfoPage extends StatefulWidget {
   const VenueInfoPage({super.key});
 
   @override
@@ -16,28 +17,41 @@ class VenueInfoPage extends StatefulWidget{
     // TODO: implement createState
     return VenueInfoPageState();
   }
-  
 }
-class VenueInfoPageState extends State<VenueInfoPage>{
+
+class VenueInfoPageState extends State<VenueInfoPage> {
+  MediaQueryData? queryData;
   List<CommonList> commonList = [];
+  List<CommonList> commonList1 = [];
+  bool _hasCallSupport = false;
   @override
   void initState() {
     getUserList();
+    getContectList();
     super.initState();
   }
 
   getUserList() {
-    commonList.add(CommonList("In", "25 Aug, 23:52", "+ 500", "Pending", true));
-    commonList.add(CommonList("In", "25 Aug, 23:52", "+ 500", "Failed", true));
+    commonList.add(
+        CommonList("Stratford", "25 Aug, 23:52", "+ 500", "Pending", true));
     commonList
-        .add(CommonList("Out", "25 Aug, 23:52", "+ 500", "Completed", false));
-    commonList
-        .add(CommonList("Out", "25 Aug, 23:52", "+ 500", "Completed", false));
-    commonList.add(CommonList("In", "25 Aug, 23:52", "+ 500", "Pending", true));
+        .add(CommonList("Greenwich", "25 Aug, 23:52", "+ 500", "Failed", true));
   }
+
+  getContectList() {
+    commonList1.add(
+        CommonList("Stratford", "25 Aug, 23:52", "+ 500", "Pending", true));
+    commonList1
+        .add(CommonList("Greenwich", "25 Aug, 23:52", "+ 500", "Failed", true));
+    commonList1.add(
+        CommonList("Stratford", "25 Aug, 23:52", "+ 500", "Pending", true));
+    commonList1.add(
+        CommonList("Stratford", "25 Aug, 23:52", "+ 500", "Pending", true));
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    queryData = MediaQuery.of(context); // TODO: implement build
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppUtils.commonAppBar(
@@ -51,10 +65,38 @@ class VenueInfoPageState extends State<VenueInfoPage>{
         child: CommonBgPage(
           backImagePath: icDashboardBg,
           margin: AppConstants.zero,
-          alignment: Alignment.topCenter,
+          alignment: Alignment.topRight,
           imagePath: icDashboardimg,
-          widget: Container(
-              child: bindListView(),
+          widget: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  child: bindListView(),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                AppUtils.commonDivider(
+                    color: AppColor.colorWhiteLight,
+                    endIndent: 0,
+                    indent: 0,
+                    thickness: 3),
+                CommonTextWidget(
+                  margintop: AppConstants.twenty,
+                  left: AppConstants.sixteen,
+                  text: "Contacts",
+                  fontWeight: FontWeight.w600,
+                  fontSize: AppConstants.eighteen,
+                  textAlign: TextAlign.left,
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: AppConstants.twenty),
+                  child: bindListContact(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -63,108 +105,198 @@ class VenueInfoPageState extends State<VenueInfoPage>{
 
   Widget bindListView() {
     return ListView.builder(
+        scrollDirection: Axis.vertical,
         shrinkWrap: true,
         primary: false,
         itemCount: commonList.length,
         padding: EdgeInsets.zero,
         itemBuilder: (context, index) {
           return Container(
-            decoration: AppUtils.containerDecoration(
-                borderWidth: AppConstants.four,
-                radius: AppConstants.sixteen,
-                color: AppColor.colorBlueClub),
-            margin: EdgeInsets.all(AppConstants.five),
-            padding: EdgeInsets.only(
-                left: AppConstants.fourteen,
-                right: AppConstants.fourteen,
-                top: AppConstants.twelve,
-                bottom: AppConstants.twelve),
-            child:/* ListTile(
-              contentPadding: EdgeInsets.zero,
-              trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
+              decoration: AppUtils.containerDecoration(
+                  borderWidth: AppConstants.four,
+                  radius: AppConstants.sixteen,
+                  color: AppColor.colorBlueClub),
+              margin: EdgeInsets.only(
+                  left: AppConstants.sixteen,
+                  right: AppConstants.sixteen,
+                  top: AppConstants.sixteen),
+              padding: EdgeInsets.only(
+                  left: AppConstants.fourteen,
+                  right: AppConstants.fourteen,
+                  top: AppConstants.twelve,
+                  bottom: AppConstants.twelve),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CommonTextWidget(
-                    text: commonList[index].price,
-                    fontWeight: FontWeight.w500,
-                    textAlign: TextAlign.right,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.7,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CommonTextWidget(
+                          text: commonList[index].title,
+                          fontWeight: FontWeight.w600,
+                          fontSize: AppConstants.sixteen,
+                          textAlign: TextAlign.right,
+                        ),
+                        SizedBox(
+                          height: AppConstants.twelve,
+                        ),
+                        AppUtils.commonDivider(
+                            color: AppColor.colorWhiteLight,
+                            indent: AppConstants.zero,
+                            endIndent: AppConstants.ten),
+                        Container(
+                          margin: EdgeInsets.only(top: AppConstants.twelve),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              AppUtils.commonImageSVGWidget(path: icMap),
+                              CommonTextWidget(
+                                left: AppConstants.twelve,
+                                text:
+                                    'NLH 2/5 Behind Startford' /*commonList[index].price*/,
+                                fontWeight: FontWeight.w500,
+                                textAlign: TextAlign.right,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  CommonTextWidget(
-                    textAlign: TextAlign.right,
-                    text: commonList[index].status,
-                    margintop: AppConstants.three,
-                    fontWeight: FontWeight.w500,
-                    textColor: AppColor.colorWhite1,
+                  Column(
+                    children: [
+                      InkWell(
+                        onTap: () async {
+                          const url ='https://www.google.com/maps/dir/?api=1&origin=43.7967876,-79.5331616&destination=43.5184049,-79.8473993&waypoints=43.1941283,-79.59179|43.7991083,-79.5339667|43.8387033,-79.3453417|43.836424,-79.3024487&travelmode=driving';
+                          if (await canLaunch(url)) {
+                          await launch(url);
+                          } else {
+                          throw "Couldn't launch Map";
+                          }
+                        },
+                        child: Container(
+                          width: AppConstants.eighty,
+                          height: AppConstants.eighty,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(icDirection))),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              AppUtils.commonImageSVGWidget(
+                                  path: icDirectionsIcon),
+                              CommonTextWidget(
+                                margintop: AppConstants.five,
+                                text: StringUtils.direction,
+                                fontWeight: FontWeight.w500,
+                                textAlign: TextAlign.right,
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ],
-              ),
-              leading: AppUtils.commonBg(
-                  top: AppConstants.zero,
-                  padding: AppConstants.twelve,
-                  left: AppConstants.zero,
-                  radius: AppConstants.sixteen,
-                  widget: commonList[index].isShow ?? true
-                      ? Icon(
-                    Icons.arrow_downward_outlined,
-                    color: AppColor.colorWhite,
-                    size: AppConstants.twenty,
-                  )
-                      : Icon(
-                    size: AppConstants.twenty,
-                    Icons.arrow_upward,
-                    color: AppColor.colorWhite,
-                  ),
-                  color: commonList[index].isShow ?? true
-                      ? AppColor.colorGreenDark
-                      : AppColor.colorLogout),
-              title: CommonTextWidget(
-                text: commonList[index].title,
-                fontWeight: FontWeight.w500,
-              ),
-              subtitle: CommonTextWidget(
-                text: commonList[index].date,
-                margintop: AppConstants.three,
-                fontWeight: FontWeight.w500,
-              ),
-            )*/Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-               Row(
-                 children: [
-                   CommonTextWidget(
-                     text:'Stratford' /*commonList[index].price*/,
-                     fontWeight: FontWeight.w500,
-                     textAlign: TextAlign.right,
-                   ),
-                   SizedBox(height: 13,),
-                   AppUtils.commonDivider(color: AppColor.colorWhiteLight,indent: 0),
-                  /* ListTile(
-                     dense: false,
-
-                     visualDensity: VisualDensity(
-                         horizontal: 1,vertical: -4
-                     ),
-
-                     contentPadding: EdgeInsets.zero,
-                     minVerticalPadding: 0,
-                     leading: AppUtils.commonImageSVGWidget(path: icMap),
-                     title:  CommonTextWidget(
-                       textAlign: TextAlign.start,
-                       text: commonList[index].status,
-                       margintop: AppConstants.three,
-                       fontWeight: FontWeight.w500,
-                       textColor: AppColor.colorWhite1,
-                     ),
-                   ),*/
-                 ],
-               )
-              ],
-            ),
-          );
+              ));
         });
   }
 
+  Widget bindListContact() {
+    return ListView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        primary: false,
+        itemCount: commonList1.length,
+        padding: EdgeInsets.zero,
+        itemBuilder: (context, index) {
+          return Container(
+              decoration: AppUtils.containerDecoration(
+                  borderWidth: AppConstants.four,
+                  radius: AppConstants.sixteen,
+                  color: AppColor.colorBlueClub),
+              margin: EdgeInsets.only(
+                  left: AppConstants.sixteen,
+                  right: AppConstants.sixteen,
+                  top: AppConstants.sixteen),
+              padding: EdgeInsets.only(
+                  left: AppConstants.fourteen,
+                  right: AppConstants.fourteen,
+                  top: AppConstants.twelve,
+                  bottom: AppConstants.twelve),
+              child: ListTile(
+                minVerticalPadding: 0,
+                contentPadding: EdgeInsets.zero,
+
+                title: CommonTextWidget(
+                  text: commonList1[index].title,
+                  fontWeight: FontWeight.w500,
+                  textAlign: TextAlign.left,
+                ),
+                subtitle: CommonTextWidget(
+                  margintop: AppConstants.five,
+                  text: '+44 797 577 7666' /*commonList[index].price*/,
+                  fontWeight: FontWeight.w400,
+                  textAlign: TextAlign.left,
+                ),
+                trailing: ClipRRect(
+                  borderRadius: BorderRadius.circular(AppConstants.twenty),
+                  child: Container(
+                    width: AppConstants.fifty,
+                    height: AppConstants.fifty,
+                    decoration: const BoxDecoration(
+                      color: AppColor.colorButton,
+                    ),
+                    child:IconButton(
+                      onPressed: (){
+                        AppUtils.launchContent();
+                      },
+                      icon: AppUtils.commonImageSVGWidget(path: icCall,boxFit: BoxFit.scaleDown),
+                    ) ,
+
+                  ),
+                ),
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(AppConstants.twelve),
+                  child: Container(
+                    width: AppConstants.sixty,
+                    height: AppConstants.sixty,
+                    decoration: BoxDecoration(
+                      //  color: Colors.grey.withOpacity(0.1),
+                      borderRadius: BorderRadius.all(
+                          Radius.circular(AppConstants.twenty)),
+                      border: Border.all(
+                        color: AppColor.colorBorder,
+                        width: AppConstants.three,
+                      ),
+                    ),
+                    child: AppUtils.commonImageAssetWidget(
+                        path: icGirlsIcon,
+                        boxFit: BoxFit.fill,
+                        height: AppConstants.sixty,
+                        width: AppConstants.sixty),
+                  ),
+                ),
+              ));
+        });
+  }
+
+
+
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
 }

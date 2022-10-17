@@ -2,13 +2,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:poker/core/common/common_button_widget.dart';
-import 'package:poker/core/common/common_list_bean.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/route.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/image_path.dart';
 import 'package:poker/core/utils/string_utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppUtils {
   static TextEditingController tetEmail = TextEditingController();
@@ -20,16 +20,78 @@ class AppUtils {
   static TextEditingController tetLastName = TextEditingController();
   static TextEditingController tetOtp = TextEditingController();
 
-  static List<CommonList> commonList = [];
-
-  static getUserList() {
-    commonList.add(CommonList("In", "25 Aug, 23:52", "+ 500", "Pending", true));
-    commonList.add(CommonList("In", "25 Aug, 23:52", "+ 500", "Failed", true));
-    commonList
-        .add(CommonList("Out", "25 Aug, 23:52", "+ 500", "Completed", false));
-    commonList
-        .add(CommonList("Out", "25 Aug, 23:52", "+ 500", "Completed", false));
-    commonList.add(CommonList("In", "25 Aug, 23:52", "+ 500", "Pending", true));
+  static Widget commonCoinView(
+      {VoidCallback? onTap,
+      String? text,
+      double? top,
+      double? right,
+      double? left}) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.only(
+            top: top ?? AppConstants.twenty,
+            right: right ?? 0,
+            left: left ?? 0),
+        child: Stack(
+          children: [
+            Container(
+              width: double.infinity,
+              height: AppConstants.oneHundredFifty,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(AppConstants.sixteen),
+                  image: const DecorationImage(
+                      image: AssetImage(icImge), fit: BoxFit.cover)),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: AppColor.colorFbLight,
+                    borderRadius: BorderRadius.circular(AppConstants.sixteen),
+                    border: Border.all(
+                        color: AppColor.colorWhiteLight,
+                        width: AppConstants.five)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CommonTextWidget(
+                      left: AppConstants.sixteen,
+                      text: "👋 Hi, John",
+                      fontWeight: FontWeight.w800,
+                      fontSize: AppConstants.eighteen,
+                    ),
+                    AppUtils.commonBg(
+                        widget: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CommonTextWidget(
+                          text: "Current Credit",
+                          textColor: AppColor.colorWhite,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        CommonTextWidget(
+                          text: "500",
+                          left: AppConstants.five,
+                          textColor: AppColor.colorWhite,
+                          fontWeight: FontWeight.w700,
+                        )
+                      ],
+                    ))
+                  ],
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                AppUtils.commonImageAssetWidget(
+                    path: icCoin, height: 165, boxFit: BoxFit.scaleDown)
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   static AppBar commonAppBar(
@@ -85,11 +147,9 @@ class AppUtils {
           image: AssetImage(image ?? icDashboardBg), fit: BoxFit.fill),
     );
   }
+
   static BoxDecoration decorationCircle({Color? color}) {
-    return BoxDecoration(
-        color: color,
-        shape: BoxShape.circle
-    );
+    return BoxDecoration(color: color, shape: BoxShape.circle);
   }
 
   static BoxDecoration dashboard() {
@@ -113,15 +173,12 @@ class AppUtils {
     Color color = Colors.white,
     double? borderWidth,
     Color colorBorder = AppColor.colorWhiteLight,
-
   }) {
     return BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.all(Radius.circular(radius)),
-        border: Border.all(
-            color: colorBorder,
-            width: borderWidth ?? 2),
-    /*    */);
+      color: color,
+      borderRadius: BorderRadius.all(Radius.circular(radius)),
+      border: Border.all(color: colorBorder, width: borderWidth ?? 2), /*    */
+    );
   }
 
   static Widget richText({
@@ -215,12 +272,15 @@ class AppUtils {
   }
 
   static void onBack(BuildContext context) {
+    closeKeyBoard(context);
     Navigator.pop(context);
+
   }
 
-  static void redirectToNextScreen(
-      {BuildContext? context, String? screenName, String? arguments}) {
-    Navigator.of(context!).pushNamed(screenName!, arguments: arguments);
+  static void redirectToNextScreen({required BuildContext context, String? screenName, String? arguments}) {
+    closeKeyBoard(context);
+    Navigator.of(context).pushNamed(screenName!, arguments: arguments);
+
   }
 
   static Widget privacyPolicyLinkAndTermsOfService(
@@ -263,11 +323,14 @@ class AppUtils {
   }
 
   static Widget commonDivider(
-
-      {Color? color, double? indent, double? endIndent, double? top,double? thickness}) {
+      {Color? color,
+      double? indent,
+      double? endIndent,
+      double? top,
+      double? thickness}) {
     return Divider(
-      thickness: thickness??2,
-      color: color ?? AppColor.colorWhite,
+      thickness: thickness ?? 2,
+      color: color ?? AppColor.colorWhiteLight,
       indent: indent ?? 15,
       endIndent: endIndent ?? 15,
       height: top ?? 0,
@@ -292,7 +355,7 @@ class AppUtils {
       trailing: Icon(
         Icons.arrow_forward_ios_outlined,
         color: trailingColor ?? AppColor.colorWhite1,
-        size: AppConstants.twenty,
+        size: AppConstants.eighteen,
       ),
       title: CommonTextWidget(
         text: text,
@@ -312,13 +375,17 @@ class AppUtils {
     double? radius,
     double? borderWidth,
     double? padding,
+    Color? colorBorder,
   }) {
     return Container(
-      margin: EdgeInsets.only(left: left ?? 16, top: top ?? 10,right: right??0),
+      margin:
+          EdgeInsets.only(left: left ?? 16, top: top ?? 10, right: right ?? 0),
       padding: EdgeInsets.all(padding ?? 10),
       decoration: AppUtils.containerDecoration(
-            borderWidth:borderWidth??0 ,
-          radius: radius ?? 8, color: color ?? AppColor.colorWhiteLight),
+          colorBorder: colorBorder ?? Colors.transparent,
+          borderWidth: borderWidth ?? 0,
+          radius: radius ?? 8,
+          color: color ?? AppColor.colorWhiteLight),
       child: widget,
     );
   }
@@ -351,12 +418,16 @@ class AppUtils {
                     height: AppConstants.fifty,
                     decoration: const BoxDecoration(
                         color: AppColor.colorGreenDark, shape: BoxShape.circle),
-                    child:commonImageSVGWidget(
+                    child: commonImageSVGWidget(
                         boxFit: BoxFit.scaleDown,
-                        path: icDone,height: AppConstants.twenty,width: AppConstants.twenty) /*Icon(
+                        path: icDone,
+                        height: AppConstants.twenty,
+                        width: AppConstants
+                            .twenty) /*Icon(
                       Icons.ac_unit_outlined,
                       size: AppConstants.twentyFour,
-                    )*/,
+                    )*/
+                    ,
                   ),
                   CommonTextWidget(
                       text: text ?? "Request send successfully for \n500 chips",
@@ -382,12 +453,13 @@ class AppUtils {
       },
     );
   }
- static Widget commonGridView(
+
+  static Widget commonGridView(
       {String? text,
-        Widget? widget,
-        String? imagePath,
-        Color? colorBg,
-        String? imageTrans}) {
+      Widget? widget,
+      String? imagePath,
+      Color? colorBg,
+      String? imageTrans}) {
     return Container(
       alignment: Alignment.topLeft,
       margin: EdgeInsets.only(top: AppConstants.eighteen),
@@ -402,10 +474,11 @@ class AppUtils {
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(imageTrans ?? icWhatOnTrans),
-                fit: BoxFit.fill),
+                fit: BoxFit.cover),
             /* color: colorBg ?? AppColor.colorRedLight,*/
             borderRadius: BorderRadius.circular(AppConstants.sixteen),
-            border: Border.all(color: AppColor.colorWhiteLight, width: AppConstants.one)),
+            border: Border.all(
+                color: AppColor.colorWhiteLight, width: AppConstants.five)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -413,40 +486,37 @@ class AppUtils {
             AppUtils.commonBg(
                 top: 0,
                 left: AppConstants.ten,
-                color:AppColor.colorBlackLight, widget: widget),
-            SizedBox(height: AppConstants.sixteen,),
+                color: AppColor.colorBlackLight,
+                widget: widget),
+            SizedBox(
+              height: AppConstants.sixteen,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 AppUtils.commonBg(
-
-                    left:AppConstants.ten ,
+                    left: AppConstants.ten,
                     top: 0,
-
                     color: AppColor.colorBlackLight,
                     widget: CommonTextWidget(
                       text: text,
-
                       fontWeight: FontWeight.w700,
                       fontSize: AppConstants.fourteen,
                     )),
-
-             Container(
-               margin: EdgeInsets.only(left:AppConstants.fourteen),
-               alignment: Alignment.center,
-               padding: EdgeInsets.all(AppConstants.twelve),
-               decoration: const BoxDecoration(
-                   color: AppColor.colorBlackLight,
-                   shape: BoxShape.circle
-               ),
-               child: Icon(
-                 Icons.arrow_forward_ios_outlined,
-                 color: AppColor.colorWhite,
-                 size: AppConstants.fourteen,
-               ),
-             )
-             /*   AppUtils.commonBg(
+                Container(
+                  margin: EdgeInsets.only(left: AppConstants.fourteen),
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(AppConstants.twelve),
+                  decoration: const BoxDecoration(
+                      color: AppColor.colorBlackLight, shape: BoxShape.circle),
+                  child: Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    color: AppColor.colorWhite,
+                    size: AppConstants.fourteen,
+                  ),
+                )
+                /*   AppUtils.commonBg(
 
                     color: AppColor.colorBlackLight,
                     widget:  Icon(
@@ -462,5 +532,25 @@ class AppUtils {
     );
   }
 
+  static Future<void> launchContent({String? path, String? scheme}) async {
+    final Uri launchUri = Uri(
+      scheme: scheme ?? 'tel',
+      path: path ?? "+919999999999",
+    );
+    await launchUrl(launchUri);
+  }
 
+  static Future<void> openMap(double latitude, double longitude) async {
+    String googleUrl =
+        'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+    if (await canLaunch(googleUrl)) {
+      await launch(googleUrl);
+    } else {
+      throw 'Could not open the map.';
+    }
+  }
+
+  static closeKeyBoard(BuildContext ctx) {
+    FocusScope.of(ctx).unfocus();
+  }
 }

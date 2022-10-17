@@ -17,5 +17,6 @@ class RouteName {
   static const String whatOn = '/whatOn';
   static const String venueInfo = '/venueInfo';
   static const String liveStream = '/liveStream';
+  static const String reservations = '/Reservations';
 
 }

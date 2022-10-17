@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:poker/core/common/common_bg_page.dart';
-import 'package:poker/core/common/common_button_widget.dart';
 import 'package:poker/core/common/common_text_widget.dart';
-import 'package:poker/core/common/context_extension.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
 import 'package:poker/core/utils/string_utils.dart';
+
 import 'package:poker/features/whaton/schedulebean.dart';
 
-class SchedulePage extends StatefulWidget {
-  const SchedulePage({super.key});
+class ReservationsPage extends StatefulWidget{
+  const ReservationsPage({super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return SchedulePageState();
+    return ReservationsPageState();
   }
+  
 }
-
-class SchedulePageState extends State<SchedulePage> {
+class ReservationsPageState  extends State<ReservationsPage> {
   List<ScheduleBean> scheduleList = [];
 
   @override
@@ -32,7 +31,7 @@ class SchedulePageState extends State<SchedulePage> {
     scheduleList.add(ScheduleBean(
         text: "Tooth Hurty ",
         date: "THU, 1st October  | 2:30 pm",
-        isShow: true,
+        isShow: false,
         textItem: "Chinese Dentist",
         textItem1: "2/5 LOL ",
         textItem2: ""));
@@ -46,7 +45,7 @@ class SchedulePageState extends State<SchedulePage> {
     scheduleList.add(ScheduleBean(
         text: "Event Name",
         date: "Wed, 21st September  | 8 pm",
-        isShow: true,
+        isShow: false,
         textItem: "Frames Poker ",
         textItem1: "2/5 plo ",
         textItem2: "2/5 hold em "));
@@ -58,7 +57,7 @@ class SchedulePageState extends State<SchedulePage> {
       resizeToAvoidBottomInset: false,
       appBar: AppUtils.commonAppBar(
           context: context,
-          title: StringUtils.schedule,
+          title: StringUtils.reservations,
           isShowEdit: false,
           actionTitle: StringUtils.edit),
       body: Container(
@@ -84,15 +83,16 @@ class SchedulePageState extends State<SchedulePage> {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
+              // AppUtils.redirectToNextScreen(context: context,screenName: RouteName.eventDetails);
             },
             child: Container(
               height: AppConstants.twoHundredSeventyEight,
               width: double.infinity,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage(icSchedule),
-              )),
+                    fit: BoxFit.fill,
+                    image: AssetImage(icSchedule),
+                  )),
               margin: EdgeInsets.only(
                   left: AppConstants.sixteen,
                   right: AppConstants.sixteen,
@@ -133,65 +133,8 @@ class SchedulePageState extends State<SchedulePage> {
                   scheduleList[index].textItem2!.isEmpty
                       ? const SizedBox.shrink()
                       : commonView(title: scheduleList[index].textItem2),
-                  scheduleList[index].isShow ?? false
-                      ? CommonButtonWidget(
-                          onPressed: (){
-                            showModalBottomSheet(
-                              isScrollControlled: true,
-                              context: context,
-                              backgroundColor: AppColor.colorBottom,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadiusDirectional.only(
-                                  topEnd: Radius.circular(AppConstants.twenty),
-                                  topStart: Radius.circular(AppConstants.twenty),
-                                ),
-                              ),
-                              builder: (context) => SingleChildScrollView(
-                                padding: EdgeInsetsDirectional.only(
-                                  start: AppConstants.twenty,
-                                  end: AppConstants.twenty,
-                                  bottom: AppConstants.thirty,
-                                  top: AppConstants.fourteen,
-                                ),
-                                child: Wrap(
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        ListTile(
-                                          trailing: IconButton(
-                                              onPressed: () {
-                                                AppUtils.onBack(context);
-                                              },
-                                              icon: Icon(
-                                                Icons.close,
-                                                color: Colors.white,
-                                                size: AppConstants.twentyFour,
-                                              )),
-                                          title: CommonTextWidget(
-                                            fontSize: AppConstants.eighteen,
-                                            text: StringUtils.selectTime.toCapitalize(),
-                                            fontWeight: FontWeight.w800,
-                                          ),
-                                        ),
+                  commonDeleteView(),
 
-                                      ],
-                                    ),
-
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                          text: "Reserve your seat".toCapitalize(),
-                          left: AppConstants.zero,
-                          right: AppConstants.thirty,
-                          bottom: AppConstants.ten,
-                          marginTop: AppConstants.ten,
-                        )
-                      : commonDeleteView(),
                 ],
               ),
             ),

@@ -24,8 +24,10 @@ class AppConstants{
   static double fortyFive = 45;
   static double fifty = 50;
   static double fiftyThree = 53;
+  static double fiftyEight = 58;
   static double sixty = 60;
   static double sixtyFive = 65;
+  static double eighty = 80;
   static double eightyFour = 84;
   static double seventy = 70;
   static double seventySeven = 77;
@@ -34,8 +36,11 @@ class AppConstants{
   static double oneHundred = 100;
   static double oneHundredTwentyTwo = 122;
   static double oneHundredFourty = 140;
+  static double oneHundredFifty = 150;
+  static double oneHundredSixty = 160;
   static double oneHundredFiftyFive= 155;
 
   static double oneHundredSeventyEight = 178;
+  static double twoHundredSeventyEight = 250;
   static double twoHundredFiftyFive= 255;
 }
