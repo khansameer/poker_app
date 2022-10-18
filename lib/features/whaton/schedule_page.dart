@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:poker/core/common/common_bg_page.dart';
 import 'package:poker/core/common/common_button_widget.dart';
 import 'package:poker/core/common/common_text_widget.dart';
@@ -22,7 +23,8 @@ class SchedulePage extends StatefulWidget {
 
 class SchedulePageState extends State<SchedulePage> {
   List<ScheduleBean> scheduleList = [];
-
+  var selectedTimeData = '00:00';
+  DateTime _dateTime = DateTime.now();
   @override
   void initState() {
     super.initState();
@@ -84,8 +86,7 @@ class SchedulePageState extends State<SchedulePage> {
         padding: EdgeInsets.zero,
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: () {
-            },
+            onTap: () {},
             child: Container(
               height: AppConstants.twoHundredSeventyEight,
               width: double.infinity,
@@ -136,68 +137,107 @@ class SchedulePageState extends State<SchedulePage> {
                       : commonView(title: scheduleList[index].textItem2),
                   scheduleList[index].isShow ?? false
                       ? CommonButtonWidget(
-                          onPressed: (){
+                          onPressed: () {
                             showModalBottomSheet(
-                              isScrollControlled: true,
-                              context: context,
-                              backgroundColor: AppColor.colorBottom,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadiusDirectional.only(
-                                  topEnd: Radius.circular(AppConstants.twenty),
-                                  topStart: Radius.circular(AppConstants.twenty),
+                                isScrollControlled: true,
+                                context: context,
+                                backgroundColor: AppColor.colorBottom,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadiusDirectional.only(
+                                    topEnd:
+                                        Radius.circular(AppConstants.twenty),
+                                    topStart:
+                                        Radius.circular(AppConstants.twenty),
+                                  ),
                                 ),
-                              ),
-                              builder: (context) => SingleChildScrollView(
-                                padding: EdgeInsetsDirectional.only(
-                                  start: AppConstants.twenty,
-                                  end: AppConstants.twenty,
-                                  bottom: AppConstants.thirty,
-                                  top: AppConstants.fourteen,
-                                ),
-                                child: Wrap(
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        ListTile(
-                                          trailing: IconButton(
-                                              onPressed: () {
-                                                AppUtils.onBack(context);
-                                              },
-                                              icon: Icon(
-                                                Icons.close,
-                                                color: Colors.white,
-                                                size: AppConstants.twentyFour,
-                                              )),
-                                          title: CommonTextWidget(
-                                            fontSize: AppConstants.eighteen,
-                                            text: StringUtils.selectTime.toCapitalize(),
-                                            fontWeight: FontWeight.w800,
-                                          ),
+                                builder: (context) {
+                                  return StatefulBuilder(
+                                    builder: (BuildContext context,
+                                        StateSetter
+                                            setState /*You can rename this!*/) {
+                                      return SingleChildScrollView(
+                                        padding: EdgeInsetsDirectional.only(
+                                          start: AppConstants.zero,
+                                          end: AppConstants.zero,
+                                          bottom: AppConstants.thirty,
+                                          top: AppConstants.fourteen,
                                         ),
+                                        child: Wrap(
+                                          children: [
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                ListTile(
+                                                  trailing: IconButton(
+                                                      onPressed: () {
+                                                        AppUtils.onBack(
+                                                            context);
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.close,
+                                                        color: Colors.white,
+                                                        size: AppConstants
+                                                            .twentyFour,
+                                                      )),
+                                                  title: CommonTextWidget(
+                                                    fontSize:
+                                                        AppConstants.eighteen,
+                                                    text: StringUtils.selectTime
+                                                        .toCapitalize(),
+                                                    fontWeight: FontWeight.w800,
+                                                  ),
+                                                ),
+                                                SizedBox(height: AppConstants.eighteen,),
 
-                                        SizedBox(
-                                          height: 200,
-                                          child: CupertinoDatePicker(
+                                                AppUtils.commonDivider(indent: 0,endIndent: 0),
+                                                CommonTextWidget(
 
-                                            backgroundColor: Colors.red,
-                                            mode: CupertinoDatePickerMode.dateAndTime,
-                                            onDateTimeChanged: (value) {
+                                                    text:
+                                                        '${DateFormat("h").format(_dateTime).toString().padLeft(2,'0')}:${_dateTime.minute.toString().padLeft(2, '0')} ${_dateTime.hour > 12 ? '  PM' : 'AM'}',
+                                                    textColor: AppColor.colorWhite,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: AppConstants.eighteen,margintop: AppConstants.eighteen),
+                                                SizedBox(height: AppConstants.eighteen,),
+                                                CommonButtonWidget(text: StringUtils.reserved,left: AppConstants.sixteen,right: AppConstants.sixteen,),
+                                                SizedBox(height: AppConstants.thirty,),
+                                                SizedBox(
+                                                  height: 200,
+                                                  child: CupertinoTheme(
 
-                                            },
-                                            initialDateTime: DateTime.now(),
-                                          ),
-                                        )
+                                                    data:
+                                                        const CupertinoThemeData(
+                                                      brightness:
+                                                          Brightness.dark,
+                                                    ),
+                                                    child: CupertinoDatePicker(
 
-                                      ],
-                                    ),
-
-                                  ],
-                                ),
-                              ),
-                            );
+                                                        minuteInterval: 1,
+                                                        use24hFormat: false,
+                                                        initialDateTime: DateTime.now(),
+                                                        backgroundColor:AppColor.colorTimePicker,
+                                                        mode:
+                                                            CupertinoDatePickerMode
+                                                                .time,
+                                                        onDateTimeChanged:
+                                                            (value) {
+                                                          setState(() {
+                                                            _dateTime = value;
+                                                          });
+                                                        }),
+                                                  ),
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                });
                           },
                           text: "Reserve your seat".toCapitalize(),
                           left: AppConstants.zero,
@@ -211,6 +251,10 @@ class SchedulePageState extends State<SchedulePage> {
             ),
           );
         });
+  }
+
+  assignValue() {
+    return selectedTimeData;
   }
 
   Widget commonView({String? title, String? icon}) {
@@ -290,5 +334,4 @@ class SchedulePageState extends State<SchedulePage> {
       ),
     );
   }
-
 }

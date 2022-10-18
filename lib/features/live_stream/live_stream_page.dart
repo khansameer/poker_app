@@ -20,7 +20,7 @@ class LiveStreamPage extends StatefulWidget{
 class LiveStreamPageState extends State<LiveStreamPage>{
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppUtils.commonAppBar(
@@ -64,7 +64,7 @@ class LiveStreamPageState extends State<LiveStreamPage>{
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Container(
-                      padding: EdgeInsets.only(left: 18,top: 10,right: 18,bottom: 10),
+                      padding: EdgeInsets.only(left: AppConstants.eighteen,top: AppConstants.ten,right: AppConstants.eighteen,bottom: AppConstants.ten),
                       decoration: AppUtils.containerDecoration(
                           borderWidth: AppConstants.two,
                           radius: AppConstants.eight,
@@ -84,7 +84,7 @@ class LiveStreamPageState extends State<LiveStreamPage>{
                           onPressed: (){
                             AppUtils.onBack(context);
                           },
-                          text: 'End Stream',padding: AppConstants.ten, ))
+                          text: StringUtils.endStream,padding: AppConstants.ten, ))
                   ],
                 ),
               ),

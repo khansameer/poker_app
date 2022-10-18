@@ -63,6 +63,7 @@ class StringUtils{
   static const String counter="Counter";
   static const String addMember="Add Member";
   static const String settings="Settings";
+  static const String endStream="End Stream";
   static const String hiMartin="Hi, Martin";
   static const String welToPokerRoom="Welcome to poker room";
 
