@@ -195,7 +195,9 @@ class DashboardPageState extends State<DashboardPage> {
                         endIndent: AppConstants.zero,
                         indent: AppConstants.zero),
                     AppUtils.commonMenuItem(
-                        text: StringUtils.rateUs, imagePath: icStar),
+                        text: StringUtils.rateUs, imagePath: icStar,onTap: (){
+
+                    }),
                     AppUtils.commonDivider(
                         color: AppColor.colorWhiteLight),
                     AppUtils.commonMenuItem(
