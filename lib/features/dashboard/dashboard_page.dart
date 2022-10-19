@@ -40,6 +40,10 @@ class DashboardPageState extends State<DashboardPage> {
 
   void onClickEvent() {}
 
+  void onClickAddMember(){
+    AppUtils.redirectToNextScreen(context: context,screenName: RouteName.addMemberPage);
+  }
+
   loadVIew() {
     dashboardList.add(DashboardBean(
         image: icWhatOn,
@@ -85,130 +89,130 @@ class DashboardPageState extends State<DashboardPage> {
       extendBody: true,
       key: _scaffoldKey,
       drawer: widget.isAdmin ?? false
-          ? Drawer(
-              elevation: AppConstants.zero,
-              backgroundColor: Colors.transparent,
-              child: Container(
-                decoration: AppUtils.containerDecorationBg(image: icMenuBg),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        DrawerHeader(
-                            child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                                child: Image.asset(
-                              icLogo,
-                              width: AppConstants.seventySeven,
-                              height: AppConstants.fiftyThree,
-                            )),
-                            IconButton(
-                                onPressed: () {
-                                  _scaffoldKey.currentState!.closeDrawer();
-                                },
-                                icon: Icon(
-                                  Icons.close,
-                                  color: AppColor.colorWhite,
-                                  size: AppConstants.twentyFour,
-                                )),
-                          ],
-                        )),
-                        AppUtils.commonDivider(
-                            indent: AppConstants.zero,
-                            endIndent: AppConstants.zero,
-                            color: AppColor.colorWhiteLight),
-                        SizedBox(
-                          height: AppConstants.sixteen,
-                        ),
-                        AppUtils.commonMenuItem(
-                            text: StringUtils.profile, onTap: onClickProfile),
-                        AppUtils.commonDivider(color: AppColor.colorWhiteLight),
-                        SizedBox(
-                          height: AppConstants.sixteen,
-                        ),
-                        AppUtils.commonMenuItem(
-                            text: StringUtils.reservations,
-                            imagePath: icReservations,
-                            onTap: onClickReservations),
-                      ],
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+          ? null
+          : Drawer(
+        elevation: AppConstants.zero,
+        backgroundColor: Colors.transparent,
+        child: Container(
+          decoration: AppUtils.containerDecorationBg(image: icMenuBg),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                children: [
+                  DrawerHeader(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CommonTextWidget(
-                            textAlign: TextAlign.center,
-                            text: StringUtils.followUs,
-                            left: AppConstants.twentyFour,
-                            textColor: AppColor.colorWhite1,
-                            fontSize: AppConstants.sixteen,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          SizedBox(
-                            height: AppConstants.sixteen,
-                          ),
-                          Container(
-                            margin:
-                                EdgeInsets.only(left: AppConstants.twentyFour),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                commonTopView(
-                                  width: AppConstants.seventy,
-                                  height: AppConstants.seventy,
-                                  widget: AppUtils.commonImageSVGWidget(
-                                      boxFit: BoxFit.scaleDown,
-                                      path: icFb,
-                                      width: AppConstants.thirty,
-                                      height: AppConstants.thirty),
-                                ),
-                                SizedBox(
-                                  width: AppConstants.twenty,
-                                ),
-                                commonTopView(
-                                    width: AppConstants.seventy,
-                                    height: AppConstants.seventy,
-                                    widget: AppUtils.commonImageAssetWidget(
-                                        path: icInstagram,
-                                        boxFit: BoxFit.scaleDown,
-                                        width: AppConstants.thirty,
-                                        height: AppConstants.thirty))
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: AppConstants.thirty,
-                          ),
-                          AppUtils.commonDivider(
-                              color: AppColor.colorWhiteLight,
-                              endIndent: AppConstants.zero,
-                              indent: AppConstants.zero),
-                          AppUtils.commonMenuItem(
-                              text: StringUtils.rateUs, imagePath: icStar),
-                          AppUtils.commonDivider(
-                              color: AppColor.colorWhiteLight),
-                          AppUtils.commonMenuItem(
-                              onTap: () {
-                                Navigator.of(context).pushNamedAndRemoveUntil(
-                                    RouteName.login, (route) => false);
+                          Expanded(
+                              child: Image.asset(
+                                icLogo,
+                                width: AppConstants.seventySeven,
+                                height: AppConstants.fiftyThree,
+                              )),
+                          IconButton(
+                              onPressed: () {
+                                _scaffoldKey.currentState!.closeDrawer();
                               },
-                              text: StringUtils.logout,
-                              imagePath: icLogout,
-                              textColor: AppColor.colorLogout),
+                              icon: Icon(
+                                Icons.close,
+                                color: AppColor.colorWhite,
+                                size: AppConstants.twentyFour,
+                              )),
+                        ],
+                      )),
+                  AppUtils.commonDivider(
+                      indent: AppConstants.zero,
+                      endIndent: AppConstants.zero,
+                      color: AppColor.colorWhiteLight),
+                  SizedBox(
+                    height: AppConstants.sixteen,
+                  ),
+                  AppUtils.commonMenuItem(
+                      text: StringUtils.profile, onTap: onClickProfile),
+                  AppUtils.commonDivider(color: AppColor.colorWhiteLight),
+                  SizedBox(
+                    height: AppConstants.sixteen,
+                  ),
+                  AppUtils.commonMenuItem(
+                      text: StringUtils.reservations,
+                      imagePath: icReservations,
+                      onTap: onClickReservations),
+                ],
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CommonTextWidget(
+                      textAlign: TextAlign.center,
+                      text: StringUtils.followUs,
+                      left: AppConstants.twentyFour,
+                      textColor: AppColor.colorWhite1,
+                      fontSize: AppConstants.sixteen,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    SizedBox(
+                      height: AppConstants.sixteen,
+                    ),
+                    Container(
+                      margin:
+                      EdgeInsets.only(left: AppConstants.twentyFour),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          commonTopView(
+                            width: AppConstants.seventy,
+                            height: AppConstants.seventy,
+                            widget: AppUtils.commonImageSVGWidget(
+                                boxFit: BoxFit.scaleDown,
+                                path: icFb,
+                                width: AppConstants.thirty,
+                                height: AppConstants.thirty),
+                          ),
+                          SizedBox(
+                            width: AppConstants.twenty,
+                          ),
+                          commonTopView(
+                              width: AppConstants.seventy,
+                              height: AppConstants.seventy,
+                              widget: AppUtils.commonImageAssetWidget(
+                                  path: icInstagram,
+                                  boxFit: BoxFit.scaleDown,
+                                  width: AppConstants.thirty,
+                                  height: AppConstants.thirty))
                         ],
                       ),
-                    )
+                    ),
+                    SizedBox(
+                      height: AppConstants.thirty,
+                    ),
+                    AppUtils.commonDivider(
+                        color: AppColor.colorWhiteLight,
+                        endIndent: AppConstants.zero,
+                        indent: AppConstants.zero),
+                    AppUtils.commonMenuItem(
+                        text: StringUtils.rateUs, imagePath: icStar),
+                    AppUtils.commonDivider(
+                        color: AppColor.colorWhiteLight),
+                    AppUtils.commonMenuItem(
+                        onTap: () {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              RouteName.login, (route) => false);
+                        },
+                        text: StringUtils.logout,
+                        imagePath: icLogout,
+                        textColor: AppColor.colorLogout),
                   ],
                 ),
-              ),
-            )
-          : null,
+              )
+            ],
+          ),
+        ),
+      ),
       body: Container(
         decoration: AppUtils.dashboard(),
         child: Container(
@@ -296,13 +300,13 @@ class DashboardPageState extends State<DashboardPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             commonBottomNavTabs(
-                path: icMembers, title: StringUtils.members, onTap: () {}),
+                path: icMembers, title: StringUtils.members),
             commonBottomNavTabs(
-                path: icCounter, title: StringUtils.counter, onTap: () {}),
+                path: icCounter, title: StringUtils.counter),
             commonBottomNavTabs(
-                path: icAddMember, title: StringUtils.addMember, onTap: () {}),
+                path: icAddMember, title: StringUtils.addMember, onTap: onClickAddMember),
             commonBottomNavTabs(
-                path: icSettings, title: StringUtils.settings, onTap: () {}),
+                path: icSettings, title: StringUtils.settings),
           ],
         ));
   }

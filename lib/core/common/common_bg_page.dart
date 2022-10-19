@@ -43,7 +43,7 @@ class CommonBgPage extends StatelessWidget {
 
           alignment: alignment??Alignment.center,
             margin: EdgeInsets.symmetric(horizontal:margin?? AppConstants.twenty),
-            child: widget!),
+            child: widget),
       ],
     );
   }
