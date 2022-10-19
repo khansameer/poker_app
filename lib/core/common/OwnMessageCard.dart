@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:poker/core/common/common_text_widget.dart';
+import 'package:poker/core/utils/app_color.dart';
+import 'package:poker/core/utils/app_constants.dart';
 
 class OwnMessageCard extends StatelessWidget {
   const OwnMessageCard({Key? key, this.message, this.time}) : super(key: key);
@@ -11,48 +14,51 @@ class OwnMessageCard extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          maxWidth: MediaQuery.of(context).size.width - 45,
+          maxWidth: MediaQuery.of(context).size.width - AppConstants.fortyFive,
         ),
         child: Card(
           elevation: 1,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          color: Color(0xffdcf8c6),
-          margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(AppConstants.fifteen),
+                  bottomLeft: Radius.circular(AppConstants.fifteen),
+                  bottomRight: Radius.circular(AppConstants.zero),
+                  topLeft: Radius.circular(AppConstants.fifteen))),
+          //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppConstants.eight)),
+          color: AppColor.colorButton,
+          margin: EdgeInsets.symmetric(
+              horizontal: AppConstants.fifteen, vertical: AppConstants.five),
           child: Stack(
             children: [
               Padding(
-                padding: const EdgeInsets.only(
-                  left: 10,
-                  right: 30,
-                  top: 5,
-                  bottom: 20,
-                ),
-                child: Text(
-                  message!,
-                  style: TextStyle(
-                    fontSize: 14,
+                  padding: EdgeInsets.only(
+                    left: AppConstants.ten,
+                    right: AppConstants.thirty,
+                    top: AppConstants.five,
+                    bottom: AppConstants.twenty,
                   ),
-                ),
-              ),
+                  child: CommonTextWidget(
+                    text: message,
+                    textColor: AppColor.colorWhite,
+                  )),
               Positioned(
-                bottom: 4,
-                right: 10,
+                bottom: AppConstants.four,
+                right: AppConstants.two,
                 child: Row(
                   children: [
                     Text(
                       time!,
                       style: TextStyle(
-                        fontSize: 10,
-                        color: Colors.grey[600],
+                        fontSize: AppConstants.twelve,
+                        color: AppColor.colorWhite,
                       ),
                     ),
                     SizedBox(
-                      width: 5,
-                    ),
-                    Icon(
+                      width: AppConstants.five,
+                    ), /*Icon(
                       Icons.done_all,
-                      size: 20,
-                    ),
+                      size: AppConstants.twenty,
+                    ),*/
                   ],
                 ),
               ),

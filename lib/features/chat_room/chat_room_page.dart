@@ -48,7 +48,6 @@ class ChatRoomPageState extends State<ChatRoomPage>{
   }
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadChat();
 
@@ -126,7 +125,7 @@ class ChatRoomPageState extends State<ChatRoomPage>{
                 child: Container(
                   height: AppConstants.oneHundred,
                   alignment: Alignment.topCenter,
-                  color: Colors.transparent,
+                  color: Colors.cyanAccent,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
