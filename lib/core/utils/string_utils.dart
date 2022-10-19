@@ -66,6 +66,10 @@ class StringUtils{
   static const String endStream="End Stream";
   static const String hiMartin="Hi, Martin";
   static const String welToPokerRoom="Welcome to poker room";
+  static const String emailAddress="Email Address";
+  static const String emailHintAdmin ="eg. jogndoe@gmail.com";
+  static const String telephoneNumber ="Telephone Number";
+  static const String telephoneNumberHint ="eg. 9876543210";
 
 
 

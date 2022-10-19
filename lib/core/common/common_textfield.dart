@@ -21,6 +21,7 @@ class CommonTextField extends StatelessWidget {
   double? rigth;
   TextEditingController? controller;
   TextInputAction? textInputAction;
+  bool? isDense;
   CommonTextField({
     this.hint,
     this.fontWeight,
@@ -37,6 +38,7 @@ class CommonTextField extends StatelessWidget {
     this.colorText,
     this.left,
     this.rigth,
+    this.isDense,
   });
 
 
@@ -50,7 +52,6 @@ class CommonTextField extends StatelessWidget {
         onChanged: onChange,
         keyboardType: inputTypes,
         autocorrect: true,
-
         obscureText: obscureText??false,
         textInputAction: textInputAction,
         style: TextStyle(
@@ -60,7 +61,7 @@ class CommonTextField extends StatelessWidget {
 
         ),
         decoration: InputDecoration(
-
+            isDense: isDense ?? false,
             hintText:hint,
             suffixIcon:suffixIcon,
             prefixIcon:iconWidget ,
@@ -73,7 +74,6 @@ class CommonTextField extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 width: AppConstants.two,
-
                 color: AppColor.colorGrayLight1
               ),
               borderRadius: BorderRadius.all(Radius.circular(radius!)),

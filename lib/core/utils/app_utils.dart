@@ -99,7 +99,9 @@ class AppUtils {
       String? title,
       bool? isShowEdit,
       String? actionTitle,
-      VoidCallback? onTap}) {
+      VoidCallback? onTap,
+      double? fontSize,
+      bool? isArrowWthBack}) {
     return AppBar(
       toolbarHeight: 70,
       actions: [
@@ -122,19 +124,20 @@ class AppUtils {
           ),
         )
       ],
-      leading: IconButton(
-        icon: Icon(
-          Icons.arrow_back_ios,
-          color: Colors.white,
-          size: AppConstants.twentyFour,
-        ),
-        onPressed: () => Navigator.of(context).pop(),
-      ),
+      leading:  isArrowWthBack ?? false ? backBtnWithIcon(context) :
+          IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+              size: AppConstants.twentyFour,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
       backgroundColor: AppColor.colorToolBar,
       elevation: 0,
       centerTitle: true,
       title: CommonTextWidget(
-        fontSize: AppConstants.eighteen,
+        fontSize: fontSize ?? AppConstants.eighteen,
         fontWeight: FontWeight.w600,
         text: title,
       ),
@@ -145,6 +148,25 @@ class AppUtils {
     return BoxDecoration(
       image: DecorationImage(
           image: AssetImage(image ?? icDashboardBg), fit: BoxFit.fill),
+    );
+  }
+
+  static backBtnWithIcon(BuildContext ctx) {
+    return InkWell(
+      onTap: () =>Navigator.of(ctx).pop(),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(width: 4),
+           Icon(Icons.arrow_back_ios_sharp, color: AppColor.colorWhite,size: AppConstants.fourteen),
+          const SizedBox(width: 2),
+          CommonTextWidget(
+            text: 'Back',
+            textColor: AppColor.colorWhite,
+            fontSize: AppConstants.fourteen,
+          ),
+        ],
+      ),
     );
   }
 
@@ -274,13 +296,12 @@ class AppUtils {
   static void onBack(BuildContext context) {
     closeKeyBoard(context);
     Navigator.pop(context);
-
   }
 
-  static void redirectToNextScreen({required BuildContext context, String? screenName, dynamic arguments}) {
+  static void redirectToNextScreen(
+      {required BuildContext context, String? screenName, dynamic arguments}) {
     closeKeyBoard(context);
     Navigator.of(context).pushNamed(screenName!, arguments: arguments);
-
   }
 
   static Widget privacyPolicyLinkAndTermsOfService(
@@ -553,4 +574,13 @@ class AppUtils {
   static closeKeyBoard(BuildContext ctx) {
     FocusScope.of(ctx).unfocus();
   }
+
+  /////////
+
+// Admin Declaration
+
+
+  static TextEditingController tetFirstNameAdmin = TextEditingController();
+  static TextEditingController tetEmailAdmin = TextEditingController();
+  static TextEditingController tetTeleNoAdmin = TextEditingController();
 }
