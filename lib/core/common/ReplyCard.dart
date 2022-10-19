@@ -16,13 +16,23 @@ class ReplyCard extends StatelessWidget {
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width - AppConstants.fortyFive,
         ),
-        child: Card(
-          elevation: 1,
-          shape: RoundedRectangleBorder(
+        child: Container(
+         // elevation: 1,
+          padding: EdgeInsets.only(left: AppConstants.ten,right: AppConstants.ten),
+          decoration: BoxDecoration(
+              color: AppColor.colorWhite,
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(AppConstants.fifteen),
                   bottomRight: Radius.circular(AppConstants.fifteen),
-                  topLeft: Radius.circular(AppConstants.fifteen))),
+
+                  topLeft: Radius.circular(AppConstants.fifteen)
+              )
+          ),
+     /*     shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(AppConstants.fifteen),
+                  bottomRight: Radius.circular(AppConstants.fifteen),
+                  topLeft: Radius.circular(AppConstants.fifteen))),*/
           /*shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppConstants.eight)),*/
           // color: Color(0xffdcf8c6),
           margin: EdgeInsets.symmetric(
@@ -31,7 +41,7 @@ class ReplyCard extends StatelessWidget {
             children: [
               Padding(
                   padding: EdgeInsets.only(
-                    left: AppConstants.ten,
+                    left: AppConstants.fourteen,
                     right: AppConstants.thirty,
                     top: AppConstants.five,
                     bottom: AppConstants.twenty,
@@ -42,25 +52,27 @@ class ReplyCard extends StatelessWidget {
                     children: [
                       CommonTextWidget(
                         textAlign: TextAlign.left,
-                        text: 'John Doe',
+                        text: 'Jolly Cooper',
+
                         fontWeight: FontWeight.w700,
                         textColor: AppColor.colorBlue,
-                        fontSize: AppConstants.twelve,
+                        fontSize: AppConstants.fourteen,
                       ),
                       CommonTextWidget(
                         textAlign: TextAlign.left,
                         text: message,
+                        margintop: AppConstants.four,
                         textColor: AppColor.colorBlue,
-                        fontSize: AppConstants.twelve,
+                        fontSize: AppConstants.fourteen,
                       ),
                     ],
                   )),
               Positioned(
                   bottom: AppConstants.four,
-                  right: AppConstants.five,
+                  right:0,
                   child: CommonTextWidget(
                     text: time,
-                    fontSize: AppConstants.ten,
+                    fontSize: AppConstants.twelve,
                     textColor: AppColor.colorBlackLight,
                   )),
             ],

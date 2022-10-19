@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "334149002484",
+    "project_id": "poker-a81d5",
+    "storage_bucket": "poker-a81d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334149002484:android:1ef81fb4ad6eb76e696aa1",
+        "android_client_info": {
+          "package_name": "com.example.poker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334149002484-0eiogilb0d9c1dnc6ip1ckma2l8112nj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.poker",
+            "certificate_hash": "6f520d35bbbbdbbf09b451f2fa3d1c60aa0736e7"
+          }
+        },
+        {
+          "client_id": "334149002484-4hg2ik46qtaus0d45fadbl95iv3gfjto.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-gZ48XEhrgP1u4BfP5ulRgKm9Z9vMHBE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334149002484-4hg2ik46qtaus0d45fadbl95iv3gfjto.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "334149002484-e88s1k9h5p3koca20ir9nfhfg9p7pf98.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.poker"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

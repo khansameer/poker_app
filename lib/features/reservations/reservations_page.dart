@@ -86,7 +86,7 @@ class ReservationsPageState  extends State<ReservationsPage> {
               // AppUtils.redirectToNextScreen(context: context,screenName: RouteName.eventDetails);
             },
             child: Container(
-              height: AppConstants.twoHundredSeventyEight,
+              height: AppConstants.twoHundredFiftyFive,
               width: double.infinity,
               decoration: const BoxDecoration(
                   image: DecorationImage(

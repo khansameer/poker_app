@@ -116,7 +116,7 @@ class AppUtils {
               child: CommonTextWidget(
                 textAlign: TextAlign.center,
                 right: AppConstants.twentyFour,
-                fontSize: AppConstants.eighteen,
+                fontSize: AppConstants.sixteen,
                 fontWeight: FontWeight.w600,
                 text: actionTitle,
               ),
@@ -124,15 +124,16 @@ class AppUtils {
           ),
         )
       ],
-      leading:  isArrowWthBack ?? false ? backBtnWithIcon(context) :
-          IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-              size: AppConstants.twentyFour,
+      leading: isArrowWthBack ?? false
+          ? backBtnWithIcon(context)
+          : IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+                size: AppConstants.twenty,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
             ),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
       backgroundColor: AppColor.colorToolBar,
       elevation: 0,
       centerTitle: true,
@@ -153,12 +154,13 @@ class AppUtils {
 
   static backBtnWithIcon(BuildContext ctx) {
     return InkWell(
-      onTap: () =>Navigator.of(ctx).pop(),
+      onTap: () => Navigator.of(ctx).pop(),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(width: 4),
-           Icon(Icons.arrow_back_ios_sharp, color: AppColor.colorWhite,size: AppConstants.fourteen),
+          Icon(Icons.arrow_back_ios_sharp,
+              color: AppColor.colorWhite, size: AppConstants.fourteen),
           const SizedBox(width: 2),
           CommonTextWidget(
             text: 'Back',
@@ -579,8 +581,57 @@ class AppUtils {
 
 // Admin Declaration
 
-
   static TextEditingController tetFirstNameAdmin = TextEditingController();
   static TextEditingController tetEmailAdmin = TextEditingController();
   static TextEditingController tetTeleNoAdmin = TextEditingController();
+
+  static Widget commonSizedBox({
+    double width = 0,
+    double height = 0,
+    Widget? child,
+  }) {
+    Widget s = SizedBox(
+      width: width,
+      height: height,
+      child: child,
+    );
+    return s;
+  }
+
+  static Widget commonIcon({IconData? icon, Color? color, double? size}) {
+    return Icon(
+      icon ?? Icons.visibility,
+      color: color ?? AppColor.colorWhite,
+      size: size ?? AppConstants.twenty,
+    );
+  }
+
+  static Widget commonInkWell({
+    Widget? child,
+    VoidCallback? onTap,
+  }) {
+    return InkWell(
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      onTap: onTap,
+      child: child,
+    );
+  }
+  static showMessage(
+      {BuildContext? context, String? message, Color? backgroundColor}) {
+    return ScaffoldMessenger.of(context!).showSnackBar(
+      SnackBar(
+        duration: const Duration(milliseconds: 1000),
+        content: CommonTextWidget(
+            textAlign: TextAlign.left,
+            text: message!,
+            fontWeight: FontWeight.w500,
+            fontSize: AppConstants.sixteen,
+            textColor: AppColor.colorWhite),
+        backgroundColor: backgroundColor ?? AppColor.colorLogout,
+      ),
+    );
+  }
+
+
 }

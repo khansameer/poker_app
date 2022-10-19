@@ -61,3 +61,4 @@ const icMembers= '$baseIconPath/ic_members.png';
 const icCounter= '$baseIconPath/ic_counter.png';
 const icAddMember= '$baseIconPath/ic_addmember.png';
 const icSettings= '$baseIconPath/ic_settings.png';
+const icSend= '$baseIconPath/send.svg';

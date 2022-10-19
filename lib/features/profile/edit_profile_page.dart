@@ -103,7 +103,7 @@ class EditProfilePageState extends State<EditProfilePage>{
                       onPressed: () {
                         AppUtils.onBack(context);
                       },
-                      colorButton: AppColor.colorButtonUpdate,
+                      colorButton: AppColor.colorButton,
                       text: StringUtils.update,
                       marginTop: AppConstants.fortyFive),
 

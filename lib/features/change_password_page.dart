@@ -104,7 +104,7 @@ class ChangePasswordPageState extends State<ChangePasswordPage>{
                       onPressed: () {
                         AppUtils.onBack(context);
                       },
-                      colorButton: AppColor.colorButtonUpdate,
+                      colorButton: AppColor.colorButton,
                       text: StringUtils.changePassword.toCapitalize(),
                       marginTop: AppConstants.fortyFive),
 

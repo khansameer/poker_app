@@ -19,7 +19,7 @@ class AppColor{
   static const Color colorWt= Color.fromRGBO(38, 59, 108, 0);
   static const Color colorLogout= Color.fromRGBO(235, 87, 87, 1);
   static const Color colorToolBar= Color.fromRGBO(40, 56, 110, 1);
-  static const Color colorButtonUpdate= Color.fromRGBO(106, 90, 230, 1);
+  //static const Color colorButtonUpdate= Color.fromRGBO(106, 90, 230, 1);
   static const Color colorDarkBlue= Color.fromRGBO(0, 27, 105, 1);
   static const Color colorGreenDark= Color.fromRGBO(5, 185, 53, 1);
   static const Color colorBlueClub= Color.fromRGBO(38, 59, 108, 1);

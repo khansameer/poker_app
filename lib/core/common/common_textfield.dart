@@ -73,14 +73,14 @@ class CommonTextField extends StatelessWidget {
             fillColor: colorFill?? AppColor.colorGrayLight1,
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                width: AppConstants.two,
+                width: AppConstants.one,
                 color: AppColor.colorGrayLight1
               ),
               borderRadius: BorderRadius.all(Radius.circular(radius!)),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                  width: AppConstants.two,
+                  width: AppConstants.one,
                   color: AppColor.colorGrayLight1
               ),
               borderRadius: BorderRadius.all(Radius.circular(radius!)),

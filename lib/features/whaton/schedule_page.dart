@@ -88,7 +88,7 @@ class SchedulePageState extends State<SchedulePage> {
           return InkWell(
             onTap: () {},
             child: Container(
-              height: AppConstants.twoHundredSeventyEight,
+              height: AppConstants.twoHundredFiftyFive,
               width: double.infinity,
               decoration: const BoxDecoration(
                   image: DecorationImage(
