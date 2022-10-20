@@ -70,6 +70,12 @@ class StringUtils{
   static const String emailHintAdmin ="eg. jogndoe@gmail.com";
   static const String telephoneNumber ="Telephone Number";
   static const String telephoneNumberHint ="eg. 9876543210";
+  static const String delete ="Delete";
+  static const String ok ="OK";
+  static const String emptyEmail ="Please enter email!";
+  static const String emptyPassword ="Please enter password!";
+  static const String emptyFirstName ="Please enter first name!";
+  static const String emptyLastName ="Please enter last name!";
 
 
 

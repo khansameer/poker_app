@@ -31,6 +31,7 @@ class AppColor{
   static const Color colorDirection= Color.fromRGBO(27, 43, 83, 1);
   static const Color colorBorder= Color.fromRGBO(67, 84, 123, 1);
   static const Color colorTimePicker= Color.fromRGBO(111, 119, 149, 1);
+  static const Color colorCommonDialog= Color.fromRGBO(8, 28, 91, 1);
 
 
 

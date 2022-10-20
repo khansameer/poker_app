@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
+import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
 class CommonBgPage extends StatelessWidget {
 
@@ -10,6 +11,7 @@ class CommonBgPage extends StatelessWidget {
    double ? margin;
    Alignment? alignment;
    String? backImagePath;
+   bool? isLogin;
 
 
    CommonBgPage({super.key,
@@ -18,6 +20,7 @@ class CommonBgPage extends StatelessWidget {
      this.alignment,
      this.margin,
      this.backImagePath,
+     this.isLogin,
 });
 
   @override
@@ -42,7 +45,7 @@ class CommonBgPage extends StatelessWidget {
         Container(
 
           alignment: alignment??Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal:margin?? AppConstants.twenty),
+            margin: isLogin??false?AppUtils.commonAllEdgeInsets():EdgeInsets.symmetric(horizontal:margin?? AppConstants.twenty),
             child: widget),
       ],
     );

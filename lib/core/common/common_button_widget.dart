@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
+import 'package:poker/core/utils/app_utils.dart';
 
 class CommonButtonWidget extends StatelessWidget {
   String? text;
@@ -14,8 +15,11 @@ class CommonButtonWidget extends StatelessWidget {
   double? bottom;
   double? radius;
   double? padding;
+  EdgeInsetsGeometry? paddingOnly;
   VoidCallback? onPressed;
   Color? colorButton;
+  Color? colorBorder;
+  double? borderWidth;
 
   CommonButtonWidget({
     this.text,
@@ -29,11 +33,15 @@ class CommonButtonWidget extends StatelessWidget {
     this.right,
     this.bottom,
     this.padding,
+    this.borderWidth,
+    this.colorBorder,
+    this.paddingOnly
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+     // padding: paddingOnly,
       margin: EdgeInsets.only(
           top: marginTop ?? AppConstants.zero,
           left: left ?? AppConstants.zero,
@@ -41,8 +49,9 @@ class CommonButtonWidget extends StatelessWidget {
           right: right ?? AppConstants.zero),
       child: TextButton(
         style: TextButton.styleFrom(
-          padding: EdgeInsets.all(padding ?? AppConstants.eighteen),
+          padding: paddingOnly??EdgeInsets.all(padding ?? AppConstants.eighteen),
           shape: RoundedRectangleBorder(
+            side: BorderSide(width: borderWidth??0,color: colorBorder??Colors.transparent),
             borderRadius: BorderRadius.circular(radius ?? AppConstants.eight),
           ),
           backgroundColor:

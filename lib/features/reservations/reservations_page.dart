@@ -133,7 +133,7 @@ class ReservationsPageState  extends State<ReservationsPage> {
                   scheduleList[index].textItem2!.isEmpty
                       ? const SizedBox.shrink()
                       : commonView(title: scheduleList[index].textItem2),
-                  commonDeleteView(),
+                  commonDeleteView(index ),
 
                 ],
               ),
@@ -158,7 +158,7 @@ class ReservationsPageState  extends State<ReservationsPage> {
     );
   }
 
-  Widget commonDeleteView() {
+  Widget commonDeleteView(int index) {
     return Container(
       margin: EdgeInsets.only(top: AppConstants.fourteen),
       child: Column(
@@ -198,14 +198,24 @@ class ReservationsPageState  extends State<ReservationsPage> {
                       SizedBox(
                         width: AppConstants.twenty,
                       ),
-                      AppUtils.commonImageSVGWidget(path: icDelete),
-                      CommonTextWidget(
-                          textColor: AppColor.colorLogout,
-                          left: AppConstants.ten,
-                          text: StringUtils.edit,
-                          fontSize: AppConstants.fourteen,
-                          fontWeight: FontWeight.w600,
-                          textDecoration: TextDecoration.underline),
+                      AppUtils.commonInkWell(
+                        onTap: (){
+                          scheduleList.removeAt(index);
+                        },
+                        child: Row(
+                          children: [
+                            AppUtils.commonImageSVGWidget(path: icDelete),
+                            CommonTextWidget(
+                                textColor: AppColor.colorLogout,
+                                left: AppConstants.ten,
+                                text: StringUtils.delete,
+                                fontSize: AppConstants.fourteen,
+                                fontWeight: FontWeight.w600,
+                                textDecoration: TextDecoration.underline),
+                          ],
+                        ),
+                      ),
+                 
                       SizedBox(
                         width: AppConstants.twenty,
                       ),

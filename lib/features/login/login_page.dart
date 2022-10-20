@@ -30,12 +30,6 @@ class LoginPageState extends State<LoginPage> {
   Map<String, dynamic>? _userData;
   bool _loggedIn = false;
   String _name = "You're not logged in";
-
-  String _prettyPrint(Map json) {
-    JsonEncoder encoder = const JsonEncoder.withIndent('  ');
-    String pretty = encoder.convert(json);
-    return pretty;
-  }
   bool obscureText = true;
    String redirectUrl = 'https://www.youtube.com/callback';
    String clientId = '776rnw4e4izlvg';
@@ -50,11 +44,12 @@ class LoginPageState extends State<LoginPage> {
   }
   @override
   Widget build(BuildContext context) {
-    return CommonBgPage(
+    return CommonBgPage(isLogin: true,
       imagePath: icBackground,
       widget: Scaffold(
         backgroundColor: Colors.transparent,
         body: Container(
+          margin: AppUtils.commonAllEdgeInsets(left: AppConstants.twenty,right: AppConstants.twenty),
           alignment: Alignment.center,
           child: SingleChildScrollView(
             child: Column(
@@ -283,11 +278,22 @@ class LoginPageState extends State<LoginPage> {
   }
 
   void onClickLogin() {
-    AppUtils.tetEmail.text == 'rahul'
-        ? AppUtils.redirectToNextScreen(
-        context: context, screenName: RouteName.dashboard, arguments: true)
-        : AppUtils.redirectToNextScreen(
-        context: context, screenName: RouteName.dashboard, arguments: false);
+
+    if( AppUtils.tetEmail.text.isEmpty){
+      AppUtils.showMessage(context: context,message: StringUtils.emptyEmail);
+    }
+    else if(AppUtils.tetPassword.text.isEmpty){
+      AppUtils.showMessage(context: context,message: StringUtils.emptyPassword);
+    }
+    else
+    {
+      AppUtils.tetEmail.text == 'rahul'
+          ? AppUtils.redirectToNextScreen(
+          context: context, screenName: RouteName.dashboard, arguments: true)
+          : AppUtils.redirectToNextScreen(
+          context: context, screenName: RouteName.dashboard, arguments: false);
+    }
+
   }
 
   void onClickForgot() {
@@ -375,6 +381,8 @@ class LoginPageState extends State<LoginPage> {
       _loggedIn = false;
     });
   }
+
+
 }
 class UserObject {
   UserObject({

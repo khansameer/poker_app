@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poker/core/common/RatingDialog.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/route.dart';
 import 'package:poker/core/utils/app_color.dart';
@@ -165,6 +166,11 @@ class DashboardPageState extends State<DashboardPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           commonTopView(
+                            onTap: (){
+                              String url ='https://www.facebook.com/nijam.khan.507';
+
+                              AppUtils.launchContent(isUrl: true,url: url);
+                            },
                             width: AppConstants.seventy,
                             height: AppConstants.seventy,
                             widget: AppUtils.commonImageSVGWidget(
@@ -177,6 +183,11 @@ class DashboardPageState extends State<DashboardPage> {
                             width: AppConstants.twenty,
                           ),
                           commonTopView(
+                            onTap: (){
+                              String url ='https://www.instagram.com/samkhan121994';
+
+                              AppUtils.launchContent(isUrl: true,url: url);
+                            },
                               width: AppConstants.seventy,
                               height: AppConstants.seventy,
                               widget: AppUtils.commonImageAssetWidget(
@@ -196,7 +207,14 @@ class DashboardPageState extends State<DashboardPage> {
                         indent: AppConstants.zero),
                     AppUtils.commonMenuItem(
                         text: StringUtils.rateUs, imagePath: icStar,onTap: (){
-
+                      showDialog(
+                          barrierDismissible: false,
+                          barrierColor:AppColor.colorWhiteLight,
+                          context: context,
+                          builder: (_) => const CommonDialog(
+                            headerTitle: "Rate this app",
+                          )
+                      );
                     }),
                     AppUtils.commonDivider(
                         color: AppColor.colorWhiteLight),

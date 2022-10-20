@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
-import 'package:poker/core/utils/app_utils.dart';
 
-class OwnMessageCard extends StatelessWidget {
-  const OwnMessageCard({Key? key, this.message, this.time}) : super(key: key);
+class OwnMessageWidget extends StatelessWidget {
+  const OwnMessageWidget({Key? key, this.message, this.time}) : super(key: key);
   final String? message;
   final String? time;
 

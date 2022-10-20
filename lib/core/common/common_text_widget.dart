@@ -57,6 +57,7 @@ class CommonTextWidget extends StatelessWidget {
     return Container(
       height: _height,
       width: _widht,
+
       margin: EdgeInsets.only(
         top: _top ?? AppConstants.zero,
         left: _left ?? AppConstants.zero,

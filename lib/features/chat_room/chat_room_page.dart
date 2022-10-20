@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:poker/core/common/OwnMessageCard.dart';
-import 'package:poker/core/common/ReplyCard.dart';
+import 'package:poker/core/common/own_message_widget.dart';
+import 'package:poker/core/common/reply_message_widget.dart';
 import 'package:poker/core/common/common_bg_page.dart';
 import 'package:poker/core/common/custom_chat_picker.dart';
 import 'package:poker/core/utils/app_color.dart';
@@ -106,12 +106,12 @@ class ChatRoomPageState extends State<ChatRoomPage> {
                       );
                     }
                     if (messages[index].isCurrentUser) {
-                      return OwnMessageCard(
+                      return OwnMessageWidget(
                         message: messages[index].messageContent,
                         time: messages[index].time,
                       );
                     } else {
-                      return ReplyCard(
+                      return ReplyMessageWidget(
                         message: messages[index].messageContent,
                         time: messages[index].time,
                       );

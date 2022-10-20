@@ -37,7 +37,7 @@ class AppUtils {
           children: [
             Container(
               width: double.infinity,
-              height: AppConstants.oneHundredFifty,
+              height: AppConstants.oneHundredFourty,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppConstants.sixteen),
                   image: const DecorationImage(
@@ -85,7 +85,8 @@ class AppUtils {
               mainAxisSize: MainAxisSize.max,
               children: [
                 AppUtils.commonImageAssetWidget(
-                    path: icCoin, height: 165, boxFit: BoxFit.scaleDown)
+
+                    path: icCoin, height: 155, boxFit: BoxFit.scaleDown)
               ],
             ),
           ],
@@ -399,11 +400,17 @@ class AppUtils {
     double? borderWidth,
     double? padding,
     Color? colorBorder,
+    double? width,
+    double? height,
+    EdgeInsetsGeometry? padding1,
   }) {
     return Container(
+
+      width: width,
+      height: height,
       margin:
           EdgeInsets.only(left: left ?? 16, top: top ?? 10, right: right ?? 0),
-      padding: EdgeInsets.all(padding ?? 10),
+      padding: padding1??EdgeInsets.all(padding ?? 10),
       decoration: AppUtils.containerDecoration(
           colorBorder: colorBorder ?? Colors.transparent,
           borderWidth: borderWidth ?? 0,
@@ -555,22 +562,13 @@ class AppUtils {
     );
   }
 
-  static Future<void> launchContent({String? path, String? scheme}) async {
-    final Uri launchUri = Uri(
-      scheme: scheme ?? 'tel',
-      path: path ?? "+919999999999",
+  static Future<void> launchContent({String? path, String? scheme,bool? isUrl,String? url}) async {
+
+      final Uri launchUri = isUrl ?? false ? Uri.parse(url!) : Uri(
+    scheme: scheme ?? 'tel',
+    path: path ?? "+919999999999",
     );
     await launchUrl(launchUri);
-  }
-
-  static Future<void> openMap(double latitude, double longitude) async {
-    String googleUrl =
-        'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
-    if (await canLaunch(googleUrl)) {
-      await launch(googleUrl);
-    } else {
-      throw 'Could not open the map.';
-    }
   }
 
   static closeKeyBoard(BuildContext ctx) {
@@ -630,6 +628,25 @@ class AppUtils {
             textColor: AppColor.colorWhite),
         backgroundColor: backgroundColor ?? AppColor.colorLogout,
       ),
+    );
+  }
+  static EdgeInsets commonAllEdgeInsets({
+    double? left,
+    double? right,
+    double? top,
+    double? bottom,
+    bool isAll = false,
+    double? allPadding,
+  }) {
+    return isAll
+        ? EdgeInsets.all(
+      allPadding ?? AppConstants.zero,
+    )
+        : EdgeInsets.only(
+      top: top ?? AppConstants.zero,
+      bottom: bottom ?? AppConstants.zero,
+      left: left ?? AppConstants.zero,
+      right: right ?? AppConstants.zero,
     );
   }
 

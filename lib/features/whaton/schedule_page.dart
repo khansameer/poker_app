@@ -202,7 +202,10 @@ class SchedulePageState extends State<SchedulePage> {
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: AppConstants.eighteen,margintop: AppConstants.eighteen),
                                                 SizedBox(height: AppConstants.eighteen,),
-                                                CommonButtonWidget(text: StringUtils.reserved,left: AppConstants.sixteen,right: AppConstants.sixteen,),
+                                                CommonButtonWidget(text: StringUtils.reserved,left: AppConstants.sixteen,right: AppConstants.sixteen,
+                                                onPressed: (){
+                                                  AppUtils.onBack(context);
+                                                },),
                                                 SizedBox(height: AppConstants.thirty,),
                                                 SizedBox(
                                                   height: 200,
@@ -245,7 +248,7 @@ class SchedulePageState extends State<SchedulePage> {
                           bottom: AppConstants.ten,
                           marginTop: AppConstants.ten,
                         )
-                      : commonDeleteView(),
+                      : commonDeleteView(index),
                 ],
               ),
             ),
@@ -273,7 +276,7 @@ class SchedulePageState extends State<SchedulePage> {
     );
   }
 
-  Widget commonDeleteView() {
+  Widget commonDeleteView(int index) {
     return Container(
       margin: EdgeInsets.only(top: AppConstants.fourteen),
       child: Column(
@@ -313,14 +316,27 @@ class SchedulePageState extends State<SchedulePage> {
                       SizedBox(
                         width: AppConstants.twenty,
                       ),
-                      AppUtils.commonImageSVGWidget(path: icDelete),
-                      CommonTextWidget(
-                          textColor: AppColor.colorLogout,
-                          left: AppConstants.ten,
-                          text: StringUtils.edit,
-                          fontSize: AppConstants.fourteen,
-                          fontWeight: FontWeight.w600,
-                          textDecoration: TextDecoration.underline),
+                      AppUtils.commonInkWell(
+                        onTap: (){
+                          setState(() {
+                            scheduleList.removeAt(index);
+                          });
+
+                        },
+                        child: Row(
+                          children: [
+                            AppUtils.commonImageSVGWidget(path: icDelete),
+                            CommonTextWidget(
+                                textColor: AppColor.colorLogout,
+                                left: AppConstants.ten,
+                                text: StringUtils.delete,
+                                fontSize: AppConstants.fourteen,
+                                fontWeight: FontWeight.w600,
+                                textDecoration: TextDecoration.underline),
+                          ],
+                        ),
+                      ),
+
                       SizedBox(
                         width: AppConstants.twenty,
                       ),

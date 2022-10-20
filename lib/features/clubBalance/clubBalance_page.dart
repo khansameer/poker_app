@@ -104,7 +104,9 @@ class ClubBalancePageState extends State<ClubBalancePage> {
                                   radius: AppConstants.eight),
                               CommonButtonWidget(
                                 onPressed: () {
-                                  AppUtils.showAlertDialog( context: context);
+                                  Navigator.pop(context);
+                                  AppUtils.showAlertDialog( context: context,bgColor: AppColor.colorCommonDialog);
+
                                 },
                                 bottom: AppConstants.twenty,
                                 marginTop: AppConstants.twentyFour,
