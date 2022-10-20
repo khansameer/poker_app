@@ -49,6 +49,8 @@ class CommonButtonWidget extends StatelessWidget {
           right: right ?? AppConstants.zero),
       child: TextButton(
         style: TextButton.styleFrom(
+
+          foregroundColor: colorButton ?? AppColor.colorButton,
           padding: paddingOnly??EdgeInsets.all(padding ?? AppConstants.eighteen),
           shape: RoundedRectangleBorder(
             side: BorderSide(width: borderWidth??0,color: colorBorder??Colors.transparent),

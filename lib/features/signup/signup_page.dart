@@ -9,6 +9,7 @@ import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
 import 'package:poker/core/utils/string_utils.dart';
+import 'package:poker/core/utils/validation.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -22,6 +23,7 @@ class SignupPage extends StatefulWidget {
 
 class SignupPageState extends State<SignupPage> {
   bool obscureText = true;
+  bool obscureConfirmText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +34,15 @@ class SignupPageState extends State<SignupPage> {
       widget: Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.transparent,
-
         body: SingleChildScrollView(
-
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
-
               Container(
-                margin: AppUtils.commonAllEdgeInsets(left: AppConstants.twenty,right: AppConstants.twenty),
+                margin: AppUtils.commonAllEdgeInsets(
+                    left: AppConstants.twenty, right: AppConstants.twenty),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +53,7 @@ class SignupPageState extends State<SignupPage> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: IconButton(
-                        onPressed: (){
+                        onPressed: () {
                           AppUtils.onBack(context);
                         },
                         icon: Icon(Icons.arrow_back_ios,
@@ -73,7 +73,6 @@ class SignupPageState extends State<SignupPage> {
                     ),
                     CommonTextField(
                         controller: AppUtils.tetFirstName,
-
                         inputTypes: TextInputType.name,
                         marginTop: AppConstants.ten,
                         hint: StringUtils.your + StringUtils.firstName,
@@ -122,19 +121,54 @@ class SignupPageState extends State<SignupPage> {
                           },
                           child: !obscureText
                               ? Icon(
-                            Icons.visibility,
-                            color: AppColor.colorWhite,
-                            size: AppConstants.twenty,
-                          )
+                                  Icons.visibility,
+                                  color: AppColor.colorWhite,
+                                  size: AppConstants.twenty,
+                                )
                               : Icon(
-                            Icons.visibility_off,
-                            color: AppColor.colorWhite,
-                            size: AppConstants.twenty,
-                          ),
+                                  Icons.visibility_off,
+                                  color: AppColor.colorWhite,
+                                  size: AppConstants.twenty,
+                                ),
                         ),
                         inputTypes: TextInputType.visiblePassword,
                         marginTop: AppConstants.ten,
                         hint: StringUtils.password,
+                        iconWidget: const Icon(
+                          Icons.lock_outline,
+                          color: AppColor.colorWhite,
+                        ),
+                        fontSize: AppConstants.fourteen,
+                        fontWeight: FontWeight.w500,
+                        radius: AppConstants.eight),
+                    CommonTextWidget(
+                      text: StringUtils.confirmPassword,
+                      margintop: AppConstants.sixteen,
+                    ),
+                    CommonTextField(
+                        controller: AppUtils.tetConfirmPassword,
+                        obscureText: obscureConfirmText,
+                        suffixIcon: InkWell(
+                          onTap: () {
+                            setState(() {
+                              obscureConfirmText = !obscureConfirmText;
+                            });
+                          },
+                          child: !obscureConfirmText
+                              ? Icon(
+                                  Icons.visibility,
+                                  color: AppColor.colorWhite,
+                                  size: AppConstants.twenty,
+                                )
+                              : Icon(
+                                  Icons.visibility_off,
+                                  color: AppColor.colorWhite,
+                                  size: AppConstants.twenty,
+                                ),
+                        ),
+                        inputTypes: TextInputType.visiblePassword,
+                        marginTop: AppConstants.ten,
+                        hint: StringUtils.confirmPassword,
                         iconWidget: const Icon(
                           Icons.lock_outline,
                           color: AppColor.colorWhite,
@@ -183,23 +217,40 @@ class SignupPageState extends State<SignupPage> {
   }
 
   void onClickSingUp() {
-    if( AppUtils.tetFirstName.text.isEmpty){
-      AppUtils.showMessage(context: context,message: StringUtils.emptyFirstName);
-    }
-    else if( AppUtils.tetLastName.text.isEmpty){
-      AppUtils.showMessage(context: context,message: StringUtils.emptyLastName);
-    }
-    else if( AppUtils.tetEmail.text.isEmpty){
-      AppUtils.showMessage(context: context,message: StringUtils.emptyEmail);
-    }
-    else if(AppUtils.tetPassword.text.isEmpty){
-      AppUtils.showMessage(context: context,message: StringUtils.emptyPassword);
-    }
-    else
-    {
+    if (Validation.isEmptyString(AppUtils.tetFirstName.text)) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.emptyFirstName);
+    } else if (Validation.isEmptyString(AppUtils.tetLastName.text)) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.emptyLastName);
+    } else if (Validation.isEmptyString(AppUtils.tetEmail.text)) {
+      AppUtils.showMessage(context: context, message: StringUtils.emptyEmail);
+    } else if (!Validation.validateEmail(AppUtils.tetEmail.text)) {
+      AppUtils.showMessage(context: context, message: StringUtils.validEmail);
+    } else if (Validation.isEmptyString(AppUtils.tetPassword.text)) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.emptyPassword);
+    } else if (AppUtils.tetPassword.text.toString().length < 4) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.validPassword);
+    } else if (Validation.isEmptyString(AppUtils.tetConfirmPassword.text)) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.emptyConfirmPassword);
+    } else if (AppUtils.tetConfirmPassword.text.toString().length < 4) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.validPassword);
+    } else if (AppUtils.tetPassword.text.toString() !=
+        AppUtils.tetConfirmPassword.text.toString()) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.passwordNotMatch);
+    } else {
+      AppUtils.tetFirstName.clear();
+      AppUtils.tetLastName.clear();
+      AppUtils.tetEmail.clear();
+      AppUtils.tetPassword.clear();
+      AppUtils.tetConfirmPassword.clear();
+      //AppUtils.tetFirstName.clear();
       Navigator.of(context).pushNamed(RouteName.verification);
     }
-
   }
-
 }

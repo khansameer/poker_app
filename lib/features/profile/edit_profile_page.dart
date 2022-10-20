@@ -9,6 +9,7 @@ import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
 import 'package:poker/core/utils/string_utils.dart';
+import 'package:poker/core/utils/validation.dart';
 class EditProfilePage extends StatefulWidget{
   const EditProfilePage({super.key});
 
@@ -100,9 +101,7 @@ class EditProfilePageState extends State<EditProfilePage>{
                       radius: AppConstants.eight),
 
                   CommonButtonWidget(
-                      onPressed: () {
-                        AppUtils.onBack(context);
-                      },
+                      onPressed: onEditClickBtn,
                       colorButton: AppColor.colorButton,
                       text: StringUtils.update,
                       marginTop: AppConstants.fortyFive),
@@ -115,5 +114,26 @@ class EditProfilePageState extends State<EditProfilePage>{
       ),
     );
   }
-  
+
+  void onEditClickBtn(){
+    if (Validation.isEmptyString(AppUtils.tetFirstName.text)) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.emptyFirstName);
+    } else if (Validation.isEmptyString(AppUtils.tetLastName.text)) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.emptyLastName);
+    } else if (Validation.isEmptyString(AppUtils.tetEmail.text)) {
+      AppUtils.showMessage(context: context, message: StringUtils.emptyEmail);
+    } else if (!Validation.validateEmail(AppUtils.tetEmail.text)) {
+      AppUtils.showMessage(context: context, message: StringUtils.validEmail);
+    }
+    else
+      {
+        AppUtils.tetFirstName.clear();
+        AppUtils.tetLastName.clear();
+        AppUtils.tetEmail.clear();
+
+        AppUtils.onBack(context);
+      }
+  }
 }

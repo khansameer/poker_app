@@ -4,14 +4,15 @@ import 'package:poker/core/common/common_button_widget.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/common/common_textfield.dart';
 import 'package:poker/core/common/context_extension.dart';
-import 'package:poker/core/common/custom_profile_widget.dart';
 import 'package:poker/core/route.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
 import 'package:poker/core/utils/string_utils.dart';
-class ChangePasswordPage extends StatefulWidget{
+import 'package:poker/core/utils/validation.dart';
+
+class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage({super.key});
 
   @override
@@ -19,9 +20,9 @@ class ChangePasswordPage extends StatefulWidget{
     // TODO: implement createState
     return ChangePasswordPageState();
   }
-  
 }
-class ChangePasswordPageState extends State<ChangePasswordPage>{
+
+class ChangePasswordPageState extends State<ChangePasswordPage> {
   @override
   Widget build(BuildContext context) {
     return CommonBgPage(
@@ -34,12 +35,12 @@ class ChangePasswordPageState extends State<ChangePasswordPage>{
         appBar: AppUtils.commonAppBar(
             context: context,
             title: StringUtils.changePassword.toCapitalize(),
-
             isShowEdit: false,
             actionTitle: StringUtils.edit),
         body: SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.only(left: AppConstants.sixteen,right: AppConstants.sixteen),
+            margin: EdgeInsets.only(
+                left: AppConstants.sixteen, right: AppConstants.sixteen),
             child: SafeArea(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -49,7 +50,6 @@ class ChangePasswordPageState extends State<ChangePasswordPage>{
                   SizedBox(
                     height: AppConstants.thirty,
                   ),
-
                   CommonTextWidget(
                     text: StringUtils.currentPassword,
                     margintop: AppConstants.thirtyFive,
@@ -99,15 +99,11 @@ class ChangePasswordPageState extends State<ChangePasswordPage>{
                       fontSize: AppConstants.fourteen,
                       fontWeight: FontWeight.w500,
                       radius: AppConstants.eight),
-
                   CommonButtonWidget(
-                      onPressed: () {
-                        AppUtils.onBack(context);
-                      },
+                      onPressed: onClickChangePassword,
                       colorButton: AppColor.colorButton,
                       text: StringUtils.changePassword.toCapitalize(),
                       marginTop: AppConstants.fortyFive),
-
                 ],
               ),
             ),
@@ -116,8 +112,39 @@ class ChangePasswordPageState extends State<ChangePasswordPage>{
       ),
     );
   }
+
   void onClickForgot() {
     AppUtils.redirectToNextScreen(
         context: context, screenName: RouteName.verification);
+  }
+
+  onClickChangePassword() {
+    if (Validation.isEmptyString(AppUtils.tetPassword.text)) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.emptyCurrentPassword);
+    } else if (Validation.isEmptyString(AppUtils.tetNewPassword.text)) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.emptyNewPassword);
+    } else if (Validation.isEmptyString(AppUtils.tetReInterPassword.text)) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.emptyRetypePassword);
+    } else if (AppUtils.tetPassword.text.toString().length < 4) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.validPassword);
+    }
+    else if (AppUtils.tetNewPassword.text.toString().length < 4) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.validPassword);
+    }
+    else if (AppUtils.tetReInterPassword.text.toString().length < 4) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.validPassword);
+    }
+    else{
+      AppUtils.tetPassword.clear();
+      AppUtils.tetNewPassword.clear();
+      AppUtils.tetReInterPassword.clear();
+      AppUtils.onBack(context);
+    }
   }
 }

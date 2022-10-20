@@ -3,6 +3,7 @@ class StringUtils{
   static const String login="Login";
   static const String email="E-mail";
   static const String password="Password";
+  static const String confirmPassword="Confirm Password";
   static const String forgotPassword="Forgot Password?";
   static const String emailHint="Your Email";
   static const String emailPassword="Your Password";
@@ -72,10 +73,18 @@ class StringUtils{
   static const String telephoneNumberHint ="eg. 9876543210";
   static const String delete ="Delete";
   static const String ok ="OK";
+  static String validPhoneNumber = "Please enter at least 6 digit password";
+  static String validEmail = "Please enter a valid email";
+  static String validPassword = "Password must be more than 4 character";
   static const String emptyEmail ="Please enter email!";
+  static const String emptyCurrentPassword ="Please enter current password!";
   static const String emptyPassword ="Please enter password!";
+  static const String emptyNewPassword ="Please enter new password!";
+  static const String emptyRetypePassword ="Please enter re-type new password!";
+  static const String emptyConfirmPassword ="Please enter confirm password!";
   static const String emptyFirstName ="Please enter first name!";
   static const String emptyLastName ="Please enter last name!";
+  static const String passwordNotMatch ="Your Password not match!";
 
 
 

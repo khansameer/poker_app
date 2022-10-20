@@ -13,7 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 class AppUtils {
   static TextEditingController tetEmail = TextEditingController();
   static TextEditingController tetPassword = TextEditingController();
-  static TextEditingController tetConfrimPassword = TextEditingController();
+  static TextEditingController tetConfirmPassword = TextEditingController();
   static TextEditingController tetNewPassword = TextEditingController();
   static TextEditingController tetReInterPassword = TextEditingController();
   static TextEditingController tetFirstName = TextEditingController();
