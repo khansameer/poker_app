@@ -303,18 +303,19 @@ class LoginPageState extends State<LoginPage> {
       AppUtils.showMessage(
           context: context, message: StringUtils.validPassword);
     } else {
+      AppUtils.tetEmail.text == 'sameer@gmail.com'
+          ? AppUtils.redirectToNextScreen(
+          context: context,
+          screenName: RouteName.dashboard,
+          arguments: true)
+          : AppUtils.redirectToNextScreen(
+          context: context,
+          screenName: RouteName.dashboard,
+          arguments: false);
       AppUtils.tetEmail.clear();
       AppUtils.tetPassword.clear();
 
-      AppUtils.tetEmail.text == 'rahul'
-          ? AppUtils.redirectToNextScreen(
-              context: context,
-              screenName: RouteName.dashboard,
-              arguments: true)
-          : AppUtils.redirectToNextScreen(
-              context: context,
-              screenName: RouteName.dashboard,
-              arguments: false);
+
     }
   }
 

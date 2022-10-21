@@ -19,5 +19,6 @@ class RouteName {
   static const String liveStream = '/liveStream';
   static const String reservations = '/Reservations';
   static const String addMemberPage = '/AddMemberPage';
+  static const String adminSchedule = '/adminSchedule';
 
 }

@@ -44,6 +44,9 @@ class DashboardPageState extends State<DashboardPage> {
   void onClickAddMember(){
     AppUtils.redirectToNextScreen(context: context,screenName: RouteName.addMemberPage);
   }
+  void onClickSetting(){
+    AppUtils.redirectToNextScreen(context: context,screenName: RouteName.adminSchedule);
+  }
 
   loadVIew() {
     dashboardList.add(DashboardBean(
@@ -326,7 +329,7 @@ class DashboardPageState extends State<DashboardPage> {
             commonBottomNavTabs(
                 path: icAddMember, title: StringUtils.addMember, onTap: onClickAddMember),
             commonBottomNavTabs(
-                path: icSettings, title: StringUtils.settings),
+                path: icSettings, title: StringUtils.settings,onTap: onClickSetting),
           ],
         ));
   }

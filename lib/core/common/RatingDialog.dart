@@ -10,11 +10,13 @@ import 'package:poker/core/utils/string_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CommonDialog extends StatefulWidget {
-  const CommonDialog({Key? key, this.colorBg, this.headerTitle, this.radius})
+  const CommonDialog({Key? key, this.colorBg, this.headerTitle, this.radius,this.isShowButtonView,this.widget})
       : super(key: key);
   final Color? colorBg;
   final String? headerTitle;
   final double? radius;
+  final bool? isShowButtonView;
+  final Widget? widget;
 
 
 
@@ -103,7 +105,7 @@ class CommonDialogState extends State<CommonDialog> {
               ),
               AppUtils.commonSizedBox(height: AppConstants.twenty),
               // AppUtils.commonSizedBox(height: AppConstants.fifteen),
-              Row(
+             widget.widget?? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   ratingWidget(1),
@@ -114,7 +116,7 @@ class CommonDialogState extends State<CommonDialog> {
                 ],
               ),
 
-              Column(
+              widget.isShowButtonView??true ?Column(
                 children: [
                   AppUtils.commonSizedBox(height: AppConstants.twenty),
                   AppUtils.commonDivider(
@@ -159,7 +161,7 @@ class CommonDialogState extends State<CommonDialog> {
                     ],
                   )
                 ],
-              )
+              ):SizedBox.shrink(),
             ],
           )),
     );
