@@ -304,6 +304,7 @@ class LoginPageState extends State<LoginPage> {
   }
 
   void onClickLogin() {
+    AppUtils.closeKeyBoard(context);
     if (Validation.isEmptyString(tetEmail.text)) {
       AppUtils.showMessage(context: context, message: StringUtils.emptyEmail);
     } else if (!Validation.validateEmail(tetEmail.text)) {

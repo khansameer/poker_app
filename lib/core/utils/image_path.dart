@@ -50,6 +50,9 @@ const icDoneCircle= '$baseIconPath/check_circle.svg';
 const icDelete= '$baseIconPath/delete.svg';
 const icCall= '$baseIconPath/call.svg';
 const icMap= '$baseIconPath/ic_map.svg';
+const icMail= '$baseIconPath/mail.svg';
+const icPassword= '$baseIconPath/password.svg';
+//const icKey= '$baseIconPath/ic_key.svg';
 const icCoin= '$baseIconPath/ic_coin.png';
 
 const icDirectionsIcon= '$baseIconPath/directions.svg';

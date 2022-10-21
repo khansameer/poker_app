@@ -6,14 +6,14 @@ import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
 
 class CommonOtpWidget extends StatelessWidget {
-  final TextEditingController? textEditingController;
+  final TextEditingController? controller;
   final bool? first;
   final bool? last;
   final double? top;
 
   const CommonOtpWidget({
     Key? key,
-    this.textEditingController,
+    this.controller,
     this.first,
     this.last,
     this.top
@@ -37,6 +37,8 @@ class CommonOtpWidget extends StatelessWidget {
         child: Center(
             child:
                 TextField(
+
+                  controller: controller,
           maxLength: 1,
           showCursor: false,
           readOnly: false,
