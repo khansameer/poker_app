@@ -8,9 +8,10 @@ import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
+import 'package:poker/core/utils/login_with_google.dart';
 import 'package:poker/core/utils/string_utils.dart';
 import 'package:poker/core/utils/validation.dart';
-
+import 'package:google_sign_in/google_sign_in.dart';
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
 
@@ -24,6 +25,23 @@ class SignupPage extends StatefulWidget {
 class SignupPageState extends State<SignupPage> {
   bool obscureText = true;
   bool obscureConfirmText = true;
+  @override
+  void initState() {
+    super.initState();
+    if(name != null && email != null ){
+      AppUtils.tetFirstName.text=name.toString();
+      AppUtils.tetEmail.text=email.toString();
+    }
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    AppUtils.tetFirstName.clear();
+    AppUtils.tetEmail.clear();
+    name =null;
+    email =null;
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +102,7 @@ class SignupPageState extends State<SignupPage> {
                       margintop: AppConstants.sixteen,
                     ),
                     CommonTextField(
+
                         marginTop: AppConstants.ten,
                         controller: AppUtils.tetLastName,
                         inputTypes: TextInputType.name,
@@ -230,13 +249,17 @@ class SignupPageState extends State<SignupPage> {
     } else if (Validation.isEmptyString(AppUtils.tetPassword.text)) {
       AppUtils.showMessage(
           context: context, message: StringUtils.emptyPassword);
-    } else if (AppUtils.tetPassword.text.toString().length < 4) {
+    } else if (AppUtils.tetPassword.text
+        .toString()
+        .length < 4) {
       AppUtils.showMessage(
           context: context, message: StringUtils.validPassword);
     } else if (Validation.isEmptyString(AppUtils.tetConfirmPassword.text)) {
       AppUtils.showMessage(
           context: context, message: StringUtils.emptyConfirmPassword);
-    } else if (AppUtils.tetConfirmPassword.text.toString().length < 4) {
+    } else if (AppUtils.tetConfirmPassword.text
+        .toString()
+        .length < 4) {
       AppUtils.showMessage(
           context: context, message: StringUtils.validPassword);
     } else if (AppUtils.tetPassword.text.toString() !=

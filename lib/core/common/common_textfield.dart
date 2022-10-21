@@ -48,6 +48,7 @@ class CommonTextField extends StatelessWidget {
       margin: EdgeInsets.only(top: marginTop??AppConstants.five,left: left??0,right:rigth??0),
       color: Colors.transparent,
       child: TextField(
+
         controller: controller,
         onChanged: onChange,
         keyboardType: inputTypes,

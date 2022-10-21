@@ -13,9 +13,11 @@ import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
+import 'package:poker/core/utils/login_with_google.dart';
 import 'package:poker/core/utils/string_utils.dart';
 import 'package:poker/core/utils/validation.dart';
 import 'package:poker/features/login/Resource.dart';
+import 'package:poker/features/signup/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -36,11 +38,12 @@ class LoginPageState extends State<LoginPage> {
   String clientSecret = 'rQEgboUHMLcQi59v';
   UserObject? user;
   bool logoutUser = false;
-
+   TextEditingController tetEmail = TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    tetEmail.clear();
   }
 
   @override
@@ -81,7 +84,7 @@ class LoginPageState extends State<LoginPage> {
                   margintop: AppConstants.thirtyFive,
                 ),
                 CommonTextField(
-                    controller: AppUtils.tetEmail,
+                    controller: tetEmail,
                     inputTypes: TextInputType.emailAddress,
                     marginTop: AppConstants.ten,
                     hint: StringUtils.emailHint,
@@ -177,7 +180,16 @@ class LoginPageState extends State<LoginPage> {
                         top: AppConstants.sixteen,
                         path: icGoogle,
                         onTap: () {
-                          signInWithGoogle();
+                          signInWithGoogle().then((result){
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const SignupPage();
+                                },
+                              ),
+                            );
+                          });
+                         // signInWithGoogle();
                         }),
                     commonButton(
                         left: AppConstants.sixteen,
@@ -292,9 +304,9 @@ class LoginPageState extends State<LoginPage> {
   }
 
   void onClickLogin() {
-    if (Validation.isEmptyString(AppUtils.tetEmail.text)) {
+    if (Validation.isEmptyString(tetEmail.text)) {
       AppUtils.showMessage(context: context, message: StringUtils.emptyEmail);
-    } else if (!Validation.validateEmail(AppUtils.tetEmail.text)) {
+    } else if (!Validation.validateEmail(tetEmail.text)) {
       AppUtils.showMessage(context: context, message: StringUtils.validEmail);
     } else if (Validation.isEmptyString(AppUtils.tetPassword.text)) {
       AppUtils.showMessage(
@@ -303,10 +315,10 @@ class LoginPageState extends State<LoginPage> {
       AppUtils.showMessage(
           context: context, message: StringUtils.validPassword);
     } else {
-      AppUtils.tetEmail.clear();
+      tetEmail.clear();
       AppUtils.tetPassword.clear();
 
-      AppUtils.tetEmail.text == 'rahul'
+      tetEmail.text == 'rahul'
           ? AppUtils.redirectToNextScreen(
               context: context,
               screenName: RouteName.dashboard,
@@ -328,24 +340,7 @@ class LoginPageState extends State<LoginPage> {
         context: context, screenName: RouteName.signup);
   }
 
-  Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    print('==========${googleUser?.email.toString()}');
-    // Obtain the auth   details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
-
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
-  }
 
   Future<Resource?> signInWithFacebook() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -370,18 +365,6 @@ class LoginPageState extends State<LoginPage> {
     }
   }
 
-  /* Future<UserCredential> signInWithFacebook() async {
-    // Trigger the sign-in flow
-
-    final LoginResult loginResult = await FacebookAuth.instance.login();
-    print('==========${loginResult.message}');
-    // Create a credential from the access token
-    final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
-
-    // Once signed in, return the UserCredential
-    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-  }
-*/
   _login() async {
     final LoginResult result = await FacebookAuth.instance.login();
     if (result.status == LoginStatus.success) {
