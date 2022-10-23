@@ -88,7 +88,7 @@ class SchedulePageState extends State<SchedulePage> {
           return InkWell(
             onTap: () {},
             child: Container(
-              height: AppConstants.twoHundredFiftyFive,
+
               width: double.infinity,
               decoration: const BoxDecoration(
                   image: DecorationImage(
@@ -100,10 +100,10 @@ class SchedulePageState extends State<SchedulePage> {
                   right: AppConstants.sixteen,
                   top: AppConstants.twenty),
               padding: EdgeInsets.only(
-                  left: AppConstants.twentyFour,
+                  left: AppConstants.thirty,
                   right: AppConstants.zero,
-                  top: AppConstants.zero,
-                  bottom: AppConstants.zero),
+                  top: AppConstants.fourteen,
+                  bottom: AppConstants.thirty),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -114,21 +114,21 @@ class SchedulePageState extends State<SchedulePage> {
                     fontSize: AppConstants.sixteen,
                   ),
                   CommonTextWidget(
-                    margintop: AppConstants.five,
-                    text: scheduleList[index].date,
+                    margintop: AppConstants.eight,
+                    text: scheduleList[index].date.toString().toUpperCase(),
                     fontWeight: FontWeight.w400,
                     fontSize: AppConstants.fourteen,
                   ),
                   SizedBox(
-                    height: AppConstants.sixteen,
+                    height: AppConstants.fourteen,
                   ),
                   AppUtils.commonDivider(
                       color: AppColor.colorWhiteLight,
                       indent: AppConstants.zero,
                       endIndent: AppConstants.oneHundredSeventyEight),
-                  SizedBox(
+                 /* SizedBox(
                     height: AppConstants.ten,
-                  ),
+                  ),*/
                   commonView(title: scheduleList[index].textItem, icon: icHome),
                   commonView(
                       title: scheduleList[index].textItem1, icon: icCasino),
@@ -202,7 +202,7 @@ class SchedulePageState extends State<SchedulePage> {
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: AppConstants.eighteen,margintop: AppConstants.eighteen),
                                                 SizedBox(height: AppConstants.eighteen,),
-                                                CommonButtonWidget(text: StringUtils.reserved,left: AppConstants.sixteen,right: AppConstants.sixteen,
+                                                CommonButtonWidget(text: 'Reserve',left: AppConstants.sixteen,right: AppConstants.sixteen,
                                                 onPressed: (){
                                                   AppUtils.onBack(context);
                                                 },),
@@ -263,6 +263,7 @@ class SchedulePageState extends State<SchedulePage> {
   Widget commonView({String? title, String? icon}) {
     return ListTile(
       dense: true,
+
       visualDensity: VisualDensity(horizontal: AppConstants.zero, vertical: -4),
       contentPadding: EdgeInsets.zero,
       minVerticalPadding: AppConstants.zero,

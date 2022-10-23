@@ -56,6 +56,7 @@ class LiveStreamPageState extends State<LiveStreamPage>{
               Align(
                 alignment: Alignment.bottomCenter,
               child: Container(
+                margin: EdgeInsets.only(left: AppConstants.sixteen,right: AppConstants.sixteen),
                 height: AppConstants.oneHundred,
                 alignment: Alignment.topCenter,
                 color: Colors.transparent,
@@ -64,27 +65,31 @@ class LiveStreamPageState extends State<LiveStreamPage>{
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Container(
-                      padding: EdgeInsets.only(left: AppConstants.eighteen,top: AppConstants.ten,right: AppConstants.eighteen,bottom: AppConstants.ten),
+                      //padding: EdgeInsets.all(8),
+                      padding: EdgeInsets.only(left: AppConstants.sixteen,top: AppConstants.ten,right: AppConstants.sixteen,bottom: AppConstants.ten),
                       decoration: AppUtils.containerDecoration(
                           borderWidth: AppConstants.two,
                           radius: AppConstants.eight,
                           color: AppColor.colorBlueClub),
                       child: Row(
+                        mainAxisSize: MainAxisSize.max,
                         children: [
                           Icon(Icons.remove_red_eye_outlined,color: AppColor.colorWhite,size: AppConstants.twenty,),
-                          CommonTextWidget(text: '50',left: AppConstants.ten,)
+                          CommonTextWidget(text: '50',left: AppConstants.ten  )
                         ],
                       ),
                     ),
                     SizedBox(width: AppConstants.fourteen,),
-                    SizedBox(
-                        width: AppConstants.twoHundredFiftyFive,
-                        height: AppConstants.fortyFive,
-                        child: CommonButtonWidget(
-                          onPressed: (){
-                            AppUtils.onBack(context);
-                          },
-                          text: StringUtils.endStream,padding: AppConstants.ten, ))
+                    Expanded(
+                      child: SizedBox(
+                          width: AppConstants.twoHundredThirty,
+                          height: AppConstants.fortyFive,
+                          child: CommonButtonWidget(
+                            onPressed: (){
+                              AppUtils.onBack(context);
+                            },
+                            text: StringUtils.endStream,padding: AppConstants.ten, )),
+                    )
                   ],
                 ),
               ),

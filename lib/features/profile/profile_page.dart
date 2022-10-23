@@ -75,6 +75,8 @@ class ProfilePageState extends State<ProfilePage> {
                     endIndent: AppConstants.zero,
                     top: AppConstants.thirtyFive),
                 AppUtils.commonMenuItem(
+                  boxFit: BoxFit.scaleDown,
+
                       onTap: onClickChangePassword,
                     text: StringUtils.changePassword,
                     fontSize: AppConstants.sixteen,
@@ -83,7 +85,7 @@ class ProfilePageState extends State<ProfilePage> {
 
                     indent: AppConstants.zero,
                     endIndent: AppConstants.zero,
-                    top: AppConstants.thirtyFive),
+                    top: AppConstants.twentyFour),
                 AppUtils.commonMenuItem(
                   onTap: onClickLogout,
                     text: StringUtils.logout,

@@ -82,10 +82,10 @@ class SignupPageState extends State<SignupPage> {
                         ),
                       ),
                       CommonTextWidget(
-                        text: StringUtils.signup,
+                        text: StringUtils.signupWithSpace,
                         fontWeight: FontWeight.w700,
                         margintop: AppConstants.thirty,
-                        fontSize: AppConstants.twenty,
+                        fontSize: AppConstants.twentyFour,
                       ),
                       CommonTextWidget(
                         text: StringUtils.firstName,
@@ -202,16 +202,18 @@ class SignupPageState extends State<SignupPage> {
                           onTapPrivacyPolicy: onClickPolicy),
                       CommonButtonWidget(
                           onPressed: onClickSingUp,
-                          text: StringUtils.signup,
+                          text: StringUtils.signupWithSpace,
                           marginTop: AppConstants.fortyFive),
-                      Center(
-                        child: AppUtils.richText(
-                            top: AppConstants.thirty,
-                            text: StringUtils.alreadySignup,
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            linkText: StringUtils.login),
+                      Container(margin: EdgeInsets.only(bottom: AppConstants.thirty),
+                        child: Center(
+                          child: AppUtils.richText(
+                              top: AppConstants.thirty,
+                              text: StringUtils.alreadySignup,
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              linkText: StringUtils.login),
+                        ),
                       ),
                     ],
                   ),

@@ -24,7 +24,7 @@ class AppColor{
   static const Color colorGreenDark= Color.fromRGBO(5, 185, 53, 1);
   static const Color colorBlueClub= Color.fromRGBO(38, 59, 108, 1);
   static const Color colorBottom= Color.fromRGBO(81, 91, 123, 1);
-  static const Color colorDialog= Color.fromRGBO(21, 39, 98, 0.5);
+  static const Color colorDialog= Color.fromRGBO(21, 39, 98, 0.9);
   static const Color colorBlackLight= Color.fromRGBO(0, 0, 0, 0.32);
   static const Color colorEdit= Color.fromRGBO(144, 130, 255, 1);
   static const Color colorGreen= Color.fromRGBO(39, 174, 96, 1);
@@ -32,6 +32,7 @@ class AppColor{
   static const Color colorBorder= Color.fromRGBO(67, 84, 123, 1);
   static const Color colorTimePicker= Color.fromRGBO(111, 119, 149, 1);
   static const Color colorCommonDialog= Color.fromRGBO(8, 28, 91, 1);
+  static const Color colorHint= Color.fromRGBO(116, 121, 128, 1);
 
 
 

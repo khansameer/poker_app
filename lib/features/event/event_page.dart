@@ -65,6 +65,7 @@ class EventPageState extends State<EventPage>{
   Widget bindListView() {
     return ListView.builder(
 
+
         shrinkWrap: true,
         primary: false,
         itemCount: commonList.length,

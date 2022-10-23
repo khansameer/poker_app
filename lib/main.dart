@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:poker/core/route.dart';
 import 'package:poker/core/route_generator.dart';
 import 'package:poker/features/login/login_page.dart';
@@ -18,7 +19,20 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
+      builder: (context, child) {
+        final MediaQueryData data = MediaQuery.of(context);
+        return MediaQuery(
+          child: child ?? Container(),
+          data: data.copyWith(
+              textScaleFactor: data.textScaleFactor > 1.0 ? 1.0 : data.textScaleFactor),
+        );
+      },
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       initialRoute: RouteName.splashScreen,

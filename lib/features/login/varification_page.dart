@@ -60,11 +60,11 @@ class VarificationPageState extends State<VarificationPage> {
                   text: StringUtils.forgotPassword,
                   fontWeight: FontWeight.w700,
                   margintop: AppConstants.fortyFive,
-                  fontSize: AppConstants.twenty,
+                  fontSize: AppConstants.twentyFour,
                 ),
                 CommonTextWidget(
                   text:
-                      'We,ve sent a 6-digit confirmation code to johndoe@gmail.com. Make sure you enter \nx`correct code.',
+                      "We've sent a 6-digit confirmation code to johndoe@gmail.com. Make sure you enter \ncorrect code.",
                   margintop: AppConstants.thirtyFive,
                 ),
                 SizedBox(

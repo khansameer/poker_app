@@ -61,7 +61,7 @@ class CommonOtpWidget extends StatelessWidget {
           decoration: InputDecoration(
             counterText: "",
             isDense: true,
-            hintText: '*',
+            hintText: 'x',
             hintStyle: AppUtils.textStyle(
               textColor: AppColor.colorWhite,
               fontSize: AppConstants.fourteen,

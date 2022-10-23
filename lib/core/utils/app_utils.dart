@@ -225,7 +225,7 @@ class AppUtils {
                 text: '${text} ',
                 style: TextStyle(
                     letterSpacing: 0.5,
-                    color: Colors.white,
+                    color: AppColor.colorWhite1,
                     fontSize: fontSize ?? AppConstants.fourteen,
                     fontWeight: fontWeight ?? FontWeight.w500)),
 
@@ -368,10 +368,12 @@ class AppUtils {
       Color? leadingColor,
       double? fontSize,
       Color? trailingColor,
+        BoxFit? boxFit,
       VoidCallback? onTap}) {
     return ListTile(
       onTap: onTap,
       leading: commonImageSVGWidget(
+        boxFit: boxFit,
           path: imagePath ?? icPerson,
           width: AppConstants.twenty,
           height: AppConstants.twenty,
@@ -460,7 +462,7 @@ class AppUtils {
                     ,
                   ),
                   CommonTextWidget(
-                      text: text ?? "Request send successfully for \n500 chips",
+                      text: text ?? "Request sent successfully for \n500 chips",
                       letterSpacing: AppConstants.zero03,
                       lineHeight: AppConstants.one02,
                       textAlign: TextAlign.center,
@@ -534,16 +536,18 @@ class AppUtils {
                       fontWeight: FontWeight.w700,
                       fontSize: AppConstants.fourteen,
                     )),
-                Container(
-                  margin: EdgeInsets.only(left: AppConstants.fourteen),
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.all(AppConstants.twelve),
-                  decoration: const BoxDecoration(
-                      color: AppColor.colorBlackLight, shape: BoxShape.circle),
-                  child: Icon(
-                    Icons.arrow_forward_ios_outlined,
-                    color: AppColor.colorWhite,
-                    size: AppConstants.fourteen,
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(left: AppConstants.fourteen),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(AppConstants.twelve),
+                    decoration: const BoxDecoration(
+                        color: AppColor.colorBlackLight, shape: BoxShape.circle),
+                    child: Icon(
+                      Icons.arrow_forward_ios_outlined,
+                      color: AppColor.colorWhite,
+                      size: AppConstants.fourteen,
+                    ),
                   ),
                 )
                 /*   AppUtils.commonBg(

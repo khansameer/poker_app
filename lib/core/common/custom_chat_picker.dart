@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:poker/core/common/common_text_widget.dart';
+import 'package:poker/core/common/context_extension.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
@@ -34,26 +35,35 @@ class CommonChatPickerState extends State<CustomChatPicker> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   iconCreation(Icons.insert_drive_file, Colors.indigo,
-                      "document"),
+                      "document".toCapitalize()),
                   AppUtils.commonSizedBox(width: AppConstants.forty),
                   iconCreation(
-                      Icons.camera_alt, Colors.pink, 'camera'),
+                      Icons.camera_alt, Colors.pink, 'camera'.toCapitalize()),
                   AppUtils.commonSizedBox(width: AppConstants.forty),
                   iconCreation(
-                      Icons.insert_photo, Colors.purple, 'gallery'),
+                      Icons.insert_photo, Colors.purple, 'gallery'.toCapitalize()),
                 ],
               ),
               AppUtils.commonSizedBox(height: AppConstants.ten),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  iconCreation(Icons.headset, Colors.orange,
+                      "audio".toCapitalize()),
+                  AppUtils.commonSizedBox(width: AppConstants.forty),
                   iconCreation(
+                      Icons.location_pin, Colors.pink, 'location'.toCapitalize()),
+                  AppUtils.commonSizedBox(width: AppConstants.forty),
+                  iconCreation(
+                      Icons.person, Colors.blue, 'contact'.toCapitalize()),
+                  /*iconCreation(
                       Icons.headset, Colors.orange, 'audio'),
+
                   AppUtils.commonSizedBox(height: AppConstants.forty),
                   iconCreation(
                       Icons.location_pin, Colors.teal, 'location'),
-                  AppUtils.commonSizedBox(height: AppConstants.forty),
-                  iconCreation(Icons.person, Colors.blue, 'contact'),
+                  AppUtils.commonSizedBox(width: AppConstants.forty),
+                  iconCreation(Icons.person, Colors.blue, 'contact'),*/
                 ],
               ),
             ],

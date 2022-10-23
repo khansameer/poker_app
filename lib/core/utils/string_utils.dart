@@ -8,8 +8,9 @@ class StringUtils{
   static const String emailHint="Your Email";
   static const String emailPassword="Your Password";
   static const String connectWith="or continue with";
-  static const String anAccount="Don,t have an account?";
+  static const String anAccount="Don't have an account?";
   static const String signup="Signup";
+  static const String signupWithSpace="Sign Up";
   static const String update="Update";
   static const String firstName="First Name";
   static const String lastName="Last Name";
@@ -64,7 +65,7 @@ class StringUtils{
   static const String counter="Counter";
   static const String addMember="Add Member";
   static const String settings="Settings";
-  static const String endStream="End Stream";
+  static const String endStream="Exit Stream";
   static const String hiMartin="Hi, Martin";
   static const String welToPokerRoom="Welcome to poker room";
   static const String emailAddress="Email Address";
@@ -76,6 +77,7 @@ class StringUtils{
   static String validPhoneNumber = "Please enter at least 6 digit password";
   static String validEmail = "Please enter a valid email";
   static String validPassword = "Password must be more than 4 character";
+  static String validPasswordRegex = "Password should contain upper,lower,digit and Special character ";
   static const String emptyEmail ="Please enter email!";
   static const String emptyCurrentPassword ="Please enter current password!";
   static const String emptyPassword ="Please enter password!";

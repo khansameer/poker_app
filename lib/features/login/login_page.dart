@@ -39,6 +39,8 @@ class LoginPageState extends State<LoginPage> {
   UserObject? user;
   bool logoutUser = false;
    TextEditingController tetEmail = TextEditingController();
+  //static TextEditingController tetEmail = TextEditingController();
+  TextEditingController tetPassword = TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
@@ -99,7 +101,7 @@ class LoginPageState extends State<LoginPage> {
                     text: StringUtils.password,
                     margintop: AppConstants.eighteen),
                 CommonTextField(
-                    controller: AppUtils.tetPassword,
+                    controller: tetPassword,
                     obscureText: obscureText,
                     suffixIcon: AppUtils.commonInkWell(
                         child: !obscureText
@@ -142,6 +144,7 @@ class LoginPageState extends State<LoginPage> {
                   alignment: Alignment.center,
                   margin: EdgeInsets.only(top: AppConstants.thirtyFive),
                   child: Row(
+                    mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AppUtils.commonSizedBox(
@@ -155,12 +158,14 @@ class LoginPageState extends State<LoginPage> {
                           left: AppConstants.ten,
                           right: AppConstants.ten,
                           text: StringUtils.connectWith.toCapitalize()),
-                      AppUtils.commonSizedBox(
-                        width: AppConstants.ninetySeven,
-                        child: Divider(
-                            color: AppColor.colorWhiteLight,
-                            height: AppConstants.two,
-                            thickness: AppConstants.two),
+                      Expanded(
+                        child: AppUtils.commonSizedBox(
+                          width: AppConstants.ninetySeven,
+                          child: Divider(
+                              color: AppColor.colorWhiteLight,
+                              height: AppConstants.two,
+                              thickness: AppConstants.two),
+                        ),
                       ),
                     ],
                   ),
@@ -309,15 +314,19 @@ class LoginPageState extends State<LoginPage> {
       AppUtils.showMessage(context: context, message: StringUtils.emptyEmail);
     } else if (!Validation.validateEmail(tetEmail.text)) {
       AppUtils.showMessage(context: context, message: StringUtils.validEmail);
-    } else if (Validation.isEmptyString(AppUtils.tetPassword.text)) {
+    } else if (Validation.isEmptyString(tetPassword.text)) {
       AppUtils.showMessage(
           context: context, message: StringUtils.emptyPassword);
-    } else if (AppUtils.tetPassword.text.length < 4) {
+    } else if (tetPassword.text.length < 5) {
       AppUtils.showMessage(
           context: context, message: StringUtils.validPassword);
-    } else {
+    }
+    else if (!Validation.validatePassword(tetPassword.text.toString())) {
+      AppUtils.showMessage(
+          context: context, message: StringUtils.validPasswordRegex);
+    }else {
       tetEmail.clear();
-      AppUtils.tetPassword.clear();
+      tetPassword.clear();
 
       tetEmail.text == 'rahul'
           ? AppUtils.redirectToNextScreen(

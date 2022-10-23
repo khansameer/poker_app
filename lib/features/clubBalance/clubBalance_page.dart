@@ -92,20 +92,23 @@ class ClubBalancePageState extends State<ClubBalancePage> {
                                   indent: AppConstants.zero,
                                   endIndent: AppConstants.zero),
                               CommonTextField(
+                                colorHint: AppColor.colorHint,
+                                  hint: "Enter the chips amount",
                                   left: AppConstants.twenty,
                                   rigth: AppConstants.twenty,
+
                                   colorText: AppColor.colorBlue,
                                   colorFill: AppColor.colorWhite,
                                   controller: AppUtils.tetEmail,
                                   inputTypes: TextInputType.number,
                                   marginTop: AppConstants.ten,
                                   fontSize: AppConstants.fourteen,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w600,
                                   radius: AppConstants.eight),
                               CommonButtonWidget(
                                 onPressed: () {
                                   Navigator.pop(context);
-                                  AppUtils.showAlertDialog( context: context,bgColor: AppColor.colorCommonDialog);
+                                  AppUtils.showAlertDialog( context: context,bgColor: AppColor.colorDialog);
 
                                 },
                                 bottom: AppConstants.twenty,

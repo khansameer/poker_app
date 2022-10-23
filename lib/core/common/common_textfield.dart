@@ -17,6 +17,7 @@ class CommonTextField extends StatelessWidget {
   bool? obscureText;
   Color? colorFill;
   Color? colorText;
+  Color? colorHint;
   double? left;
   double? rigth;
   TextEditingController? controller;
@@ -39,6 +40,7 @@ class CommonTextField extends StatelessWidget {
     this.left,
     this.rigth,
     this.isDense,
+    this.colorHint,
   });
 
 
@@ -68,7 +70,7 @@ class CommonTextField extends StatelessWidget {
             prefixIcon:iconWidget ,
 
             hintStyle: TextStyle(fontWeight: fontWeight,
-              color: AppColor.colorWhite,
+              color: colorHint??AppColor.colorWhite,
               fontSize: fontSize,),
             filled: true,
             fillColor: colorFill?? AppColor.colorGrayLight1,
