@@ -20,6 +20,7 @@ class CommonButtonWidget extends StatelessWidget {
   Color? colorButton;
   Color? colorBorder;
   double? borderWidth;
+  bool? iconShow;
 
   CommonButtonWidget({
     this.text,
@@ -35,7 +36,8 @@ class CommonButtonWidget extends StatelessWidget {
     this.padding,
     this.borderWidth,
     this.colorBorder,
-    this.paddingOnly
+    this.paddingOnly,
+    this.iconShow,
   });
 
   @override
@@ -61,10 +63,17 @@ class CommonButtonWidget extends StatelessWidget {
         ),
         onPressed: onPressed,
         child: Center(
-          child: CommonTextWidget(
-              text: text,
-              fontWeight: fontWeight ?? FontWeight.w600,
-              fontSize: fontSize ?? AppConstants.fourteen),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              iconShow??false?Container(margin:EdgeInsets.only(right: 10),child: Icon(Icons.add,color: Colors.white,)):SizedBox.shrink(),
+              CommonTextWidget(
+                  text: text,
+                  fontWeight: fontWeight ?? FontWeight.w600,
+                  fontSize: fontSize ?? AppConstants.fourteen),
+            ],
+          ),
         ),
       ),
     );

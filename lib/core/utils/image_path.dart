@@ -49,6 +49,7 @@ const icCasino = '$baseIconPath/casino.svg';
 const icDoneCircle= '$baseIconPath/check_circle.svg';
 const icDelete= '$baseIconPath/delete.svg';
 const icCall= '$baseIconPath/call.svg';
+const icMan= '$baseIconPath/ic_men.svg';
 const icMap= '$baseIconPath/ic_map.svg';
 const icMail= '$baseIconPath/mail.svg';
 const icPassword= '$baseIconPath/password.svg';

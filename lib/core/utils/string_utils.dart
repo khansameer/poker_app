@@ -65,6 +65,7 @@ class StringUtils{
   static const String desc2="Nullam semper magna quis sem semper, eget pellentesque nibh tempr. Integer lectus enim, cursus non vulputate vel, fermentum vehicula purus. Nam a lectus vel metus hendrerit dictum nec sed massa. In sed dictum diam, sed feugiat odio. Proin bibendum ipsum tellus, tincidunt blandit mi vulputate quis. Mauris at nulla sit amet nisi sollicitudin iaculis eu a risus. Vivamus mollis tristique commodo. Nunc rhoncus pulvinar lectus vel suscipit.";
   static const String members="Members";
   static const String counter="Counter";
+  static const String newMemberDetails="New Member Details";
   static const String addMember="Add Member";
   static const String settings="Settings";
   static const String endStream="Exit Stream";
@@ -78,7 +79,7 @@ class StringUtils{
   static const String manager ="Manager";
   static const String selectGame ="Select Game";
   static const String accType ="Account Type";
-  static const String newMemberDetails ="New Member Details";
+ // static const String newMemberDetails ="New Member Details";
 
   static const String delete ="Delete";
   static const String ok ="OK";
