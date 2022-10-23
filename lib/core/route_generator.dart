@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:poker/Admin/features/add_member/add_member_page.dart';
-import 'package:poker/admin/features/add_member/admin_schedule_page.dart';
+import 'package:poker/admin/features/add_member/schedule/admin_schedule_page.dart';
 import 'package:poker/core/route.dart';
 import 'package:poker/features/change_password_page.dart';
 import 'package:poker/features/chat_room/chat_room_page.dart';

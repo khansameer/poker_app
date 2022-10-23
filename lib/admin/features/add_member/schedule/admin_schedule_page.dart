@@ -138,16 +138,44 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
 
                   CommonButtonWidget(
                     onPressed: () {
+                     /* showDialog(
+                        context: context,
+                        builder: (_) {
+                          return AlertDialog(
+                            title: widget,
+                            content: SingleChildScrollView( //MUST TO ADDED
+                              child: SizedBox(
+                                height: ,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    ListView.builder(
+                                        shrinkWrap: true, //MUST TO ADDED
+                                        physics: NeverScrollableScrollPhysics(), //MUST TO ADDED
+                                        itemCount: 8,
+                                        itemBuilder: (BuildContext c, int index) {
+                                          return ListTile(
+                                            title: Text("Sameer"),
+                                          );
+                                        })
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      );*/
                       showDialog(
                           barrierDismissible: false,
                           barrierColor:AppColor.colorWhiteLight,
                           context: context,
                           builder: (_) =>  CommonDialog(
+                            colorBg: AppColor.colorCommonDialog,
                             isShowButtonView: false,
 
                             widget: Container(
-                              width: double.minPositive,
                               height:500 ,
+                              margin: AppUtils.commonAllEdgeInsets(left: 20,right: 20),
                               alignment: Alignment.topLeft,
 
                               child: bindList(),
@@ -194,8 +222,10 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
   Widget bindList(){
     return Padding(
       padding: const EdgeInsets.all(0.0),
-      child: Container(
+      child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: [
             CommonTextWidget(text: "4 Member",textAlign: TextAlign.left,fontSize: AppConstants.fourteen,),
@@ -206,10 +236,25 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
             padding: EdgeInsets.zero,
             itemBuilder: (context, index) {
               return AppUtils.commonBg(
-                borderWidth: 5,
-                colorBorder: Colors.red,
+                borderWidth: 2,
+                padding: 0,
+                left: 0,
+                right: 0,
+                 colorBorder: AppColor.colorWhiteLight,
                  widget: ListTile(
+                   dense: false,
+                   minVerticalPadding: 0,
+                   contentPadding: EdgeInsets.only(left: 10),
+                   horizontalTitleGap: 10,
+
+                   leading: SizedBox(
+                     width: 44,
+                     height: 44,
+                     child: AppUtils.commonImageAssetWidget(path: icUsers),
+                   ),
+                   trailing: CommonTextWidget(right:10,text: "Remove",textColor: AppColor.colorRemoveText,fontWeight: FontWeight.w700,),
                    title: CommonTextWidget(text: "Player name",),
+                   subtitle: CommonTextWidget(text: "ID 00756",),
                  )
               );
             })

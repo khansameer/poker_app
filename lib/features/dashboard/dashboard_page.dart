@@ -85,6 +85,7 @@ class DashboardPageState extends State<DashboardPage> {
   void initState() {
     super.initState();
     loadVIew();
+    print('=====${widget.isAdmin}');
   }
 
   @override

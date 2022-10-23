@@ -303,7 +303,7 @@ class AppUtils {
 
   static void redirectToNextScreen(
       {required BuildContext context, String? screenName, dynamic arguments}) {
-    closeKeyBoard(context);
+   // closeKeyBoard(context);
     Navigator.of(context).pushNamed(screenName!, arguments: arguments);
   }
 

@@ -325,10 +325,9 @@ class LoginPageState extends State<LoginPage> {
       AppUtils.showMessage(
           context: context, message: StringUtils.validPasswordRegex);
     }else {
-      tetEmail.clear();
-      tetPassword.clear();
 
-      tetEmail.text == 'rahul'
+
+      tetEmail.text == 'admin@gmail.com'
           ? AppUtils.redirectToNextScreen(
               context: context,
               screenName: RouteName.dashboard,
@@ -337,6 +336,8 @@ class LoginPageState extends State<LoginPage> {
               context: context,
               screenName: RouteName.dashboard,
               arguments: false);
+     /* tetEmail.clear();
+      tetPassword.clear();*/
     }
   }
 

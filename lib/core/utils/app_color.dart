@@ -33,6 +33,8 @@ class AppColor{
   static const Color colorTimePicker= Color.fromRGBO(111, 119, 149, 1);
   static const Color colorCommonDialog= Color.fromRGBO(8, 28, 91, 1);
   static const Color colorHint= Color.fromRGBO(116, 121, 128, 1);
+  static const Color colorRemoveText= Color.fromRGBO(137, 126, 245, 1);
+
 
 
 
