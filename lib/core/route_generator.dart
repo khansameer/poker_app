@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:poker/Admin/features/add_member/add_member_page.dart';
+import 'package:poker/admin/features/admin_accounting_page.dart';
 import 'package:poker/admin/features/counter/admin_counter.dart';
 import 'package:poker/admin/features/schedule/admin_schedule_page.dart';
 import 'package:poker/admin/features/dashboard/admin_dashboard_page.dart';
@@ -122,6 +123,10 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (_) =>   AdminCounterPage(),
             settings: const RouteSettings(name: RouteName.adminCounter));
+      case RouteName.adminAccounting:
+        return MaterialPageRoute(
+            builder: (_) =>   AdminAccountingPage(),
+            settings: const RouteSettings(name: RouteName.adminAccounting));
 
       default:
         return MaterialPageRoute(

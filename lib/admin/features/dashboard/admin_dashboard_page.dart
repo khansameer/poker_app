@@ -195,7 +195,7 @@ class DashboardPageState extends State<AdminDashboardPage> {
             commonBottomNavTabs(
                 path: icAddMember, title: StringUtils.addMember, onTap: onClickAddMember),
             commonBottomNavTabs(
-                path: icSettings, title: StringUtils.settings,onTap: onClickSetting),
+                path: icSettings, title: StringUtils.settings,),
           ],
         ));
   }
@@ -286,8 +286,8 @@ class DashboardPageState extends State<AdminDashboardPage> {
                     context: context, screenName: RouteName.chatRoom);
               }
               if (index == 4) {
-           /*     AppUtils.redirectToNextScreen(
-                    context: context, screenName: RouteName.venueInfo);*/
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.adminAccounting);
               }
               if (index == 5) {
                /* AppUtils.redirectToNextScreen(
