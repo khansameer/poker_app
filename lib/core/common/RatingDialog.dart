@@ -73,6 +73,7 @@ class CommonDialogState extends State<CommonDialog> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
+                margin: EdgeInsets.only(top: 20),
                 padding: AppUtils.commonAllEdgeInsets(
                     left: AppConstants.ten, right: AppConstants.ten),
                 child: Row(

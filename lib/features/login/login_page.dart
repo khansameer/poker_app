@@ -45,7 +45,9 @@ class LoginPageState extends State<LoginPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    tetEmail.clear();
+ //   tetEmail.clear();
+    tetEmail.text="admin@gmail.com";
+    tetPassword.text="Sameer@007";
   }
 
   @override
@@ -330,7 +332,7 @@ class LoginPageState extends State<LoginPage> {
       tetEmail.text == 'admin@gmail.com'
           ? AppUtils.redirectToNextScreen(
               context: context,
-              screenName: RouteName.dashboard,
+              screenName: RouteName.adminDashboard,
               arguments: true)
           : AppUtils.redirectToNextScreen(
               context: context,

@@ -21,5 +21,7 @@ class RouteName {
   static const String addMemberPage = '/AddMemberPage';
   static const String adminSchedule = '/adminSchedule';
   static const String membersPage = '/membersPage';
+  static const String adminDashboard = '/adminDashboard';
+  static const String adminCounter = '/adminCounter';
 
 }

@@ -21,15 +21,23 @@ class _AddMemberPageState extends State<AddMemberPage> {
   int _groupValue = -1;
   GameModel? selectedGame;
   List<GameModel> gameNameList = [];
+  int? selectedRadioTile;
+  int? selectedRadio;
 
   void onDrownDownValueSelected(GameModel value) {
     setState(() {
       selectedGame = value;
     });
   }
-
+  setSelectedRadioTile(int? val) {
+    setState(() {
+      selectedRadioTile = val;
+    });
+  }
   @override
   void initState() {
+    selectedRadio = 0;
+    selectedRadioTile = 0;
     gameNameList.add(GameModel('Valorant', 1));
     gameNameList.add(GameModel('Cs Go', 2));
     gameNameList.add(GameModel('PubG', 3));
@@ -75,7 +83,7 @@ class _AddMemberPageState extends State<AddMemberPage> {
               top: AppConstants.fortyFive,
               bottom: AppConstants.zero),
           decoration:
-              AppUtils.containerDecoration(color: AppColor.colorToolBar),
+              AppUtils.containerDecoration(color: Colors.white.withOpacity(0.21)),
           child: Container(
             margin: EdgeInsets.only(
                 top: AppConstants.twenty,
@@ -124,23 +132,53 @@ class _AddMemberPageState extends State<AddMemberPage> {
   Widget accTypeRadioBtn() {
     return Column(
       children: [
-        AppUtils.commonSizedBox(height: AppConstants.five),
+        AppUtils.commonSizedBox(height: AppConstants.fifteen),
+
         RadioListTile(
-          dense: true,
+          value: 1,
+          visualDensity: const VisualDensity(
+              horizontal: VisualDensity.minimumDensity,
+              vertical: VisualDensity.minimumDensity),
           contentPadding: const EdgeInsets.all(0),
-          value: 0,
-          groupValue: _groupValue,
-          title: CommonTextWidget(
+          groupValue: selectedRadioTile,
+          title:CommonTextWidget(
               text: StringUtils.player,
               textColor: AppColor.colorWhite,
               fontSize: AppConstants.fourteen,
               fontWeight: FontWeight.w400),
-          onChanged: (newValue) => setState(() => _groupValue = newValue ?? -1),
-          activeColor: AppColor.colorWhite,
+          onChanged: (val) {
+            print("Radio Tile pressed $val");
+            setSelectedRadioTile(val);
+          },
+          activeColor: AppColor.colorEdit,
+
           selected: false,
         ),
         RadioListTile(
+          value: 2,
+          visualDensity: const VisualDensity(
+              horizontal: VisualDensity.minimumDensity,
+              vertical: VisualDensity.minimumDensity),
+          contentPadding: const EdgeInsets.all(0),
+          groupValue: selectedRadioTile,
+          title:CommonTextWidget(
+              text: StringUtils.manager,
+              textColor: AppColor.colorWhite,
+              fontSize: AppConstants.fourteen,
+              fontWeight: FontWeight.w400),
+          onChanged: (val) {
+            print("Radio Tile pressed $val");
+            setSelectedRadioTile(val);
+          },
+          activeColor: AppColor.colorEdit,
+
+          selected: true,
+        ),
+
+       // RadioListTile(value: value, groupValue: groupValue, onChanged: onChanged)
+        /*RadioListTile(
           dense: true,
+          selectedTileColor: AppColor.colorBlue,
           contentPadding: const EdgeInsets.all(0),
           value: 1,
           groupValue: _groupValue,
@@ -150,9 +188,9 @@ class _AddMemberPageState extends State<AddMemberPage> {
               fontSize: AppConstants.fourteen,
               fontWeight: FontWeight.w400),
           onChanged: (newValue) => setState(() => _groupValue = newValue ?? -1),
-          activeColor: AppColor.colorWhite,
-          selected: false,
-        ),
+          activeColor: AppColor.colorEdit,
+          selected: true,
+        ),*/
       ],
     );
   }

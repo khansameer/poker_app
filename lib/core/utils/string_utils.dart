@@ -15,6 +15,7 @@ class StringUtils{
   static const String firstName="First Name";
   static const String lastName="Last Name";
   static const String your="Your ";
+  static const String accounting="Accounting";
   static const String currentPassword="Current Password";
   static const String newPassword="New Password";
   static const String reEnterPassword="Re-Type New Password";
@@ -53,6 +54,7 @@ class StringUtils{
   static const String event="Event";
   static const String direction="Direction";
   static const String schedule="Schedule";
+ // static const String counter="Counter";
   static const String rateUs="Rate us on the app store";
   static const String eventDetails="Event Details";
   static const String requestChips="Request Chips";

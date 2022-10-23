@@ -24,6 +24,8 @@ class AdminSchedulePage extends StatefulWidget {
 
 class ScheduleAdminPageState extends State<AdminSchedulePage> {
   List<ScheduleBean> scheduleList = [];
+  List<ScheduleBean> scheduleList1 = [];
+
   var selectedTimeData = '00:00';
   DateTime _dateTime = DateTime.now();
 
@@ -31,6 +33,7 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
   void initState() {
     super.initState();
     loadView();
+    loadViewDelete();
   }
 
   loadView() {
@@ -49,6 +52,29 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
         textItem1: "2/5 plo ",
         textItem2: "2/5 hold em "));
     scheduleList.add(ScheduleBean(
+        text: "Event Name",
+        date: "Wed, 21st September  | 8 pm",
+        isShow: true,
+        textItem: "Frames Poker ",
+        textItem1: "2/5 plo ",
+        textItem2: "2/5 hold em "));
+  }
+  loadViewDelete() {
+    scheduleList1.add(ScheduleBean(
+        text: "Tooth Hurty ",
+        date: "THU, 1st October  | 2:30 pm",
+        isShow: true,
+        textItem: "Chinese Dentist",
+        textItem1: "2/5 LOL ",
+        textItem2: ""));
+    scheduleList1.add(ScheduleBean(
+        text: "Event Name",
+        date: "Wed, 21st September  | 8 pm",
+        isShow: false,
+        textItem: "Frames Poker ",
+        textItem1: "2/5 plo ",
+        textItem2: "2/5 hold em "));
+    scheduleList1.add(ScheduleBean(
         text: "Event Name",
         date: "Wed, 21st September  | 8 pm",
         isShow: true,
@@ -138,51 +164,74 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
 
                   CommonButtonWidget(
                     onPressed: () {
-                     /* showDialog(
-                        context: context,
-                        builder: (_) {
-                          return AlertDialog(
-                            title: widget,
-                            content: SingleChildScrollView( //MUST TO ADDED
-                              child: SizedBox(
-                                height: ,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    ListView.builder(
-                                        shrinkWrap: true, //MUST TO ADDED
-                                        physics: NeverScrollableScrollPhysics(), //MUST TO ADDED
-                                        itemCount: 8,
-                                        itemBuilder: (BuildContext c, int index) {
-                                          return ListTile(
-                                            title: Text("Sameer"),
-                                          );
-                                        })
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      );*/
-                      showDialog(
-                          barrierDismissible: false,
-                          barrierColor:AppColor.colorWhiteLight,
+
+                       showDialog(
+
                           context: context,
-                          builder: (_) =>  CommonDialog(
-                            colorBg: AppColor.colorCommonDialog,
-                            isShowButtonView: false,
+                          builder: (BuildContext context) {
+                        return SimpleDialog(
+                          contentPadding: EdgeInsets.zero,
+                          insetPadding: EdgeInsets.zero,
 
-                            widget: Container(
-                              height:500 ,
-                              margin: AppUtils.commonAllEdgeInsets(left: 20,right: 20),
-                              alignment: Alignment.topLeft,
+                          titlePadding: EdgeInsets.zero,
+                          elevation: 0,
 
-                              child: bindList(),
-                            ),
-                            headerTitle: "Reservation List",
-                          )
+                          backgroundColor: AppColor.colorCommonDialog,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(AppConstants.twelve)),
+                          children: [
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width - 60,
+                              child:Container(
+
+                                decoration: AppUtils.containerDecoration(
+                                    color: Colors.transparent,
+                                    radius: 13,colorBorder: AppColor.colorWhiteLight,borderWidth: 3),
+                                  child: Column(
+
+                                    children: [
+                                      AppUtils.commonSizedBox(height: AppConstants.twenty),
+
+                                      Container(
+                                        margin: AppUtils.commonAllEdgeInsets(left: 20,right: 20),
+                                        child: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            CommonTextWidget(
+                                              left:AppConstants.ten,
+                                              text: "Reservation List",
+                                              fontWeight: FontWeight.w800,
+                                              fontSize: AppConstants.eighteen,
+                                            ),
+                                            AppUtils.commonInkWell(
+                                              onTap: () {
+                                                AppUtils.onBack(context);
+                                              },
+                                              child: AppUtils.commonIcon(
+                                                icon: Icons.close,
+                                                color: AppColor.colorWhite,
+                                                size: AppConstants.twentyFour,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      AppUtils.commonSizedBox(height: AppConstants.twenty),
+                                      AppUtils.commonDivider(
+                                        endIndent: AppConstants.zero,
+                                        indent: AppConstants.zero,
+                                      ),
+
+                                      bindList(),
+                                    ],
+                                  )),
+                            )
+                          ],
+                        );
+                      },
                       );
+
                     },
                     text: "Show Reservation List".toCapitalize(),
                     left: AppConstants.zero,
@@ -220,39 +269,56 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
   }
 
   Widget bindList(){
-    return Padding(
+    return Container(
+      margin: AppUtils.commonAllEdgeInsets(left: 20,right: 20,top: 10,bottom: 20),
       padding: const EdgeInsets.all(0.0),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            CommonTextWidget(text: "4 Member",textAlign: TextAlign.left,fontSize: AppConstants.fourteen,),
-           ListView.builder(
+
+            CommonTextWidget(text: "4 Members",left:7,textAlign: TextAlign.left,fontSize: AppConstants.fourteen,margintop: AppConstants.four,),
+
+            AppUtils.commonSizedBox(height: 5),
+            ListView.builder(
             shrinkWrap: true,
             primary: false,
-            itemCount: scheduleList.length,
+
+            itemCount: scheduleList1.length,
             padding: EdgeInsets.zero,
             itemBuilder: (context, index) {
               return AppUtils.commonBg(
+                padding1: AppUtils.commonAllEdgeInsets(left: 0,right: 0,bottom: 0,top: 0),
+                radius: 16,
+
+
                 borderWidth: 2,
                 padding: 0,
+
                 left: 0,
+
                 right: 0,
                  colorBorder: AppColor.colorWhiteLight,
                  widget: ListTile(
                    dense: false,
                    minVerticalPadding: 0,
-                   contentPadding: EdgeInsets.only(left: 10),
+                   contentPadding: EdgeInsets.only(left: 10,right: 10),
                    horizontalTitleGap: 10,
 
                    leading: SizedBox(
-                     width: 44,
-                     height: 44,
-                     child: AppUtils.commonImageAssetWidget(path: icUsers),
+                     width: 40,
+                     height: 40,
+                     child: AppUtils.commonImageAssetWidget(path: icGirlsIcon),
                    ),
-                   trailing: CommonTextWidget(right:10,text: "Remove",textColor: AppColor.colorRemoveText,fontWeight: FontWeight.w700,),
+                   trailing: AppUtils.commonInkWell(
+                       onTap: (){
+                         setState(() {
+                           scheduleList1.removeAt(index);
+                         });
+                       },
+                       child: CommonTextWidget(right:10,text: "Remove",textColor: AppColor.colorRemoveText,fontWeight: FontWeight.w700,)),
                    title: CommonTextWidget(text: "Player name",),
                    subtitle: CommonTextWidget(text: "ID 00756",),
                  )

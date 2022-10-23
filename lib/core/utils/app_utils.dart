@@ -348,6 +348,7 @@ class AppUtils {
       double? indent,
       double? endIndent,
       double? top,
+
       double? thickness}) {
     return Divider(
       thickness: thickness ?? 2,
@@ -488,6 +489,8 @@ class AppUtils {
       {String? text,
       Widget? widget,
       String? imagePath,
+        double? width,
+        double? height,
       Color? colorBg,
       String? imageTrans}) {
     return Container(

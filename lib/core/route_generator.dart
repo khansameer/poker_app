@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:poker/Admin/features/add_member/add_member_page.dart';
-import 'package:poker/admin/features/add_member/schedule/admin_schedule_page.dart';
+import 'package:poker/admin/features/counter/admin_counter.dart';
+import 'package:poker/admin/features/schedule/admin_schedule_page.dart';
+import 'package:poker/admin/features/dashboard/admin_dashboard_page.dart';
 import 'package:poker/admin/features/memebers/memebers_page.dart';
 import 'package:poker/core/route.dart';
 import 'package:poker/features/change_password_page.dart';
@@ -112,6 +114,14 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (_) =>  const MembersPage(),
             settings: const RouteSettings(name: RouteName.membersPage));
+      case RouteName.adminDashboard:
+        return MaterialPageRoute(
+            builder: (_) =>  const AdminDashboardPage(),
+            settings: const RouteSettings(name: RouteName.adminDashboard));
+      case RouteName.adminCounter:
+        return MaterialPageRoute(
+            builder: (_) =>   AdminCounterPage(),
+            settings: const RouteSettings(name: RouteName.adminCounter));
 
       default:
         return MaterialPageRoute(
