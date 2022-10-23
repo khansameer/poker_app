@@ -101,8 +101,7 @@ class AppUtils {
       bool? isShowEdit,
       String? actionTitle,
       VoidCallback? onTap,
-      double? fontSize,
-      bool? isArrowWthBack}) {
+      double? fontSize}) {
     return AppBar(
       toolbarHeight: 70,
       actions: [
@@ -125,16 +124,14 @@ class AppUtils {
           ),
         )
       ],
-      leading: isArrowWthBack ?? false
-          ? backBtnWithIcon(context)
-          : IconButton(
-              icon: Icon(
-                Icons.arrow_back_ios,
-                color: Colors.white,
-                size: AppConstants.twenty,
-              ),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
+      leading: IconButton(
+        icon: Icon(
+          Icons.arrow_back_ios,
+          color: Colors.white,
+          size: AppConstants.twenty,
+        ),
+        onPressed: () => Navigator.of(context).pop(),
+      ),
       backgroundColor: AppColor.colorToolBar,
       elevation: 0,
       centerTitle: true,
@@ -405,14 +402,15 @@ class AppUtils {
     double? width,
     double? height,
     EdgeInsetsGeometry? padding1,
+    double? bottom,
   }) {
     return Container(
 
       width: width,
       height: height,
       margin:
-          EdgeInsets.only(left: left ?? 16, top: top ?? 10, right: right ?? 0),
-      padding: padding1??EdgeInsets.all(padding ?? 10),
+          EdgeInsets.only(left: left ?? 16, top: top ?? 10, right: right ?? 0, bottom: bottom ?? 0),
+      padding: EdgeInsets.all(padding ?? 10),
       decoration: AppUtils.containerDecoration(
           colorBorder: colorBorder ?? Colors.transparent,
           borderWidth: borderWidth ?? 0,
@@ -619,6 +617,7 @@ class AppUtils {
       child: child,
     );
   }
+
   static showMessage(
       {BuildContext? context, String? message, Color? backgroundColor}) {
     return ScaffoldMessenger.of(context!).showSnackBar(

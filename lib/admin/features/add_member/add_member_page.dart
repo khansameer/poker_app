@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poker/admin/features/add_member/model/game_model.dart';
 import 'package:poker/core/common/common_bg_page.dart';
+import 'package:poker/core/common/common_button_widget.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/common/common_textfield.dart';
 import 'package:poker/core/utils/app_color.dart';
@@ -17,6 +18,7 @@ class AddMemberPage extends StatefulWidget {
 }
 
 class _AddMemberPageState extends State<AddMemberPage> {
+  int _groupValue = -1;
   GameModel? selectedGame;
   List<GameModel> gameNameList = [];
 
@@ -37,16 +39,15 @@ class _AddMemberPageState extends State<AddMemberPage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppUtils.commonAppBar(
-            isArrowWthBack: true,
             context: context,
             fontSize: AppConstants.sixteen,
-            title: 'New Member Details',
+            title: StringUtils.newMemberDetails,
             isShowEdit: false,
             actionTitle: StringUtils.edit),
         body: Container(
@@ -68,9 +69,11 @@ class _AddMemberPageState extends State<AddMemberPage> {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.symmetric(
-              horizontal: AppConstants.twentyFour,
-              vertical: AppConstants.fortyFive),
+          margin: EdgeInsets.only(
+              left: AppConstants.twentyFour,
+              right: AppConstants.twentyFour,
+              top: AppConstants.fortyFive,
+              bottom: AppConstants.zero),
           decoration:
               AppUtils.containerDecoration(color: AppColor.colorToolBar),
           child: Container(
@@ -79,7 +82,6 @@ class _AddMemberPageState extends State<AddMemberPage> {
                 left: AppConstants.ten,
                 right: AppConstants.ten,
                 bottom: AppConstants.twenty),
-            // color: Colors.orange,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,9 +100,58 @@ class _AddMemberPageState extends State<AddMemberPage> {
                     controller: AppUtils.tetTeleNoAdmin,
                     isNumber: true),
                 selectGameDropDown(),
+                CommonTextWidget(
+                  margintop: AppConstants.fifteen,
+                  text: StringUtils.accType,
+                  fontSize: AppConstants.fourteen,
+                  fontWeight: FontWeight.w500,
+                ),
+                accTypeRadioBtn(),
               ],
             ),
           ),
+        ),
+        CommonButtonWidget(
+            left: AppConstants.twentyFour,
+            right: AppConstants.twentyFour,
+            text: 'Submit',
+            onPressed: () {},
+            marginTop: AppConstants.twentyFour),
+      ],
+    );
+  }
+
+  Widget accTypeRadioBtn() {
+    return Column(
+      children: [
+        AppUtils.commonSizedBox(height: AppConstants.five),
+        RadioListTile(
+          dense: true,
+          contentPadding: const EdgeInsets.all(0),
+          value: 0,
+          groupValue: _groupValue,
+          title: CommonTextWidget(
+              text: StringUtils.player,
+              textColor: AppColor.colorWhite,
+              fontSize: AppConstants.fourteen,
+              fontWeight: FontWeight.w400),
+          onChanged: (newValue) => setState(() => _groupValue = newValue ?? -1),
+          activeColor: AppColor.colorWhite,
+          selected: false,
+        ),
+        RadioListTile(
+          dense: true,
+          contentPadding: const EdgeInsets.all(0),
+          value: 1,
+          groupValue: _groupValue,
+          title: CommonTextWidget(
+              text: StringUtils.manager,
+              textColor: AppColor.colorWhite,
+              fontSize: AppConstants.fourteen,
+              fontWeight: FontWeight.w400),
+          onChanged: (newValue) => setState(() => _groupValue = newValue ?? -1),
+          activeColor: AppColor.colorWhite,
+          selected: false,
         ),
       ],
     );
@@ -147,14 +198,17 @@ class _AddMemberPageState extends State<AddMemberPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CommonTextWidget(
-              text: 'Select Game',
+              text: StringUtils.selectGame,
             ),
           ],
         ),
         SizedBox(height: AppConstants.eight),
         Container(
-          padding:
-              EdgeInsets.only(left: AppConstants.ten, right: AppConstants.ten, top: AppConstants.ten, bottom: AppConstants.ten),
+          padding: EdgeInsets.only(
+              left: AppConstants.ten,
+              right: AppConstants.ten,
+              top: AppConstants.ten,
+              bottom: AppConstants.ten),
           // height: 48,
           decoration: BoxDecoration(
             border: Border.all(
@@ -166,9 +220,11 @@ class _AddMemberPageState extends State<AddMemberPage> {
             shape: BoxShape.rectangle,
           ),
           child: DropdownButton<GameModel>(
+            borderRadius: BorderRadius.circular(13),
+            dropdownColor: AppColor.colorBottom,
             isDense: true,
             hint: CommonTextWidget(
-                text: 'Select Game',
+                text: StringUtils.selectGame,
                 fontWeight: FontWeight.w400,
                 fontSize: AppConstants.fourteen,
                 textColor: AppColor.colorWhite),
@@ -192,7 +248,7 @@ class _AddMemberPageState extends State<AddMemberPage> {
                 child: Text(
                   gameModel.gameName.toString(),
                   style: AppUtils.textStyle(
-                      textColor: AppColor.colorBlackLight,
+                      textColor: AppColor.colorWhite,
                       fontSize: AppConstants.fourteen,
                       fontWeight: FontWeight.w400),
                 ),

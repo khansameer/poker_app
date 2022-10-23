@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:poker/core/route.dart';
 import 'package:poker/core/route_generator.dart';
+import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/features/login/login_page.dart';
 import 'package:poker/features/signup/signup_page.dart';
 import 'package:poker/features/splash/splash_page.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: RouteGenerator.generateRoute,
       navigatorKey: navKey,
       theme: ThemeData(
+        unselectedWidgetColor: AppColor.colorWhite,
         primarySwatch: Colors.blue,
       ),
       home:  const SplashPage(),

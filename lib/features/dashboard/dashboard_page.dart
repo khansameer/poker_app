@@ -41,6 +41,10 @@ class DashboardPageState extends State<DashboardPage> {
 
   void onClickEvent() {}
 
+  void onClickMembers(){
+    AppUtils.redirectToNextScreen(context: context,screenName: RouteName.membersPage);
+  }
+
   void onClickAddMember(){
     AppUtils.redirectToNextScreen(context: context,screenName: RouteName.addMemberPage);
   }
@@ -324,7 +328,7 @@ class DashboardPageState extends State<DashboardPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             commonBottomNavTabs(
-                path: icMembers, title: StringUtils.members),
+                path: icMembers, title: StringUtils.members, onTap: onClickMembers),
             commonBottomNavTabs(
                 path: icCounter, title: StringUtils.counter),
             commonBottomNavTabs(

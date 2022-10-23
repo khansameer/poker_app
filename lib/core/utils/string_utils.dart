@@ -72,6 +72,12 @@ class StringUtils{
   static const String emailHintAdmin ="eg. jogndoe@gmail.com";
   static const String telephoneNumber ="Telephone Number";
   static const String telephoneNumberHint ="eg. 9876543210";
+  static const String player ="Player";
+  static const String manager ="Manager";
+  static const String selectGame ="Select Game";
+  static const String accType ="Account Type";
+  static const String newMemberDetails ="New Member Details";
+
   static const String delete ="Delete";
   static const String ok ="OK";
   static String validPhoneNumber = "Please enter at least 6 digit password";
