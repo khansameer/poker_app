@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poker/core/common/ToggleButton.dart';
 import 'package:poker/core/common/common_bg_page.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/utils/app_color.dart';
@@ -14,7 +15,21 @@ class MembersPage extends StatefulWidget {
   State<MembersPage> createState() => _MembersPageState();
 }
 
-class _MembersPageState extends State<MembersPage> {
+class _MembersPageState extends State<MembersPage> with SingleTickerProviderStateMixin {
+
+  TabController? _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController!.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -37,7 +52,54 @@ class _MembersPageState extends State<MembersPage> {
             margin: AppConstants.fifteen,
             alignment: Alignment.topCenter,
             imagePath: icDashboardimg,
-            widget: membersList(),
+            widget: Column(
+              children: [
+                membersList(),
+                Container(
+                  margin: EdgeInsets.only(top: 40),
+                  width: 300,
+                  decoration: BoxDecoration(
+                    color: AppColor.colorFillEditText,
+                    borderRadius: BorderRadius.circular(
+                      12.0,
+                    ),
+                  ),
+                  child: Container(
+                    margin: EdgeInsets.all(4),
+                    child: DefaultTabController(
+                      length: 2,
+                      child: TabBar(
+
+                        controller: _tabController,
+                        // give the indicator a decoration (color and border radius)
+                        indicator: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            12.0,
+                          ),
+                          color: AppColor.colorButton,
+                        ),
+                        unselectedLabelStyle: AppUtils.textStyle(fontSize: 14,fontWeight: FontWeight.w700) ,
+                        labelStyle: AppUtils.textStyle(fontSize: 14,fontWeight: FontWeight.w700),
+                        labelColor: Colors.white,
+                        unselectedLabelColor: Colors.white,
+
+                        tabs: [
+                          // first tab [you can add an icon using the icon property]
+                          Tab(
+                            text: 'Debit List',
+                          ),
+
+                          // second tab [you can add an icon using the icon property]
+                          Tab(
+                            text: 'Credit List',
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

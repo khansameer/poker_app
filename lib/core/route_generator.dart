@@ -74,8 +74,10 @@ class RouteGenerator {
             builder: (_) =>  const ClubBalancePage(),
             settings: const RouteSettings(name: RouteName.clubBalance));
       case RouteName.event:
+        bool? isAdmin = args == null ? null : args as bool;
         return MaterialPageRoute(
-            builder: (_) =>  const EventPage(),
+
+            builder: (_) =>   EventPage(isAdmin),
             settings: const RouteSettings(name: RouteName.event));
       case RouteName.eventDetails:
         return MaterialPageRoute(
@@ -95,9 +97,9 @@ class RouteGenerator {
             builder: (_) =>  const VenueInfoPage(),
             settings: const RouteSettings(name: RouteName.venueInfo));
       case RouteName.liveStream:
-
+        bool? isAdmin = args == null ? null : args as bool;
         return MaterialPageRoute(
-            builder: (_) =>  const LiveStreamPage(),
+            builder: (_) =>   LiveStreamPage(isAdmin),
             settings: const RouteSettings(name: RouteName.liveStream));
 
       case RouteName.reservations:

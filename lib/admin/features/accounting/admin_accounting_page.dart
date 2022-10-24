@@ -430,13 +430,83 @@ class AccountingState extends State<AdminAccountingPage> {
                       fontWeight: FontWeight.w500,
                       fontSize: 14,
                     ),
-                    CommonTextWidget(
-                      text: 'Show members',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                      left: 10,
-                      textDecoration: TextDecoration.underline,
-                      textColor: AppColor.colorEdit,
+                    InkWell(
+                      onTap: (){
+                        showDialog(
+
+                          context: context,
+                          builder: (BuildContext context) {
+                            return SimpleDialog(
+                              contentPadding: EdgeInsets.zero,
+                              insetPadding: EdgeInsets.zero,
+
+                              titlePadding: EdgeInsets.zero,
+                              elevation: 0,
+
+                              backgroundColor: AppColor.colorCommonDialog,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(AppConstants.twelve)),
+                              children: [
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width - 60,
+                                  child:Container(
+
+                                      decoration: AppUtils.containerDecoration(
+                                          color: Colors.transparent,
+                                          radius: 13,colorBorder: AppColor.colorWhiteLight,borderWidth: 3),
+                                      child: Column(
+
+                                        children: [
+                                          AppUtils.commonSizedBox(height: AppConstants.twenty),
+
+                                          Container(
+                                            margin: AppUtils.commonAllEdgeInsets(left: 20,right: 20),
+                                            child: Row(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                CommonTextWidget(
+                                                  left:AppConstants.ten,
+                                                  text: "Reservation List",
+                                                  fontWeight: FontWeight.w800,
+                                                  fontSize: AppConstants.eighteen,
+                                                ),
+                                                AppUtils.commonInkWell(
+                                                  onTap: () {
+                                                    AppUtils.onBack(context);
+                                                  },
+                                                  child: AppUtils.commonIcon(
+                                                    icon: Icons.close,
+                                                    color: AppColor.colorWhite,
+                                                    size: AppConstants.twentyFour,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          AppUtils.commonSizedBox(height: AppConstants.twenty),
+                                          AppUtils.commonDivider(
+                                            endIndent: AppConstants.zero,
+                                            indent: AppConstants.zero,
+                                          ),
+
+                                          bindList(),
+                                        ],
+                                      )),
+                                )
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      child: CommonTextWidget(
+                        text: 'Show members',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        left: 10,
+                        textDecoration: TextDecoration.underline,
+                        textColor: AppColor.colorEdit,
+                      ),
                     ),
                   ],
                 ),
@@ -630,5 +700,67 @@ class AccountingState extends State<AdminAccountingPage> {
               fontWeight: FontWeight.w500,
               radius: AppConstants.eight),
         ));
+  }
+
+  Widget bindList(){
+    return Container(
+      margin: AppUtils.commonAllEdgeInsets(left: 20,right: 20,top: 10,bottom: 20),
+      padding: const EdgeInsets.all(0.0),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+
+            CommonTextWidget(text: "4 Members",left:7,textAlign: TextAlign.left,fontSize: AppConstants.fourteen,margintop: AppConstants.four,),
+
+            AppUtils.commonSizedBox(height: 5),
+            ListView.builder(
+                shrinkWrap: true,
+                primary: false,
+
+                itemCount: 4,
+                padding: EdgeInsets.zero,
+                itemBuilder: (context, index) {
+                  return AppUtils.commonBg(
+                      padding1: AppUtils.commonAllEdgeInsets(left: 0,right: 0,bottom: 0,top: 0),
+                      radius: 16,
+
+
+                      borderWidth: 2,
+                      padding: 0,
+
+                      left: 0,
+
+                      right: 0,
+                      colorBorder: AppColor.colorWhiteLight,
+                      widget: ListTile(
+                        dense: false,
+                        minVerticalPadding: 0,
+                        contentPadding: EdgeInsets.only(left: 10,right: 10),
+                        horizontalTitleGap: 10,
+
+                        leading: SizedBox(
+                          width: 40,
+                          height: 40,
+                          child: AppUtils.commonImageAssetWidget(path: icGirlsIcon),
+                        ),
+                        trailing: AppUtils.commonInkWell(
+                            onTap: (){
+                              setState(() {
+                               // scheduleList1.removeAt(index);
+                              });
+                            },
+                            child: CommonTextWidget(right:10,text: "Remove",textColor: AppColor.colorRemoveText,fontWeight: FontWeight.w700,)),
+                        title: CommonTextWidget(text: "Player name",),
+                        subtitle: CommonTextWidget(text: "ID 00756",),
+                      )
+                  );
+                })
+          ],
+        ),
+      ),
+    );
   }
 }

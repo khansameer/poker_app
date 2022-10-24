@@ -8,7 +8,8 @@ import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
 import 'package:poker/core/utils/string_utils.dart';
 class LiveStreamPage extends StatefulWidget{
-  const LiveStreamPage({super.key});
+  final bool? isAdmin;
+  const LiveStreamPage(this.isAdmin, {super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -22,6 +23,7 @@ class LiveStreamPageState extends State<LiveStreamPage>{
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Colors.transparent,
       resizeToAvoidBottomInset: false,
       appBar: AppUtils.commonAppBar(
           context: context,
@@ -88,7 +90,7 @@ class LiveStreamPageState extends State<LiveStreamPage>{
                             onPressed: (){
                               AppUtils.onBack(context);
                             },
-                            text: StringUtils.endStream,padding: AppConstants.ten, )),
+                            text: widget.isAdmin??true?StringUtils.endStream:StringUtils.exitStream,padding: AppConstants.ten, )),
                     )
                   ],
                 ),

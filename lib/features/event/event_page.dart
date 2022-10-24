@@ -12,7 +12,8 @@ import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
 import 'package:poker/core/utils/string_utils.dart';
 class EventPage extends StatefulWidget{
-  const EventPage({super.key});
+  final bool? isAdmin;
+  const EventPage(this.isAdmin, {super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -63,9 +64,13 @@ class EventPageState extends State<EventPage>{
   }
 
   Widget bindListView() {
-    return ListView.builder(
+    return GridView.builder(
 
-
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: widget.isAdmin??true?2:1,
+            mainAxisSpacing: 5,
+            childAspectRatio: widget.isAdmin??true?1:(2 / 1)/*(2 / 1)*/,
+            crossAxisSpacing: 0),
         shrinkWrap: true,
         primary: false,
         itemCount: commonList.length,
@@ -79,7 +84,7 @@ class EventPageState extends State<EventPage>{
             child: Container(
               height: 200,
               decoration: AppUtils.containerDecoration(
-                  borderWidth: AppConstants.four,
+                  borderWidth: AppConstants.three,
                   radius: AppConstants.sixteen,
                   color: AppColor.colorBlueClub),
               margin: EdgeInsets.all(AppConstants.five),
@@ -89,8 +94,8 @@ class EventPageState extends State<EventPage>{
                   top: AppConstants.zero,
                   bottom: AppConstants.zero),
               child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(AppConstants.sixteen)),
-                  child: AppUtils.commonImageAssetWidget(width:double.infinity,path: commonList[index].title,boxFit: BoxFit.cover)),
+                  borderRadius: BorderRadius.all(Radius.circular(AppConstants.fourteen)),
+                  child: AppUtils.commonImageAssetWidget(width:double.infinity,path: commonList[index].title,height:200,boxFit: BoxFit.fill)),
             ),
           );
         });

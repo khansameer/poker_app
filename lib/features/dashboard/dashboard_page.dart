@@ -415,7 +415,7 @@ class DashboardPageState extends State<DashboardPage> {
               }
               if (index == 1) {
                 AppUtils.redirectToNextScreen(
-                    context: context, screenName: RouteName.event);
+                    context: context, screenName: RouteName.event,arguments: false);
               }
               if (index == 2) {
                 AppUtils.redirectToNextScreen(
@@ -431,7 +431,7 @@ class DashboardPageState extends State<DashboardPage> {
               }
               if (index == 5) {
                 AppUtils.redirectToNextScreen(
-                    context: context, screenName: RouteName.liveStream);
+                    context: context, screenName: RouteName.liveStream,arguments: false);
               }
             },
             child: AppUtils.commonGridView(
