@@ -419,7 +419,6 @@ class AdminTotalAccountDetailsState extends State<AdminTotalAccountDetailsPage> 
       widget: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-
           commonList(text: text1,colorText: colorText??AppColor.colorWhite1),
           commonList(text: text2,colorText: colorText??AppColor.colorWhite1),
           commonList(text: text3,colorText: colorText??AppColor.colorWhite1),
