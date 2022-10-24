@@ -95,6 +95,7 @@ class RouteGenerator {
             builder: (_) =>  const VenueInfoPage(),
             settings: const RouteSettings(name: RouteName.venueInfo));
       case RouteName.liveStream:
+
         return MaterialPageRoute(
             builder: (_) =>  const LiveStreamPage(),
             settings: const RouteSettings(name: RouteName.liveStream));

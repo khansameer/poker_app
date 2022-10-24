@@ -34,6 +34,8 @@ class AppColor{
   static const Color colorCommonDialog= Color.fromRGBO(8, 28, 91, 1);
   static const Color colorHint= Color.fromRGBO(116, 121, 128, 1);
   static const Color colorRemoveText= Color.fromRGBO(137, 126, 245, 1);
+  static const Color colorFillEditText= Color.fromRGBO(82, 96, 140, 1);
+  static const Color ColorDialogFill= Color.fromRGBO(8, 28, 91, 1);
 
 
 

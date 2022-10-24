@@ -10,13 +10,17 @@ import 'package:poker/core/utils/string_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CommonDialog extends StatefulWidget {
-  const CommonDialog({Key? key, this.colorBg, this.headerTitle, this.radius,this.isShowButtonView,this.widget})
+  const CommonDialog({Key? key, this.onTapBtn1,this.onTapBtn2,this.colorBg, this.headerTitle, this.radius,this.isShowButtonView,this.widget,this.btn1Text,this.btn2Text})
       : super(key: key);
   final Color? colorBg;
   final String? headerTitle;
   final double? radius;
   final bool? isShowButtonView;
   final Widget? widget;
+  final String? btn1Text;
+  final String? btn2Text;
+  final VoidCallback? onTapBtn1;
+  final VoidCallback? onTapBtn2;
 
 
 
@@ -126,21 +130,23 @@ class CommonDialogState extends State<CommonDialog> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
+                    children: [//
                       CommonButtonWidget(
-                        onPressed: (){
+                        onPressed:widget.onTapBtn1?? (){
                           AppUtils.onBack(context);
                         },
                         marginTop: AppConstants.fifteen,
+
+                        bottom: 15,
                         borderWidth: AppConstants.two,
                         colorBorder: AppColor.colorWhiteLight,
-                        text: StringUtils.cancel,
-                        colorButton: AppColor.colorToolBar,
+                        text: widget.btn1Text?? StringUtils.cancel,
+                        colorButton: AppColor.colorFillEditText,
                         paddingOnly:
                             AppUtils.commonAllEdgeInsets(left: AppConstants.thirtyFive, right: AppConstants.thirtyFive),
                       ),
                       CommonButtonWidget(
-                        onPressed: (){
+                        onPressed:widget.onTapBtn2??  (){
 
                           String appPackageName="com.example.poker";
                           try {
@@ -151,10 +157,11 @@ class CommonDialogState extends State<CommonDialog> {
                             launch("https://play.google.com/store/apps/details?id=" + appPackageName);
                           }
                         },
+                        bottom: 15,
                         left: AppConstants.ten,
                         right: AppConstants.ten,
                         marginTop: AppConstants.fifteen,
-                        text: StringUtils.ok,
+                        text: widget.btn2Text?? StringUtils.ok,
                         colorButton: AppColor.colorButton,
                         paddingOnly:
                             AppUtils.commonAllEdgeInsets(left: AppConstants.fifty, right: AppConstants.fifty),

@@ -23,6 +23,7 @@ class CommonTextField extends StatelessWidget {
   TextEditingController? controller;
   TextInputAction? textInputAction;
   bool? isDense;
+  int? maxLines;
   CommonTextField({
     this.hint,
     this.fontWeight,
@@ -41,6 +42,7 @@ class CommonTextField extends StatelessWidget {
     this.rigth,
     this.isDense,
     this.colorHint,
+    this.maxLines,
   });
 
 
@@ -50,7 +52,7 @@ class CommonTextField extends StatelessWidget {
       margin: EdgeInsets.only(top: marginTop??AppConstants.five,left: left??0,right:rigth??0),
       color: Colors.transparent,
       child: TextField(
-
+        maxLines: maxLines??1,
         controller: controller,
         onChanged: onChange,
         keyboardType: inputTypes,

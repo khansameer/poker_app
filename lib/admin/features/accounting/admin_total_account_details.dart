@@ -106,7 +106,7 @@ class AdminTotalAccountDetailsState extends State<AdminTotalAccountDetailsPage> 
       backgroundColor: Colors.transparent,
       appBar: AppUtils.commonAppBar(
           context: context,
-          title: StringUtils.newMemberDetails,
+          title: 'Total',
           isShowEdit: false,
           actionTitle: StringUtils.edit),
       bottomSheet:  Container(
@@ -358,7 +358,15 @@ class AdminTotalAccountDetailsState extends State<AdminTotalAccountDetailsPage> 
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CommonTextWidget(text: text??"5000",fontWeight: FontWeight.w800,fontSize:16 ,),
+              Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children:[
+                    CommonTextWidget(text: text??"5000",fontWeight: FontWeight.w800,fontSize:16 ,),
+                    CommonTextWidget(text: "20 Sep,2022",fontSize:16 ,),
+                  ]
+              ),
+              //CommonTextWidget(text: text??"5000",fontWeight: FontWeight.w800,fontSize:16 ,),
               AppUtils.commonSizedBox(height: 8),
 
 
@@ -415,14 +423,12 @@ class AdminTotalAccountDetailsState extends State<AdminTotalAccountDetailsPage> 
       right: 0,
       padding: 12,
       color: Color.fromRGBO(50, 69, 116, 1),
-
       widget: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           commonList(text: text1,colorText: colorText??AppColor.colorWhite1),
           commonList(text: text2,colorText: colorText??AppColor.colorWhite1),
           commonList(text: text3,colorText: colorText??AppColor.colorWhite1),
-
         ],
       ),
     );

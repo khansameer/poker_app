@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:poker/core/common/RatingDialog.dart';
 import 'package:poker/core/common/common_button_widget.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/route.dart';
@@ -85,7 +86,6 @@ class AppUtils {
               mainAxisSize: MainAxisSize.max,
               children: [
                 AppUtils.commonImageAssetWidget(
-
                     path: icCoin, height: 155, boxFit: BoxFit.scaleDown)
               ],
             ),
@@ -300,7 +300,7 @@ class AppUtils {
 
   static void redirectToNextScreen(
       {required BuildContext context, String? screenName, dynamic arguments}) {
-   // closeKeyBoard(context);
+    // closeKeyBoard(context);
     Navigator.of(context).pushNamed(screenName!, arguments: arguments);
   }
 
@@ -348,7 +348,6 @@ class AppUtils {
       double? indent,
       double? endIndent,
       double? top,
-
       double? thickness}) {
     return Divider(
       thickness: thickness ?? 2,
@@ -366,12 +365,12 @@ class AppUtils {
       Color? leadingColor,
       double? fontSize,
       Color? trailingColor,
-        BoxFit? boxFit,
+      BoxFit? boxFit,
       VoidCallback? onTap}) {
     return ListTile(
       onTap: onTap,
       leading: commonImageSVGWidget(
-        boxFit: boxFit,
+          boxFit: boxFit,
           path: imagePath ?? icPerson,
           width: AppConstants.twenty,
           height: AppConstants.twenty,
@@ -406,11 +405,13 @@ class AppUtils {
     double? bottom,
   }) {
     return Container(
-
       width: width,
       height: height,
-      margin:
-          EdgeInsets.only(left: left ?? 16, top: top ?? 10, right: right ?? 0, bottom: bottom ?? 0),
+      margin: EdgeInsets.only(
+          left: left ?? 16,
+          top: top ?? 10,
+          right: right ?? 0,
+          bottom: bottom ?? 0),
       padding: EdgeInsets.all(padding ?? 10),
       decoration: AppUtils.containerDecoration(
           colorBorder: colorBorder ?? Colors.transparent,
@@ -489,8 +490,8 @@ class AppUtils {
       {String? text,
       Widget? widget,
       String? imagePath,
-        double? width,
-        double? height,
+      double? width,
+      double? height,
       Color? colorBg,
       String? imageTrans}) {
     return Container(
@@ -543,7 +544,8 @@ class AppUtils {
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(AppConstants.twelve),
                     decoration: const BoxDecoration(
-                        color: AppColor.colorBlackLight, shape: BoxShape.circle),
+                        color: AppColor.colorBlackLight,
+                        shape: BoxShape.circle),
                     child: Icon(
                       Icons.arrow_forward_ios_outlined,
                       color: AppColor.colorWhite,
@@ -567,12 +569,14 @@ class AppUtils {
     );
   }
 
-  static Future<void> launchContent({String? path, String? scheme,bool? isUrl,String? url}) async {
-
-      final Uri launchUri = isUrl ?? false ? Uri.parse(url!) : Uri(
-    scheme: scheme ?? 'tel',
-    path: path ?? "+919999999999",
-    );
+  static Future<void> launchContent(
+      {String? path, String? scheme, bool? isUrl, String? url}) async {
+    final Uri launchUri = isUrl ?? false
+        ? Uri.parse(url!)
+        : Uri(
+            scheme: scheme ?? 'tel',
+            path: path ?? "+919999999999",
+          );
     await launchUrl(launchUri);
   }
 
@@ -636,6 +640,7 @@ class AppUtils {
       ),
     );
   }
+
   static EdgeInsets commonAllEdgeInsets({
     double? left,
     double? right,
@@ -646,15 +651,38 @@ class AppUtils {
   }) {
     return isAll
         ? EdgeInsets.all(
-      allPadding ?? AppConstants.zero,
-    )
+            allPadding ?? AppConstants.zero,
+          )
         : EdgeInsets.only(
-      top: top ?? AppConstants.zero,
-      bottom: bottom ?? AppConstants.zero,
-      left: left ?? AppConstants.zero,
-      right: right ?? AppConstants.zero,
-    );
+            top: top ?? AppConstants.zero,
+            bottom: bottom ?? AppConstants.zero,
+            left: left ?? AppConstants.zero,
+            right: right ?? AppConstants.zero,
+          );
   }
 
-
+  static commonDialog({
+    required BuildContext context,
+    bool? isShowButtonView,
+    String? headerTitle,
+    Widget ?child,
+    String? btn1Text,
+    String?  btn2Text,
+    VoidCallback ?onTapBtn1,
+    VoidCallback ?onTapBtn2,
+  }) {
+    return showDialog(
+        barrierDismissible: false,
+        barrierColor:AppColor.colorWhiteLight,
+        context: context, builder: (_) => CommonDialog(
+      colorBg: AppColor.ColorDialogFill,
+      btn1Text:btn1Text ,
+      btn2Text: btn2Text,
+      onTapBtn1:onTapBtn1 ,
+      onTapBtn2:onTapBtn2 ,
+      isShowButtonView: isShowButtonView?? false,
+      headerTitle: headerTitle??"Credit Out",
+      widget: child,
+    ));
+  }
 }

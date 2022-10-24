@@ -290,8 +290,8 @@ class DashboardPageState extends State<AdminDashboardPage> {
                     context: context, screenName: RouteName.adminAccounting);
               }
               if (index == 5) {
-               /* AppUtils.redirectToNextScreen(
-                    context: context, screenName: RouteName.liveStream);*/
+               AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.liveStream);
               }
             },
             child: AppUtils.commonGridView(
