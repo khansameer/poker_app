@@ -468,8 +468,9 @@ class AccountingState extends State<AdminAccountingPage> {
                                                 CommonTextWidget(
                                                   left:AppConstants.ten,
                                                   text: "Reservation List",
+
                                                   fontWeight: FontWeight.w800,
-                                                  fontSize: AppConstants.eighteen,
+                                                  fontSize: AppConstants.sixteen,
                                                 ),
                                                 AppUtils.commonInkWell(
                                                   onTap: () {
@@ -478,7 +479,7 @@ class AccountingState extends State<AdminAccountingPage> {
                                                   child: AppUtils.commonIcon(
                                                     icon: Icons.close,
                                                     color: AppColor.colorWhite,
-                                                    size: AppConstants.twentyFour,
+                                                    size: AppConstants.twenty,
                                                   ),
                                                 )
                                               ],
@@ -490,7 +491,7 @@ class AccountingState extends State<AdminAccountingPage> {
                                             indent: AppConstants.zero,
                                           ),
 
-                                          bindList(),
+                                          AppUtils.bindDialogList(),
                                         ],
                                       )),
                                 )
@@ -702,7 +703,7 @@ class AccountingState extends State<AdminAccountingPage> {
         ));
   }
 
-  Widget bindList(){
+/*  Widget bindList(){
     return Container(
       margin: AppUtils.commonAllEdgeInsets(left: 20,right: 20,top: 10,bottom: 20),
       padding: const EdgeInsets.all(0.0),
@@ -721,6 +722,7 @@ class AccountingState extends State<AdminAccountingPage> {
                 primary: false,
 
                 itemCount: 4,
+
                 padding: EdgeInsets.zero,
                 itemBuilder: (context, index) {
                   return AppUtils.commonBg(
@@ -736,7 +738,7 @@ class AccountingState extends State<AdminAccountingPage> {
                       right: 0,
                       colorBorder: AppColor.colorWhiteLight,
                       widget: ListTile(
-                        dense: false,
+                        dense: true,
                         minVerticalPadding: 0,
                         contentPadding: EdgeInsets.only(left: 10,right: 10),
                         horizontalTitleGap: 10,
@@ -752,9 +754,10 @@ class AccountingState extends State<AdminAccountingPage> {
                                // scheduleList1.removeAt(index);
                               });
                             },
-                            child: CommonTextWidget(right:10,text: "Remove",textColor: AppColor.colorRemoveText,fontWeight: FontWeight.w700,)),
-                        title: CommonTextWidget(text: "Player name",),
-                        subtitle: CommonTextWidget(text: "ID 00756",),
+                            child: CommonTextWidget(
+                              fontSize:12,right:10,text: "Remove",textColor: AppColor.colorRemoveText,fontWeight: FontWeight.w700,)),
+                        title: CommonTextWidget(text: "Player name",fontSize:12),
+                        subtitle: CommonTextWidget(text: "ID 00756",fontSize:10),
                       )
                   );
                 })
@@ -762,5 +765,5 @@ class AccountingState extends State<AdminAccountingPage> {
         ),
       ),
     );
-  }
+  }*/
 }

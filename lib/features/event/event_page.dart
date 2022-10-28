@@ -38,6 +38,7 @@ class EventPageState extends State<EventPage>{
     commonList
         .add(CommonList(icEvent, "25 Aug, 23:52", "+ 500", "Completed", false));
     commonList.add(CommonList(icEvent1, "25 Aug, 23:52", "+ 500", "Pending", true));
+    commonList.add(CommonList(icEvent, "25 Aug, 23:52", "+ 500", "Pending", false));
   }
 
   @override
@@ -93,9 +94,17 @@ class EventPageState extends State<EventPage>{
                   right: AppConstants.zero,
                   top: AppConstants.zero,
                   bottom: AppConstants.zero),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(AppConstants.fourteen)),
-                  child: AppUtils.commonImageAssetWidget(width:double.infinity,path: commonList[index].title,height:200,boxFit: BoxFit.fill)),
+              child: Container(
+                margin: EdgeInsets.all(AppConstants.five),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(AppConstants.fourteen)),
+                    child: Container(
+                      
+                      child: AppUtils.commonImageAssetWidget(
+                        
+                          width:double.infinity,path: commonList[index].title,height:200,boxFit: BoxFit.fill),
+                    )),
+              ),
             ),
           );
         });

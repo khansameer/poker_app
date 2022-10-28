@@ -126,6 +126,7 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
               )),
               margin: EdgeInsets.only(
                   left: AppConstants.sixteen,
+                  bottom: 15,
                   right: AppConstants.sixteen,
                   top: AppConstants.twenty),
               padding: EdgeInsets.only(
@@ -144,7 +145,7 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
                   ),
                   CommonTextWidget(
                     margintop: AppConstants.five,
-                    text: scheduleList[index].date,
+                    text: scheduleList[index].date.toString().toUpperCase(),
                     fontWeight: FontWeight.w400,
                     fontSize: AppConstants.fourteen,
                   ),
@@ -255,8 +256,10 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
   Widget commonView({String? title, String? icon}) {
     return ListTile(
       dense: true,
+
       visualDensity: VisualDensity(horizontal: AppConstants.zero, vertical: -4),
       contentPadding: EdgeInsets.zero,
+
       minVerticalPadding: AppConstants.zero,
       horizontalTitleGap: AppConstants.zero,
       title: CommonTextWidget(
@@ -329,4 +332,5 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
       ),
     );
   }
+
 }

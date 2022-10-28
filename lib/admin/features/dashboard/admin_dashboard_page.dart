@@ -54,6 +54,8 @@ class DashboardPageState extends State<AdminDashboardPage> {
     AppUtils.redirectToNextScreen(context: context,screenName: RouteName.adminSchedule);
   }
 
+
+
   loadVIew() {
     dashboardList.add(DashboardBean(
         image: icWhatOn,
@@ -174,14 +176,19 @@ class DashboardPageState extends State<AdminDashboardPage> {
 
   Widget bottomNavigationBarWidget() {
     return Container(
+        padding: EdgeInsets.only(
+          top: 15,
+          bottom: 15
+        ),
         margin: EdgeInsets.only(
             top: AppConstants.twenty,
             left: AppConstants.fifteen,
             right: AppConstants.fifteen,
             bottom: AppConstants.twenty),
         decoration: AppUtils.containerDecoration(
+
             color: AppColor.colorFbLight.withOpacity(1), radius: AppConstants.fifteen),
-        height: 75,
+        height: 100,
         // color: AppColor.colorFbLight,
         child: Row(
           mainAxisSize: MainAxisSize.max,
@@ -208,10 +215,14 @@ class DashboardPageState extends State<AdminDashboardPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          AppUtils.commonImageAssetWidget(
-              width: AppConstants.thirty,
-              height: AppConstants.thirty,
-              path: path),
+          Container(
+           decoration: AppUtils.containerDecoration(radius: 13,color: Color.fromRGBO(83, 67, 198, 1)),
+            child: AppUtils.commonImageAssetWidget(
+                width: AppConstants.forty,
+                boxFit: BoxFit.scaleDown,
+                height: AppConstants.forty,
+                path: path),
+          ),
           SizedBox(height: AppConstants.five),
           CommonTextWidget(
               text: title,
@@ -278,8 +289,8 @@ class DashboardPageState extends State<AdminDashboardPage> {
                     context: context, screenName: RouteName.event);
               }
               if (index == 2) {
-              /*  AppUtils.redirectToNextScreen(
-                    context: context, screenName: RouteName.clubBalance);*/
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.adminCreditFilePage);
               }
               if (index == 3) {
                 AppUtils.redirectToNextScreen(

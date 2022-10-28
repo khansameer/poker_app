@@ -55,7 +55,7 @@ class ReplyMessageWidget extends StatelessWidget {
                       CommonTextWidget(
                         textAlign: TextAlign.left,
                         text: message,
-                        margintop: AppConstants.four,
+                        //margintop: AppConstants.four,
                         textColor: AppColor.colorBlue,
                         fontSize: AppConstants.fourteen,
                       ),

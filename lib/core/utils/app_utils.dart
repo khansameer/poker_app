@@ -500,6 +500,7 @@ class AppUtils {
       width: AppConstants.oneHundredSeventyEight,
       height: AppConstants.oneHundredFourty,
       decoration: BoxDecoration(
+
           borderRadius: BorderRadius.circular(AppConstants.sixteen),
           image: DecorationImage(
               image: AssetImage(imagePath ?? icWhatOn), fit: BoxFit.cover)),
@@ -517,11 +518,16 @@ class AppUtils {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppUtils.commonBg(
-                top: 0,
-                left: AppConstants.ten,
-                color: AppColor.colorBlackLight,
-                widget: widget),
+            Container(
+              child: AppUtils.commonBg(
+                  top: 0,
+                  radius: 10,
+                  colorBorder: AppColor.colorWhiteLight,
+                  left: AppConstants.ten,
+                  borderWidth: 3,
+                  color: AppColor.colorBlackLight,
+                  widget: widget),
+            ),
             SizedBox(
               height: AppConstants.sixteen,
             ),
@@ -684,5 +690,70 @@ class AppUtils {
       headerTitle: headerTitle??"Credit Out",
       widget: child,
     ));
+  }
+
+ static Widget bindDialogList(){
+      return Container(
+        margin: AppUtils.commonAllEdgeInsets(left: 20,right: 20,top: 10,bottom: 20),
+        padding: const EdgeInsets.all(0.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+
+              CommonTextWidget(text: "4 Members",left:7,textAlign: TextAlign.left,fontSize: AppConstants.fourteen,margintop: AppConstants.four,),
+
+              AppUtils.commonSizedBox(height: 5),
+              ListView.builder(
+                  shrinkWrap: true,
+                  primary: false,
+
+                  itemCount: 4,
+
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (context, index) {
+                    return AppUtils.commonBg(
+                        padding1: AppUtils.commonAllEdgeInsets(left: 0,right: 0,bottom: 0,top: 0),
+                        radius: 16,
+
+
+                        borderWidth: 2,
+                        padding: 0,
+
+                        left: 0,
+
+                        right: 0,
+                        colorBorder: AppColor.colorWhiteLight,
+                        widget: ListTile(
+                          dense: true,
+                          minVerticalPadding: 0,
+                          contentPadding: EdgeInsets.only(left: 10,right: 10),
+                          horizontalTitleGap: 10,
+
+                          leading: SizedBox(
+                            width: 40,
+                            height: 40,
+                            child: AppUtils.commonImageAssetWidget(path: icGirlsIcon),
+                          ),
+                          trailing: AppUtils.commonInkWell(
+                              onTap: (){
+                                /*setState(() {
+                                  // scheduleList1.removeAt(index);
+                                });*/
+                              },
+                              child: CommonTextWidget(
+                                fontSize:12,right:10,text: "Remove",textColor: AppColor.colorRemoveText,fontWeight: FontWeight.w700,)),
+                          title: CommonTextWidget(text: "Player name",fontSize:12),
+                          subtitle: CommonTextWidget(text: "ID 00756",fontSize:10),
+                        )
+                    );
+                  })
+            ],
+          ),
+        ),
+      );
+
   }
 }

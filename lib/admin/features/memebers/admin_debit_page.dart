@@ -47,7 +47,7 @@ class AdminDebitPageState extends State<AdminDebitPage> {
               color: AppColor.colorBlueClub,
               colorBorder: AppColor.colorWhiteLight,
               widget: ListTile(
-                dense: false,
+                dense: true,
                 minVerticalPadding: 0,
                 contentPadding: EdgeInsets.only(left: 10,right: 10),
                 horizontalTitleGap: 10,
@@ -63,9 +63,9 @@ class AdminDebitPageState extends State<AdminDebitPage> {
                       //  scheduleList1.removeAt(index);
                       });
                     },
-                    child: CommonTextWidget(right:10,text: widget.scheduleList[index].text,textColor: AppColor.colorWhite,fontWeight: FontWeight.w800,)),
-                title: CommonTextWidget(text: "Player name",fontWeight: FontWeight.w800,),
-                subtitle: CommonTextWidget(text: "ID 00756",textColor: AppColor.colorWhite1,),
+                    child: CommonTextWidget(right:10,fontSize:13,text: widget.scheduleList[index].text,textColor: AppColor.colorWhite,fontWeight: FontWeight.w800,)),
+                title: CommonTextWidget(text: "Player name",fontWeight: FontWeight.w800,fontSize: 13,),
+                subtitle: CommonTextWidget(text: "ID 00756",textColor: AppColor.colorWhite1,fontSize: 12,),
               )
           );
         });

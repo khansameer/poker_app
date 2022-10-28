@@ -25,5 +25,7 @@ class RouteName {
   static const String adminCounter = '/adminCounter';
   static const String adminAccounting = '/AdminAccountingPage';
   static const String adminTotalAccountDetails = '/adminTotalAccountDetails';
+  static const String adminCreditFilePage = '/adminCreditFilePage';
+  static const String adminCreditRequestPage = '/adminCreditRequestPage';
 
 }

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:poker/Admin/features/add_member/add_member_page.dart';
 import 'package:poker/admin/features/accounting/admin_accounting_page.dart';
 import 'package:poker/admin/features/accounting/admin_total_account_details.dart';
+import 'package:poker/admin/features/credit_file/admin_credit_file.dart';
 import 'package:poker/admin/features/counter/admin_counter.dart';
+import 'package:poker/admin/features/credit_request/credit_request_page.dart';
 import 'package:poker/admin/features/schedule/admin_schedule_page.dart';
 import 'package:poker/admin/features/dashboard/admin_dashboard_page.dart';
 import 'package:poker/admin/features/memebers/memebers_page.dart';
@@ -135,6 +137,15 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (_) =>   AdminTotalAccountDetailsPage(),
             settings: const RouteSettings(name: RouteName.adminTotalAccountDetails));
+      case RouteName.adminCreditFilePage:
+        return MaterialPageRoute(
+            builder: (_) =>   AdminCreditFilePage(),
+            settings: const RouteSettings(name: RouteName.adminCreditFilePage));
+
+      case RouteName.adminCreditRequestPage:
+        return MaterialPageRoute(
+            builder: (_) =>   CreditRequestPage(),
+            settings: const RouteSettings(name: RouteName.adminCreditRequestPage));
 
       default:
         return MaterialPageRoute(
