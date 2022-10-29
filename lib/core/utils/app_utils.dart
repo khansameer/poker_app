@@ -38,7 +38,7 @@ class AppUtils {
           children: [
             Container(
               width: double.infinity,
-              height: AppConstants.oneHundredFourty,
+              height: 120,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppConstants.sixteen),
                   image: const DecorationImage(
@@ -86,7 +86,7 @@ class AppUtils {
               mainAxisSize: MainAxisSize.max,
               children: [
                 AppUtils.commonImageAssetWidget(
-                    path: icCoin, height: 155, boxFit: BoxFit.scaleDown)
+                    path: icCoin, height: 135, boxFit: BoxFit.scaleDown)
               ],
             ),
           ],
@@ -756,4 +756,5 @@ class AppUtils {
       );
 
   }
+
 }

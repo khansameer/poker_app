@@ -202,7 +202,10 @@ class DashboardPageState extends State<AdminDashboardPage> {
             commonBottomNavTabs(
                 path: icAddMember, title: StringUtils.addMember, onTap: onClickAddMember),
             commonBottomNavTabs(
-                path: icSettings, title: StringUtils.settings,),
+                path: icSettings, title: StringUtils.settings,onTap: (){
+              AppUtils.redirectToNextScreen(
+                  context: context, screenName: RouteName.profile);
+            }),
           ],
         ));
   }

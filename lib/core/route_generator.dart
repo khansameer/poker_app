@@ -6,6 +6,7 @@ import 'package:poker/admin/features/accounting/admin_total_account_details.dart
 import 'package:poker/admin/features/credit_file/admin_credit_file.dart';
 import 'package:poker/admin/features/counter/admin_counter.dart';
 import 'package:poker/admin/features/credit_request/credit_request_page.dart';
+import 'package:poker/admin/features/credit_request/trade_history_page.dart';
 import 'package:poker/admin/features/schedule/admin_schedule_page.dart';
 import 'package:poker/admin/features/dashboard/admin_dashboard_page.dart';
 import 'package:poker/admin/features/memebers/memebers_page.dart';
@@ -72,8 +73,9 @@ class RouteGenerator {
             settings: const RouteSettings(name: RouteName.changePassword));
 
       case RouteName.clubBalance:
+        bool? isAdmin = args == null ? null : args as bool;
         return MaterialPageRoute(
-            builder: (_) =>  const ClubBalancePage(),
+            builder: (_) =>   ClubBalancePage(isAdmin),
             settings: const RouteSettings(name: RouteName.clubBalance));
       case RouteName.event:
         bool? isAdmin = args == null ? null : args as bool;
@@ -146,6 +148,10 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (_) =>   CreditRequestPage(),
             settings: const RouteSettings(name: RouteName.adminCreditRequestPage));
+      case RouteName.adminTradeHistoryPage:
+        return MaterialPageRoute(
+            builder: (_) =>   TradeHistoryPage(),
+            settings: const RouteSettings(name: RouteName.adminTradeHistoryPage));
 
       default:
         return MaterialPageRoute(

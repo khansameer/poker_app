@@ -35,6 +35,7 @@ class CreditRequestPageState extends State<CreditRequestPage> {
   }
 
   loadView() {
+
     scheduleList.add(ScheduleBean(
         text: "Tooth Hurty ",
         date: "THU, 1st October  | 2:30 pm",
@@ -63,9 +64,8 @@ class CreditRequestPageState extends State<CreditRequestPage> {
         textItem: "Chinese Dentist",
         textItem1: "2/5 LOL ",
         textItem2: ""));
-
-
     _isChecked = List<bool>.filled(scheduleList.length, false);
+
   }
 
   @override
@@ -77,6 +77,209 @@ class CreditRequestPageState extends State<CreditRequestPage> {
           title: 'Credit Requests',
           isShowEdit: false,
           actionTitle: StringUtils.edit),
+      bottomSheet:  Container(
+        height: 100,
+        color: AppColor.colorBlueClub,
+        alignment: Alignment.bottomCenter,
+        child: Container(
+          margin: EdgeInsets.only(left: AppConstants.thirty,right: AppConstants.thirty,top: 24  ),
+          height: AppConstants.oneHundred,
+          alignment: Alignment.topCenter,
+          color: Colors.transparent,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Expanded(
+                child: SizedBox(
+                    width: AppConstants.twoHundredThirty,
+                    height: AppConstants.fortyFive,
+                    child: CommonButtonWidget(
+                      colorButton:AppColor.colorFillEditText ,
+
+                      colorBorder: AppColor.colorWhite.withOpacity(0.7),
+                      onPressed: (){
+                        showDialog(
+                            barrierDismissible: false,
+                            barrierColor:AppColor.colorWhiteLight,
+                            context: context,
+                            builder: (_) =>  CommonDialog(
+                              isShowButtonView: false,
+                              headerTitle: "Credit Out",
+                              widget: Container(
+
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:  MainAxisAlignment.start,
+                                  children: [
+
+                                    CommonTextWidget(
+                                      text: '5000',
+                                      left: AppConstants.fifteen,
+                                      fontSize: AppConstants.eighteen,
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                                    CommonTextWidget(
+                                      textColor: AppColor.colorWhite.withOpacity(0.7),
+                                      fontSize: 14,
+                                      margintop: 8,
+                                      left: AppConstants.fifteen,
+                                      text: 'Total Chips available to send out',
+                                    ),
+                                    AppUtils.commonSizedBox(height: 20),
+                                    AppUtils.commonDivider(),
+                                    CommonTextField(
+
+                                        left: 15,
+                                        rigth: 15 ,marginTop: 20,
+                                        inputTypes: TextInputType.number,
+                                        hint: 'Enter the amount',
+                                        suffixIcon: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            CommonTextWidget(text: "\$",textAlign: TextAlign.center,),
+                                          ],
+                                        ),
+                                        fontSize: AppConstants.fourteen,
+
+                                        fontWeight: FontWeight.w500,
+                                        radius: AppConstants.twelve),
+                                    CommonTextWidget(text: "Sending to",fontWeight: FontWeight.w500,fontSize: 14,margintop: 15,left: 15,),
+                                    commonListItem1(fontSize: 12,index: 0,left: 15 ,right: 15),
+                                    AppUtils.commonSizedBox(height: 20,),
+                                    AppUtils.commonDivider(indent: 0,endIndent: 0),
+                                    AppUtils.commonSizedBox(height: 20),
+                                    Container(
+                                      margin: AppUtils.commonAllEdgeInsets(bottom: 20),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  CommonTextWidget(text: "0",fontWeight: FontWeight.w800,fontSize: 16,left: 15,),
+                                                  CommonTextWidget(left:15,margintop:5,text: "Total Credit out",fontWeight: FontWeight.w500,fontSize: 14,textColor: AppColor.colorWhite.withOpacity(0.7),),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              CommonButtonWidget(text: 'Confirm',paddingOnly: EdgeInsets.only(left: 40,right: 40),right: 15,),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),),
+                            )
+                        );
+                      },
+                      text: 'Reject all',padding: AppConstants.ten, )),
+              ), Expanded(
+                child: SizedBox(
+                    width: AppConstants.twoHundredThirty,
+                    height: AppConstants.fortyFive,
+                    child: CommonButtonWidget(
+                      left: 15,
+                      onPressed: (){
+                        showDialog(
+                            barrierDismissible: false,
+                            barrierColor:AppColor.colorWhiteLight,
+                            context: context,
+                            builder: (_) =>  CommonDialog(
+                              isShowButtonView: false,
+                              headerTitle: "Credit Out",
+                              widget: Container(
+
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:  MainAxisAlignment.start,
+                                  children: [
+
+                                    CommonTextWidget(
+                                      text: '5000',
+                                      left: AppConstants.fifteen,
+                                      fontSize: AppConstants.eighteen,
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                                    CommonTextWidget(
+                                      textColor: AppColor.colorWhite.withOpacity(0.7),
+                                      fontSize: 14,
+                                      margintop: 8,
+                                      left: AppConstants.fifteen,
+                                      text: 'Total Chips available to send out',
+                                    ),
+                                    AppUtils.commonSizedBox(height: 20),
+                                    AppUtils.commonDivider(),
+                                    CommonTextField(
+
+                                        left: 15,
+                                        rigth: 15 ,marginTop: 20,
+                                        inputTypes: TextInputType.number,
+                                        hint: 'Enter the amount',
+                                        suffixIcon: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            CommonTextWidget(text: "\$",textAlign: TextAlign.center,),
+                                          ],
+                                        ),
+                                        fontSize: AppConstants.fourteen,
+
+                                        fontWeight: FontWeight.w500,
+                                        radius: AppConstants.twelve),
+                                    CommonTextWidget(text: "Sending to",fontWeight: FontWeight.w500,fontSize: 14,margintop: 15,left: 15,),
+                                    commonListItem1(fontSize: 12,index: 0,left: 15 ,right: 15),
+                                    AppUtils.commonSizedBox(height: 20,),
+                                    AppUtils.commonDivider(indent: 0,endIndent: 0),
+                                    AppUtils.commonSizedBox(height: 20),
+                                    Container(
+                                      margin: AppUtils.commonAllEdgeInsets(bottom: 20),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  CommonTextWidget(text: "0",fontWeight: FontWeight.w800,fontSize: 16,left: 15,),
+                                                  CommonTextWidget(left:15,margintop:5,text: "Total Credit out",fontWeight: FontWeight.w500,fontSize: 14,textColor: AppColor.colorWhite.withOpacity(0.7),),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              CommonButtonWidget(text: 'Confirm',paddingOnly: EdgeInsets.only(left: 40,right: 40),right: 15,),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),),
+                            )
+                        );
+                      },
+                      text: 'Approve all',padding: AppConstants.ten, )),
+              )
+            ],
+          ),
+        ),
+      ),
       body: Container(
         decoration: AppUtils.containerDecoration(
             color: AppColor.colorDarkBlue, radius: AppConstants.zero),
@@ -87,7 +290,7 @@ class CreditRequestPageState extends State<CreditRequestPage> {
           imagePath: icDashboardimg,
           widget: SingleChildScrollView(
             child: Container(
-              margin: AppUtils.commonAllEdgeInsets(left: 20,right: 20,bottom: 110),
+              margin: AppUtils.commonAllEdgeInsets(left: 15,right: 15,bottom: 110),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -170,7 +373,7 @@ class CreditRequestPageState extends State<CreditRequestPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
-                    CommonTextWidget(text: "Player name",textColor: AppColor.colorWhite.withOpacity(0.7),left: 10,fontSize: fontSize,),
+                    CommonTextWidget(text: "Player name",textColor: AppColor.colorWhite.withOpacity(0.7),left: 10,fontSize: 12,),
                     CommonTextWidget(margintop:4,text: "ID 00756",textColor: AppColor.colorWhite.withOpacity(0.7),left: 10,fontSize: fontSize,fontWeight: FontWeight.w400,),
                   ],
                 )
@@ -264,6 +467,97 @@ class CreditRequestPageState extends State<CreditRequestPage> {
         )
     );
   }
+  Widget commonListItem1({required int index,double? fontSize,double? left,double? right}){
+    return AppUtils.commonBg(
+        padding1: AppUtils.commonAllEdgeInsets(left: 0,right: 0,bottom: 0,top: 0),
+        radius: 16,
 
+
+        borderWidth: 2,
+        padding: 10,
+
+        left: left??0,
+
+        right:right?? 0,
+        color: AppColor.colorBlueClub,
+        colorBorder: AppColor.colorWhiteLight,
+        widget: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                SizedBox(
+                  width: 40,
+                  height: 40,
+                  child: AppUtils.commonImageAssetWidget(path: icGirlsIcon),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                    CommonTextWidget(text: "Player name",textColor: AppColor.colorWhite.withOpacity(0.7),left: 10,fontSize: fontSize,),
+                    CommonTextWidget(margintop:4,text: "ID 00756",textColor: AppColor.colorWhite.withOpacity(0.7),left: 10,fontSize: fontSize,),
+                  ],
+                )
+              ],
+            ),
+            Row(
+              children: [
+                IntrinsicHeight(
+                  child: Row(
+                    children: [
+
+                      VerticalDivider(
+                        color: AppColor.colorWhiteLight,
+                        thickness: 2,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+
+                          CommonTextWidget(text: "Available",textColor: AppColor.colorWhite.withOpacity(0.7),left: 10,fontSize: fontSize,),
+                          CommonTextWidget(margintop:4,text: "500",textColor: AppColor.colorWhite.withOpacity(0.7),left: 10,fontSize: fontSize,fontWeight: FontWeight.w800,),
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Transform.scale(
+                  scale: 1.5,
+                  child: Checkbox(
+
+                    autofocus: false,
+
+                    splashRadius: 0,
+                    activeColor: AppColor.colorButton,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    side: MaterialStateBorderSide.resolveWith(
+                          (states) => BorderSide(width: 2.0, color: AppColor.colorWhiteLight),
+                    ),
+                    checkColor: Colors.white,
+
+                    value: _isChecked[index],
+                    onChanged: ( val) {
+                      setState(() {
+                        _isChecked[index] = val!;
+                      });
+                    },
+                  ),
+                )
+              ],
+            )
+          ],
+        )
+    );
+  }
 
 }

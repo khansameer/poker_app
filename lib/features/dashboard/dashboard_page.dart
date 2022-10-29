@@ -419,7 +419,7 @@ class DashboardPageState extends State<DashboardPage> {
               }
               if (index == 2) {
                 AppUtils.redirectToNextScreen(
-                    context: context, screenName: RouteName.clubBalance);
+                    context: context, screenName: RouteName.clubBalance,arguments: false);
               }
               if (index == 3) {
                 AppUtils.redirectToNextScreen(
