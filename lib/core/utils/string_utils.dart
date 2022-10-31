@@ -20,7 +20,10 @@ class StringUtils{
   static const String newPassword="New Password";
   static const String reEnterPassword="Re-Type New Password";
   static const String edit="Edit";
+  static const String remove="Remove";
   static const String history="History";
+  static const String reservationList="Reservation List";
+  static const String showReservationList="Show Reservation List";
   static const String selectTime="Select Time for Reservation";
   static const String addChipsAmount="Add Chips amount";
   static const String signupTerm="By signing up you agree to our ";
@@ -97,6 +100,11 @@ class StringUtils{
   static const String emptyFirstName ="Please enter first name!";
   static const String emptyLastName ="Please enter last name!";
   static const String passwordNotMatch ="Your Password not match!";
+  static const String addPlayer ="Add Player";
+  static const String showTotal ="Show Totals";
+  static const String addNote ="Add Note";
+  static const String editNote ="Edit Note";
+  static const String showNote ="Show Note";
 
 
 

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+
 import 'package:poker/core/common/RatingDialog.dart';
 import 'package:poker/core/common/common_bg_page.dart';
 import 'package:poker/core/common/common_button_widget.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/common/common_textfield.dart';
-import 'package:poker/core/common/context_extension.dart';
 import 'package:poker/core/route.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
@@ -36,69 +34,39 @@ class AdminCounterState extends State<AdminCounterPage> {
 
   loadView() {
     scheduleList.add(ScheduleBean(
-        text: "Tooth Hurty ",
-        date: "THU, 1st October  | 2:30 pm",
-        isShow: true,
-        textItem: "Chinese Dentist",
-        textItem1: "2/5 LOL ",
-        textItem2: ""));
+        text: "Sam",));
     scheduleList.add(ScheduleBean(
-        text: "Event Name",
-        date: "Wed, 21st September  | 8 pm",
-        isShow: false,
-        textItem: "Frames Poker ",
-        textItem1: "2/5 plo ",
-        textItem2: "2/5 hold em "));
+      text: "Smith",));
     scheduleList.add(ScheduleBean(
-        text: "Event Name",
-        date: "Wed, 21st September  | 8 pm",
-        isShow: true,
-        textItem: "Frames Poker ",
-        textItem1: "2/5 plo ",
-        textItem2: "2/5 hold em "));
+      text: "Jhon",));
     scheduleList.add(ScheduleBean(
-        text: "Tooth Hurty ",
-        date: "THU, 1st October  | 2:30 pm",
-        isShow: true,
-        textItem: "Chinese Dentist",
-        textItem1: "2/5 LOL ",
-        textItem2: ""));
+      text: "Neha",));
     scheduleList.add(ScheduleBean(
-        text: "Event Name",
-        date: "Wed, 21st September  | 8 pm",
-        isShow: false,
-        textItem: "Frames Poker ",
-        textItem1: "2/5 plo ",
-        textItem2: "2/5 hold em "));
-    scheduleList.add(ScheduleBean(
-        text: "Event Name",
-        date: "Wed, 21st September  | 8 pm",
-        isShow: true,
-        textItem: "Frames Poker ",
-        textItem1: "2/5 plo ",
-        textItem2: "2/5 hold em "));
-    scheduleList.add(ScheduleBean(
-        text: "Tooth Hurty ",
-        date: "THU, 1st October  | 2:30 pm",
-        isShow: true,
-        textItem: "Chinese Dentist",
-        textItem1: "2/5 LOL ",
-        textItem2: ""));
-    scheduleList.add(ScheduleBean(
-        text: "Event Name",
-        date: "Wed, 21st September  | 8 pm",
-        isShow: false,
-        textItem: "Frames Poker ",
-        textItem1: "2/5 plo ",
-        textItem2: "2/5 hold em "));
-    scheduleList.add(ScheduleBean(
-        text: "Event Name",
-        date: "Wed, 21st September  | 8 pm",
-        isShow: true,
-        textItem: "Frames Poker ",
-        textItem1: "2/5 plo ",
-        textItem2: "2/5 hold em "));
+      text: "Rekha",));
+
     _isChecked = List<bool>.filled(scheduleList.length, false);
+  }
+  void filterSearchResults(String query) {
+    List<ScheduleBean> dummySearchList = [];
+    dummySearchList.addAll(scheduleList);
+    if(query.isNotEmpty) {
+      List<ScheduleBean> dummyListData = [];
+      dummySearchList.forEach((item) {
+        if(item.text!.contains(query)) {
+          dummyListData.add(item);
+        }
+      });
+      setState(() {
+        scheduleList.clear();
+        scheduleList.addAll(dummyListData);
+      });
+      return;
+    } else {
+      setState(() {
+        scheduleList.clear();
+        scheduleList.addAll(scheduleList);
+      });
+    }
   }
 
   @override
@@ -351,6 +319,9 @@ class AdminCounterState extends State<AdminCounterPage> {
                     hint: 'Search player by name',
                     radius: 12,
                     fontSize: 14,
+                    onChange: (value){
+                      filterSearchResults(value);
+                    },
                     marginTop: 24,
                     colorFill: AppColor.colorWhite.withOpacity(0.3),
                     iconWidget: Icon(Icons.search,color: Colors.white,),
@@ -439,7 +410,7 @@ class AdminCounterState extends State<AdminCounterPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
-                    CommonTextWidget(text: "Player name",textColor: AppColor.colorWhite.withOpacity(0.7),left: 10,fontSize: fontSize,),
+                    CommonTextWidget(text: scheduleList[index].text,textColor: AppColor.colorWhite.withOpacity(1),left: 10,fontSize: fontSize,),
                     CommonTextWidget(margintop:4,text: "ID 00756",textColor: AppColor.colorWhite.withOpacity(0.7),left: 10,fontSize: fontSize,),
                   ],
                 )

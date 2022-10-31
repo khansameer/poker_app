@@ -1,13 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-//import 'package:poker/core/common/RatingDialog.dart';
 import 'package:poker/core/common/common_bg_page.dart';
 import 'package:poker/core/common/common_button_widget.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/common/common_textfield.dart';
-
-//import 'package:poker/core/common/context_extension.dart';
 import 'package:poker/core/route.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
@@ -25,8 +20,7 @@ class AdminAccountingPage extends StatefulWidget {
 
 class AccountingState extends State<AdminAccountingPage> {
   List<ScheduleBean> scheduleList = [];
-  late List<bool> _isChecked;
-  TextEditingController tetAddNote=TextEditingController();
+  TextEditingController tetAddNote = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -97,7 +91,6 @@ class AccountingState extends State<AdminAccountingPage> {
         textItem: "Frames Poker ",
         textItem1: "2/5 plo ",
         textItem2: "2/5 hold em "));
-    _isChecked = List<bool>.filled(scheduleList.length, false);
   }
 
   @override
@@ -110,12 +103,14 @@ class AccountingState extends State<AdminAccountingPage> {
           isShowEdit: false,
           actionTitle: StringUtils.edit),
       bottomSheet: Container(
-        height: 100,
+        height: AppConstants.oneHundred,
         color: AppColor.colorBlueClub,
         alignment: Alignment.bottomCenter,
         child: Container(
           margin: EdgeInsets.only(
-              left: AppConstants.thirty, right: AppConstants.thirty, top: 24),
+              left: AppConstants.thirty,
+              right: AppConstants.thirty,
+              top: AppConstants.twentyFour),
           height: AppConstants.oneHundred,
           alignment: Alignment.topCenter,
           color: Colors.transparent,
@@ -124,7 +119,7 @@ class AccountingState extends State<AdminAccountingPage> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Expanded(
-                flex: 5,
+                flex: AppConstants.five.toInt(),
                 child: SizedBox(
                     height: AppConstants.fortyFive,
                     child: CommonButtonWidget(
@@ -133,17 +128,17 @@ class AccountingState extends State<AdminAccountingPage> {
                             context: context,
                             screenName: RouteName.addMemberPage);
                       },
-                      right: 5,
+                      right: AppConstants.five,
                       iconShow: true,
-                      colorButton: Color.fromRGBO(81, 98, 137, 1),
+                      colorButton: AppColor.colorAddPlayer,
                       colorBorder: AppColor.colorWhiteLight,
-                      borderWidth: 2,
-                      text: 'Add Player',
+                      borderWidth: AppConstants.two,
+                      text: StringUtils.addPlayer,
                       padding: AppConstants.ten,
                     )),
               ),
               Expanded(
-                flex: 5,
+                flex: AppConstants.five.toInt(),
                 child: SizedBox(
                     height: AppConstants.fortyFive,
                     child: CommonButtonWidget(
@@ -152,8 +147,8 @@ class AccountingState extends State<AdminAccountingPage> {
                             context: context,
                             screenName: RouteName.adminTotalAccountDetails);
                       },
-                      left: 5,
-                      text: 'Show Totals',
+                      left: AppConstants.five,
+                      text: StringUtils.showTotal,
                       padding: AppConstants.ten,
                     )),
               )
@@ -163,7 +158,8 @@ class AccountingState extends State<AdminAccountingPage> {
       ),
       body: Container(
         decoration: AppUtils.containerDecoration(
-            color: Color.fromRGBO(0, 27, 105, 0.63), radius: AppConstants.zero),
+            color: AppColor.colorBlueLight.withOpacity(0.63),
+            radius: AppConstants.zero),
         child: CommonBgPage(
           backImagePath: icDashboardBg,
           margin: AppConstants.zero,
@@ -172,16 +168,18 @@ class AccountingState extends State<AdminAccountingPage> {
           widget: SingleChildScrollView(
             child: Container(
               margin: AppUtils.commonAllEdgeInsets(
-                  left: 15, right: 15, bottom: 110),
+                  left: AppConstants.fifteen,
+                  right: AppConstants.fifteen,
+                  bottom: AppConstants.oneHundredTen),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   commonTopView(text: 'Game Name'),
                   CommonTextField(
                     hint: 'Search player by name',
-                    radius: 12,
-                    fontSize: 14,
-                    marginTop: 24,
+                    radius: AppConstants.twelve,
+                    fontSize: AppConstants.fourteen,
+                    marginTop: AppConstants.twentyFour,
                     colorFill: AppColor.colorWhite.withOpacity(0.3),
                     iconWidget: Icon(
                       Icons.search,
@@ -189,7 +187,7 @@ class AccountingState extends State<AdminAccountingPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 24,
+                    height: AppConstants.twentyFour,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -197,12 +195,12 @@ class AccountingState extends State<AdminAccountingPage> {
                     children: [
                       CommonTextWidget(
                         text: '${scheduleList.length} Members',
-                        margintop: 0,
+                        margintop: AppConstants.zero,
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: 10,
+                    height: AppConstants.ten,
                   ),
                   bindListView(),
                 ],
@@ -237,19 +235,22 @@ class AccountingState extends State<AdminAccountingPage> {
   Widget commonListItem(
       {required int index, double? fontSize, double? left, double? right}) {
     return AppUtils.commonBg(
-        padding1:
-            AppUtils.commonAllEdgeInsets(left: 0, right: 0, bottom: 0, top: 0),
-        radius: 16,
-        borderWidth: 2,
-        padding: 10,
-        left: left ?? 0,
-        right: right ?? 0,
+        padding1: AppUtils.commonAllEdgeInsets(
+            left: AppConstants.zero,
+            right: AppConstants.zero,
+            bottom: AppConstants.zero,
+            top: AppConstants.zero),
+        radius: AppConstants.sixteen,
+        borderWidth: AppConstants.two,
+        padding: AppConstants.ten,
+        left: left ?? AppConstants.zero,
+        right: right ?? AppConstants.zero,
         color: AppColor.colorBlueClub,
         colorBorder: AppColor.colorWhiteLight,
         widget: Column(
           children: [
             SizedBox(
-              height: 10,
+              height: AppConstants.ten,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -266,8 +267,8 @@ class AccountingState extends State<AdminAccountingPage> {
                     children: [
                       AppUtils.commonImageSVGWidget(path: icEdit),
                       CommonTextWidget(
-                        left: 10,
-                        text: 'Add Note',
+                        left: AppConstants.ten,
+                        text: StringUtils.addNote,
                         fontWeight: FontWeight.w700,
                         textColor: AppColor.colorEdit,
                         textDecoration: TextDecoration.underline,
@@ -278,50 +279,52 @@ class AccountingState extends State<AdminAccountingPage> {
               ],
             ),
             SizedBox(
-              height: 10,
+              height: AppConstants.ten,
             ),
             showAllRecord(),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Expanded(
-                  flex: 5,
+                  flex: AppConstants.five.toInt(),
                   child: CommonButtonWidget(
                     onPressed: () {
                       AppUtils.commonDialog(
                           headerTitle: 'Add Note for Player name',
                           context: context,
                           child: Container(
-                            margin: AppUtils.commonAllEdgeInsets(left: 20,right: 20,bottom: 20),
+                            margin: AppUtils.commonAllEdgeInsets(
+                                left: AppConstants.twenty,
+                                right: AppConstants.twenty,
+                                bottom: AppConstants.twenty),
                             child: Column(
                               children: [
                                 CommonTextWidget(
-                                  fontSize: 14,
+                                  fontSize: AppConstants.fourteen,
                                   lineHeight: 1.5,
-
                                   textAlign: TextAlign.left,
-
                                   text:
                                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a orci sit amet purus\nsuscipit ullamcorper. ',
                                 ),
-                                AppUtils.commonSizedBox(height: 20),
+                                AppUtils.commonSizedBox(
+                                    height: AppConstants.twenty),
                                 AppUtils.commonInkWell(
-                                  onTap: (){
+                                  onTap: () {
                                     AppUtils.onBack(context);
                                     addNote(isEdit: true);
-
                                   },
                                   child: Row(
                                     children: [
-                                      AppUtils.commonImageSVGWidget(path: icEdit),
+                                      AppUtils.commonImageSVGWidget(
+                                          path: icEdit),
                                       CommonTextWidget(
-                                        left: 10,
-                                        fontSize: 14,
-
-                                        text: 'Edit Note',
+                                        left: AppConstants.ten,
+                                        fontSize: AppConstants.fourteen,
+                                        text: StringUtils.editNote,
                                         fontWeight: FontWeight.w700,
                                         textColor: AppColor.colorEdit,
-                                        textDecoration: TextDecoration.underline,
+                                        textDecoration:
+                                            TextDecoration.underline,
                                       ),
                                     ],
                                   ),
@@ -330,28 +333,30 @@ class AccountingState extends State<AdminAccountingPage> {
                             ),
                           ));
                     },
-                    fontSize: 12,
+                    fontSize: AppConstants.twelve,
                     marginTop: AppConstants.ten,
                     borderWidth: AppConstants.two,
                     colorBorder: AppColor.colorWhiteLight,
-                    text: 'Show Note',
-                    colorButton: Color.fromRGBO(81, 98, 137, 1),
+                    text: StringUtils.showNote,
+                    colorButton: AppColor.colorAddPlayer,
                   ),
                 ),
                 Expanded(
-                  flex: 5,
+                  flex: AppConstants.five.toInt(),
                   child: CommonButtonWidget(
                     onPressed: () {
                       AppUtils.commonDialog(
                           context: context,
                           child: Container(
                               margin: EdgeInsets.only(
-                                  left: 10, right: 10, bottom: 25),
-                              child: showAllRecord(fontSize: 10)),
+                                  left: AppConstants.ten,
+                                  right: AppConstants.ten,
+                                  bottom: AppConstants.twentyFour),
+                              child: showAllRecord(fontSize: AppConstants.ten)),
                           headerTitle: 'Player Name');
                     },
                     left: AppConstants.ten,
-                    fontSize: 12,
+                    fontSize: AppConstants.twelve,
                     right: AppConstants.ten,
                     marginTop: AppConstants.ten,
                     text: 'Show All records',
@@ -368,18 +373,19 @@ class AccountingState extends State<AdminAccountingPage> {
   Widget commonTopView(
       {String? text, String? desc, double? left, double? right}) {
     return AppUtils.commonBg(
-        top: 24,
-        radius: 16,
-        left: left ?? 0,
-        borderWidth: 2,
-        right: right ?? 0,
+        top: AppConstants.twentyFour,
+        radius: AppConstants.sixteen,
+        left: left ?? AppConstants.zero,
+        borderWidth: AppConstants.two,
+        right: right ?? AppConstants.zero,
         width: MediaQuery.of(context).size.width,
         color: AppColor.colorWt.withOpacity(1),
-        padding: 10,
+        padding: AppConstants.ten,
         colorBorder: AppColor.colorWhiteLight,
         // padding1: ,
         widget: Container(
-          padding: AppUtils.commonAllEdgeInsets(left: 5, right: 5),
+          padding: AppUtils.commonAllEdgeInsets(
+              left: AppConstants.five, right: AppConstants.five),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -387,39 +393,39 @@ class AccountingState extends State<AdminAccountingPage> {
               CommonTextWidget(
                 text: text ?? "5000",
                 fontWeight: FontWeight.w800,
-                fontSize: 16,
+                fontSize: AppConstants.sixteen,
               ),
-              AppUtils.commonSizedBox(height: 8),
+              AppUtils.commonSizedBox(height: AppConstants.eight),
               ListTile(
                 dense: true,
-                minVerticalPadding: 0,
-                horizontalTitleGap: 0,
+                minVerticalPadding: AppConstants.zero,
+                horizontalTitleGap: AppConstants.zero,
                 visualDensity: VisualDensity(vertical: -4, horizontal: -4),
                 contentPadding: EdgeInsets.zero,
                 leading: AppUtils.commonImageSVGWidget(path: icMan),
                 title: CommonTextWidget(
                   text: 'NLH 2/5 Behind Startford',
                   fontWeight: FontWeight.w500,
-                  fontSize: 14,
+                  fontSize: AppConstants.fourteen,
                 ),
               ),
               ListTile(
                 dense: true,
-                minVerticalPadding: 0,
-                horizontalTitleGap: 0,
+                minVerticalPadding: AppConstants.zero,
+                horizontalTitleGap: AppConstants.zero,
                 visualDensity: VisualDensity(vertical: -4, horizontal: -4),
                 contentPadding: EdgeInsets.zero,
                 leading: AppUtils.commonImageSVGWidget(path: icMan),
                 title: CommonTextWidget(
                   text: 'John Doe',
                   fontWeight: FontWeight.w500,
-                  fontSize: 14,
+                  fontSize: AppConstants.fourteen,
                 ),
               ),
               ListTile(
-                minVerticalPadding: 0,
+                minVerticalPadding: AppConstants.zero,
                 dense: true,
-                horizontalTitleGap: 0,
+                horizontalTitleGap: AppConstants.zero,
                 visualDensity: VisualDensity(vertical: -4, horizontal: -4),
                 contentPadding: EdgeInsets.zero,
                 leading: AppUtils.commonImageSVGWidget(path: icMan),
@@ -428,49 +434,53 @@ class AccountingState extends State<AdminAccountingPage> {
                     CommonTextWidget(
                       text: '4 Reservation',
                       fontWeight: FontWeight.w500,
-                      fontSize: 14,
+                      fontSize: AppConstants.fourteen,
                     ),
                     InkWell(
-                      onTap: (){
+                      onTap: () {
                         showDialog(
-
                           context: context,
                           builder: (BuildContext context) {
                             return SimpleDialog(
                               contentPadding: EdgeInsets.zero,
                               insetPadding: EdgeInsets.zero,
-
                               titlePadding: EdgeInsets.zero,
-                              elevation: 0,
-
+                              elevation: AppConstants.zero,
                               backgroundColor: AppColor.colorCommonDialog,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(AppConstants.twelve)),
+                                  borderRadius: BorderRadius.circular(
+                                      AppConstants.twelve)),
                               children: [
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width - 60,
-                                  child:Container(
-
+                                  child: Container(
                                       decoration: AppUtils.containerDecoration(
                                           color: Colors.transparent,
-                                          radius: 13,colorBorder: AppColor.colorWhiteLight,borderWidth: 3),
+                                          radius: AppConstants.thirteen,
+                                          colorBorder: AppColor.colorWhiteLight,
+                                          borderWidth: AppConstants.three),
                                       child: Column(
-
                                         children: [
-                                          AppUtils.commonSizedBox(height: AppConstants.twenty),
-
+                                          AppUtils.commonSizedBox(
+                                              height: AppConstants.twenty),
                                           Container(
-                                            margin: AppUtils.commonAllEdgeInsets(left: 20,right: 20),
+                                            margin:
+                                                AppUtils.commonAllEdgeInsets(
+                                                    left: AppConstants.twenty,
+                                                    right: AppConstants.twenty),
                                             child: Row(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 CommonTextWidget(
-                                                  left:AppConstants.ten,
+                                                  left: AppConstants.ten,
                                                   text: "Reservation List",
-
                                                   fontWeight: FontWeight.w800,
-                                                  fontSize: AppConstants.sixteen,
+                                                  fontSize:
+                                                      AppConstants.sixteen,
                                                 ),
                                                 AppUtils.commonInkWell(
                                                   onTap: () {
@@ -485,12 +495,12 @@ class AccountingState extends State<AdminAccountingPage> {
                                               ],
                                             ),
                                           ),
-                                          AppUtils.commonSizedBox(height: AppConstants.twenty),
+                                          AppUtils.commonSizedBox(
+                                              height: AppConstants.twenty),
                                           AppUtils.commonDivider(
                                             endIndent: AppConstants.zero,
                                             indent: AppConstants.zero,
                                           ),
-
                                           AppUtils.bindDialogList(),
                                         ],
                                       )),
@@ -503,8 +513,8 @@ class AccountingState extends State<AdminAccountingPage> {
                       child: CommonTextWidget(
                         text: 'Show members',
                         fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        left: 10,
+                        fontSize: AppConstants.fourteen,
+                        left: AppConstants.ten,
                         textDecoration: TextDecoration.underline,
                         textColor: AppColor.colorEdit,
                       ),
@@ -521,8 +531,8 @@ class AccountingState extends State<AdminAccountingPage> {
     return CommonTextWidget(
       text: text,
       textColor: colorText ?? AppColor.colorWhite,
-      left: 2,
-      fontSize: fontSize ?? 12,
+      left: AppConstants.two,
+      fontSize: fontSize ?? AppConstants.twelve,
     );
   }
 
@@ -533,9 +543,9 @@ class AccountingState extends State<AdminAccountingPage> {
       Color? colorText,
       double? fontSize}) {
     return AppUtils.commonBg(
-      left: 0,
-      right: 0,
-      padding: 8,
+      left: AppConstants.zero,
+      right: AppConstants.zero,
+      padding: AppConstants.eight,
       color: Color.fromRGBO(50, 69, 116, 1),
       widget: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -561,10 +571,10 @@ class AccountingState extends State<AdminAccountingPage> {
 
   Widget commonDivider() {
     return Container(
-      margin: EdgeInsets.only(left: 2, right: 2),
+      margin: EdgeInsets.only(left: AppConstants.two, right: AppConstants.two),
       child: VerticalDivider(
         thickness: 1,
-        width: 10,
+        width: AppConstants.ten,
         color: AppColor.colorWhiteLight,
       ),
     );
@@ -579,7 +589,7 @@ class AccountingState extends State<AdminAccountingPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Flexible(
-                  flex: 4,
+                  flex: AppConstants.four.toInt(),
                   child: commonRow(
                       fontSize: fontSize,
                       text1: 'Credit',
@@ -674,8 +684,12 @@ class AccountingState extends State<AdminAccountingPage> {
       ],
     );
   }
-  Widget addNote({bool? isEdit}){
-    isEdit??true?tetAddNote.text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a orci sit amet purus\nsuscipit ullamcorper.":tetAddNote.text="";
+
+  Widget addNote({bool? isEdit}) {
+    isEdit ?? true
+        ? tetAddNote.text =
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a orci sit amet purus\nsuscipit ullamcorper."
+        : tetAddNote.text = "";
     return AppUtils.commonDialog(
         context: context,
         onTapBtn2: () {
@@ -689,9 +703,9 @@ class AccountingState extends State<AdminAccountingPage> {
         headerTitle: 'Add Note for Player name',
         child: Container(
           child: CommonTextField(
-              maxLines: 5,
-              left: 10,
-              rigth: 10,
+              maxLines: AppConstants.five.toInt(),
+              left: AppConstants.ten,
+              rigth: AppConstants.ten,
               controller: tetAddNote,
               colorFill: AppColor.colorFillEditText,
               inputTypes: TextInputType.emailAddress,
@@ -702,68 +716,4 @@ class AccountingState extends State<AdminAccountingPage> {
               radius: AppConstants.eight),
         ));
   }
-
-/*  Widget bindList(){
-    return Container(
-      margin: AppUtils.commonAllEdgeInsets(left: 20,right: 20,top: 10,bottom: 20),
-      padding: const EdgeInsets.all(0.0),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-
-            CommonTextWidget(text: "4 Members",left:7,textAlign: TextAlign.left,fontSize: AppConstants.fourteen,margintop: AppConstants.four,),
-
-            AppUtils.commonSizedBox(height: 5),
-            ListView.builder(
-                shrinkWrap: true,
-                primary: false,
-
-                itemCount: 4,
-
-                padding: EdgeInsets.zero,
-                itemBuilder: (context, index) {
-                  return AppUtils.commonBg(
-                      padding1: AppUtils.commonAllEdgeInsets(left: 0,right: 0,bottom: 0,top: 0),
-                      radius: 16,
-
-
-                      borderWidth: 2,
-                      padding: 0,
-
-                      left: 0,
-
-                      right: 0,
-                      colorBorder: AppColor.colorWhiteLight,
-                      widget: ListTile(
-                        dense: true,
-                        minVerticalPadding: 0,
-                        contentPadding: EdgeInsets.only(left: 10,right: 10),
-                        horizontalTitleGap: 10,
-
-                        leading: SizedBox(
-                          width: 40,
-                          height: 40,
-                          child: AppUtils.commonImageAssetWidget(path: icGirlsIcon),
-                        ),
-                        trailing: AppUtils.commonInkWell(
-                            onTap: (){
-                              setState(() {
-                               // scheduleList1.removeAt(index);
-                              });
-                            },
-                            child: CommonTextWidget(
-                              fontSize:12,right:10,text: "Remove",textColor: AppColor.colorRemoveText,fontWeight: FontWeight.w700,)),
-                        title: CommonTextWidget(text: "Player name",fontSize:12),
-                        subtitle: CommonTextWidget(text: "ID 00756",fontSize:10),
-                      )
-                  );
-                })
-          ],
-        ),
-      ),
-    );
-  }*/
 }
