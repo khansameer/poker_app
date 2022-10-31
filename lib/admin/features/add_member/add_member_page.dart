@@ -46,27 +46,29 @@ class _AddMemberPageState extends State<AddMemberPage> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppUtils.commonAppBar(
-            context: context,
-            fontSize: AppConstants.sixteen,
-            title: StringUtils.newMemberDetails,
-            isShowEdit: false,
-            actionTitle: StringUtils.edit),
-        body: Container(
-          decoration: AppUtils.containerDecoration(
-              color: AppColor.colorDarkBlue, radius: 0),
-          child: CommonBgPage(
-            backImagePath: icDashboardBg,
-            margin: AppConstants.zero,
-            alignment: Alignment.topCenter,
-            imagePath: icDashboardimg,
-            widget: addMemberForm(),
+    return CommonBgPage(
+      backImagePath: icDashboardBg,
+      margin: AppConstants.zero,
+      alignment: Alignment.topCenter,
+      imagePath: icDashboardimg,
+      widget: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Scaffold(
+            backgroundColor: Colors.transparent,
+          appBar: AppUtils.commonAppBar(
+              context: context,
+              fontSize: AppConstants.sixteen,
+              title: StringUtils.newMemberDetails,
+              isShowEdit: false,
+              actionTitle: StringUtils.edit),
+          body: Container(
+
+            decoration: AppUtils.containerDecoration(
+
+                color: AppColor.colorDarkBlue.withOpacity(0.5), radius: 0),
+            child: addMemberForm(),
           ),
         ),
       ),

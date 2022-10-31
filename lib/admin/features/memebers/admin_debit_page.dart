@@ -38,7 +38,7 @@ class AdminDebitPageState extends State<AdminDebitPage> {
               radius: 16,
 
 
-              borderWidth: 3,
+              borderWidth: 2,
               padding: 0,
 
               left: 0,

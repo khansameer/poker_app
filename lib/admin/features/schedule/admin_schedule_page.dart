@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:poker/core/common/RatingDialog.dart';
+
 import 'package:poker/core/common/common_bg_page.dart';
 import 'package:poker/core/common/common_button_widget.dart';
 import 'package:poker/core/common/common_text_widget.dart';
@@ -110,6 +110,7 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
     return ListView.builder(
         shrinkWrap: true,
         primary: false,
+
         itemCount: scheduleList.length,
         padding: EdgeInsets.zero,
         itemBuilder: (context, index) {

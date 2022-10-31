@@ -65,12 +65,55 @@ class EventPageState extends State<EventPage>{
   }
 
   Widget bindListView() {
-    return GridView.builder(
+    return ListView.builder(
+
+        // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        //     crossAxisCount: widget.isAdmin??true?2:1,
+        //     mainAxisSpacing: 5,
+        //     childAspectRatio: widget.isAdmin??true?1:(2 / 1)/*(2 / 1)*/,
+        //     crossAxisSpacing: 0),
+        shrinkWrap: true,
+        primary: false,
+        itemCount: commonList.length,
+        padding: EdgeInsets.zero,
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: (){
+              AppUtils.redirectToNextScreen(context: context,screenName: RouteName.eventDetails);
+
+            },
+            child: Container(
+              height: 200,
+              decoration: AppUtils.containerDecoration(
+                  borderWidth: AppConstants.three,
+                  radius: AppConstants.sixteen,
+                  color: AppColor.colorBlueClub),
+              margin: EdgeInsets.all(AppConstants.five),
+              padding: EdgeInsets.only(
+                  left: AppConstants.zero,
+                  right: AppConstants.zero,
+                  top: AppConstants.zero,
+                  bottom: AppConstants.zero),
+              child: Container(
+                margin: EdgeInsets.all(AppConstants.five),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(AppConstants.fourteen)),
+                    child: Container(
+
+                      child: AppUtils.commonImageAssetWidget(
+                          height: MediaQuery.of(context).size.height,
+
+                          width:double.infinity,path: commonList[index].title,boxFit: BoxFit.cover),
+                    )),
+              ),
+            ),
+          );
+        }) /*GridView.builder(
 
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: widget.isAdmin??true?2:1,
             mainAxisSpacing: 5,
-            childAspectRatio: widget.isAdmin??true?1:(2 / 1)/*(2 / 1)*/,
+            childAspectRatio: widget.isAdmin??true?1:(2 / 1)*//*(2 / 1)*//*,
             crossAxisSpacing: 0),
         shrinkWrap: true,
         primary: false,
@@ -99,15 +142,16 @@ class EventPageState extends State<EventPage>{
                 child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(AppConstants.fourteen)),
                     child: Container(
-                      
+
                       child: AppUtils.commonImageAssetWidget(
-                        
-                          width:double.infinity,path: commonList[index].title,height:200,boxFit: BoxFit.fill),
+                        height: MediaQuery.of(context).size.height,
+
+                          width:double.infinity,path: commonList[index].title,boxFit: BoxFit.fitHeight),
                     )),
               ),
             ),
           );
-        });
+        })*/;
   }
 
 

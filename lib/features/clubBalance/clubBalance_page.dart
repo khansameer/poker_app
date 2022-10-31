@@ -278,7 +278,7 @@ class ClubBalancePageState extends State<ClubBalancePage> {
         itemBuilder: (context, index) {
           return Container(
             decoration: AppUtils.containerDecoration(
-                borderWidth: AppConstants.four,
+                borderWidth: AppConstants.two,
                 radius: AppConstants.sixteen,
                 color: AppColor.colorBlueClub),
             margin: EdgeInsets.only(top: AppConstants.five,bottom: AppConstants.five),

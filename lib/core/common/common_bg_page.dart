@@ -35,9 +35,11 @@ class CommonBgPage extends StatelessWidget {
           height: double.infinity,
           decoration:  BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(imagePath!), fit: BoxFit.cover)),
+                  image: AssetImage(imagePath!), fit: BoxFit.fill)),
         ),
         Container(
+          width: double.infinity,
+          height: double.infinity,
           decoration:  BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(backImagePath??icLoginBg), fit: BoxFit.fill)),

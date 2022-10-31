@@ -205,7 +205,7 @@ class AdminCreditFileState extends State<AdminCreditFilePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
-                    CommonTextWidget(text: "Player name",textColor: AppColor.colorWhite.withOpacity(0.7),left: 10,fontSize: fontSize,),
+                    CommonTextWidget(text: "Player name",textColor: AppColor.colorWhite.withOpacity(1),left: 10,fontSize: fontSize,fontWeight: FontWeight.w800,),
                     CommonTextWidget(margintop:4,text: "ID 00756",textColor: AppColor.colorWhite.withOpacity(0.7),left: 10,fontSize: fontSize,),
                   ],
                 )

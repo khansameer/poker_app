@@ -125,6 +125,9 @@ class AppUtils {
         )
       ],
       leading: IconButton(
+        highlightColor: Colors.transparent,
+
+        splashColor: Colors.transparent,
         icon: Icon(
           Icons.arrow_back_ios,
           color: Colors.white,

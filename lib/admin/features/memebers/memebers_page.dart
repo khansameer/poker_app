@@ -246,7 +246,7 @@ class _MembersPageState extends State<MembersPage> with SingleTickerProviderStat
         AppUtils.commonBg(
           radius: 16,
           left: 0,
-            borderWidth: 3,
+            borderWidth: 2,
             colorBorder: AppColor.colorWhiteLight,
           right: 0,
           bottom: 0,
@@ -266,7 +266,7 @@ class _MembersPageState extends State<MembersPage> with SingleTickerProviderStat
             right: 0,
             bottom: 0,
             radius: 16,
-            borderWidth: 3,
+            borderWidth: 2,
             colorBorder: AppColor.colorWhiteLight,
             color: AppColor.colorBlueClub,
             top: 0,
