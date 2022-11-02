@@ -6,7 +6,7 @@ import 'package:poker/core/services/network_repository.dart';
 import 'package:poker/core/utils/PreferenceHelper.dart';
 import 'package:poker/features/login/model/login_model.dart';
 
-class Provider{
+class LoginProvider with ChangeNotifier{
   static Future<LoginModel> loginUser(
       String email, String pass, BuildContext context) async {
     Map<String, dynamic> body = {

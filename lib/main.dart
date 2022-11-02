@@ -3,18 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:poker/core/route.dart';
 import 'package:poker/core/route_generator.dart';
+import 'package:poker/core/services/provider/provider.dart';
+import 'package:poker/core/utils/PreferenceHelper.dart';
 import 'package:poker/core/utils/app_color.dart';
-import 'package:poker/features/login/login_page.dart';
-import 'package:poker/features/signup/signup_page.dart';
 import 'package:poker/features/splash/splash_page.dart';
+import 'package:provider/provider.dart';
+
+import 'package:provider/single_child_widget.dart';
+
+
+List<SingleChildWidget> providers = [
+  ChangeNotifierProvider<LoginProvider>(create: (_) => LoginProvider()),
+];
+
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
 
+  WidgetsFlutterBinding.ensureInitialized();
+  PreferenceHelper.load().then((value) {});
   await Firebase.initializeApp(
   );
-  runApp(const MyApp());
-}
+  runApp(
+    MultiProvider(
+      providers: providers,
+      child: const MyApp(),
+    ),
+  );}
 
 class MyApp extends StatelessWidget {
   static GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();

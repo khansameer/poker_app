@@ -177,22 +177,6 @@ class _AddMemberPageState extends State<AddMemberPage> {
           selected: true,
         ),
 
-       // RadioListTile(value: value, groupValue: groupValue, onChanged: onChanged)
-        /*RadioListTile(
-          dense: true,
-          selectedTileColor: AppColor.colorBlue,
-          contentPadding: const EdgeInsets.all(0),
-          value: 1,
-          groupValue: _groupValue,
-          title: CommonTextWidget(
-              text: StringUtils.manager,
-              textColor: AppColor.colorWhite,
-              fontSize: AppConstants.fourteen,
-              fontWeight: FontWeight.w400),
-          onChanged: (newValue) => setState(() => _groupValue = newValue ?? -1),
-          activeColor: AppColor.colorEdit,
-          selected: true,
-        ),*/
       ],
     );
   }

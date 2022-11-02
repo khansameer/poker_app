@@ -27,7 +27,7 @@ class Data {
   String? name;
   String? email;
   int? currentTeamId;
- // String? appView;
+  String? appView;
   String? createdAt;
   String? updatedAt;
   String? profilePhotoUrl;
@@ -49,7 +49,7 @@ class Data {
     email = json['email'];
     currentTeamId = json['current_team_id'];
 
-   // appView = json['app_view'];
+    appView = json['app_view'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     profilePhotoUrl = json['profile_photo_url'];
@@ -62,7 +62,7 @@ class Data {
     data['email'] = this.email;
 
     data['current_team_id'] = this.currentTeamId;
-    //data['app_view'] = this.appView;
+    data['app_view'] = this.appView;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     data['profile_photo_url'] = this.profilePhotoUrl;

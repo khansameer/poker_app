@@ -58,232 +58,237 @@ class LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return CommonBgPage(
+    return  CommonBgPage(
       isLogin: true,
       imagePath: icBackground,
       widget: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Container(
-          margin: AppUtils.commonAllEdgeInsets(
-              left: AppConstants.twenty, right: AppConstants.twenty),
-          alignment: Alignment.center,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                AppUtils.commonSizedBox(
-                  height: AppConstants.thirtyFive,
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: AppUtils.commonImageAssetWidget(
-                      path: icLogo,
-                      height: AppConstants.eightyFour,
-                      width: AppConstants.oneHundredTwentyTwo),
-                ),
-                CommonTextWidget(
-                  text: StringUtils.login,
-                  fontWeight: FontWeight.w700,
-                  margintop: AppConstants.fortyFive,
-                  fontSize: AppConstants.twenty,
-                ),
-                CommonTextWidget(
-                  text: StringUtils.email,
-                  margintop: AppConstants.thirtyFive,
-                ),
-                CommonTextField(
-                    controller: tetEmail,
-                    inputTypes: TextInputType.emailAddress,
-                    marginTop: AppConstants.ten,
-                    hint: StringUtils.emailHint,
-                    iconWidget: const Icon(
-                      Icons.email_outlined,
-                      color: AppColor.colorWhite,
-                    ),
-                    fontSize: AppConstants.fourteen,
-                    fontWeight: FontWeight.w500,
-                    radius: AppConstants.eight),
-                CommonTextWidget(
-                    text: StringUtils.password,
-                    margintop: AppConstants.eighteen),
-                CommonTextField(
-                    controller: tetPassword,
-                    obscureText: obscureText,
-                    suffixIcon: AppUtils.commonInkWell(
-                        child: !obscureText
-                            ? AppUtils.commonIcon(
-                                icon: Icons.visibility,
-                              )
-                            : AppUtils.commonIcon(
-                                icon: Icons.visibility_off,
-                              ),
-                        onTap: () {
-                          setState(() {
-                            obscureText = !obscureText;
-                          });
-                        }),
-                    inputTypes: TextInputType.visiblePassword,
-                    marginTop: AppConstants.ten,
-                    hint: StringUtils.password,
-                    iconWidget: const Icon(
-                      Icons.lock_outline,
-                      color: AppColor.colorWhite,
-                    ),
-                    fontSize: AppConstants.fourteen,
-                    fontWeight: FontWeight.w500,
-                    radius: AppConstants.eight),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: AppUtils.commonInkWell(
-                    onTap: onClickForgot,
-                    child: CommonTextWidget(
-                        textDecoration: TextDecoration.underline,
-                        text: StringUtils.forgotPassword,
-                        margintop: AppConstants.twenty),
-                  ),
-                ),
-                CommonButtonWidget(
-                    text: StringUtils.login,
-                    onPressed: onClickLogin,
-                    marginTop: AppConstants.twentyFour),
-                Container(
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.only(top: AppConstants.thirtyFive),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AppUtils.commonSizedBox(
-                        width: AppConstants.ninetySeven,
-                        child: Divider(
-                            color: AppColor.colorWhiteLight,
-                            height: AppConstants.two,
-                            thickness: AppConstants.two),
-                      ),
-                      CommonTextWidget(
-                          left: AppConstants.ten,
-                          right: AppConstants.ten,
-                          text: StringUtils.connectWith.toCapitalize()),
-                      Expanded(
-                        child: AppUtils.commonSizedBox(
-                          width: AppConstants.ninetySeven,
-                          child: Divider(
-                              color: AppColor.colorWhiteLight,
-                              height: AppConstants.two,
-                              thickness: AppConstants.two),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Row(
+        body: Stack(
+          children: [
+            Container(
+              margin: AppUtils.commonAllEdgeInsets(
+                  left: AppConstants.twenty, right: AppConstants.twenty),
+              alignment: Alignment.center,
+              child: SingleChildScrollView(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
                   children: [
-                    commonButton(
-                        top: AppConstants.sixteen,
-                        path: icFacebook,
-                        onTap: () {
-                          _login();
-                        }),
-                    commonButton(
-                        left: AppConstants.sixteen,
-                        top: AppConstants.sixteen,
-                        path: icGoogle,
-                        onTap: () {
-                          signInWithGoogle().then((result){
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return const SignupPage();
-                                },
-                              ),
-                            );
-                          });
-                         // signInWithGoogle();
-                        }),
-                    commonButton(
-                        left: AppConstants.sixteen,
-                        top: AppConstants.sixteen,
-                        path: icLinkedin,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (final BuildContext context) =>
-                                  LinkedInUserWidget(
-                                appBar: AppBar(
-                                  title: const Text('OAuth User'),
-                                ),
-                                destroySession: logoutUser,
-                                redirectUrl: redirectUrl,
-                                clientId: clientId,
-                                clientSecret: clientSecret,
-                                projection: const [
-                                  ProjectionParameters.id,
-                                  ProjectionParameters.localizedFirstName,
-                                  ProjectionParameters.localizedLastName,
-                                  ProjectionParameters.firstName,
-                                  ProjectionParameters.lastName,
-                                  ProjectionParameters.profilePicture,
-                                ],
-                                onError: (final UserFailedAction e) {
-                                  print('Error: ${e.toString()}');
-                                  print('Error: ${e.stackTrace.toString()}');
-                                },
-                                onGetUserProfile:
-                                    (final UserSucceededAction linkedInUser) {
-                                  print(
-                                    'Access token ${linkedInUser.user.token.accessToken}',
-                                  );
-
-                                  print('User id: ${linkedInUser.user.userId}');
-
-                                  user = UserObject(
-                                    firstName: linkedInUser
-                                        ?.user?.firstName?.localized?.label,
-                                    lastName: linkedInUser
-                                        ?.user?.lastName?.localized?.label,
-                                    email: linkedInUser
-                                        ?.user
-                                        ?.email
-                                        ?.elements![0]
-                                        ?.handleDeep
-                                        ?.emailAddress,
-                                    profileImageUrl: linkedInUser
-                                        ?.user
-                                        ?.profilePicture
-                                        ?.displayImageContent
-                                        ?.elements![0]
-                                        ?.identifiers![0]
-                                        ?.identifier,
-                                  );
-
-                                  setState(() {
-                                    logoutUser = false;
-                                  });
-
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              fullscreenDialog: true,
+                    AppUtils.commonSizedBox(
+                      height: AppConstants.thirtyFive,
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: AppUtils.commonImageAssetWidget(
+                          path: icLogo,
+                          height: AppConstants.eightyFour,
+                          width: AppConstants.oneHundredTwentyTwo),
+                    ),
+                    CommonTextWidget(
+                      text: StringUtils.login,
+                      fontWeight: FontWeight.w700,
+                      margintop: AppConstants.fortyFive,
+                      fontSize: AppConstants.twenty,
+                    ),
+                    CommonTextWidget(
+                      text: StringUtils.email,
+                      margintop: AppConstants.thirtyFive,
+                    ),
+                    CommonTextField(
+                        controller: tetEmail,
+                        inputTypes: TextInputType.emailAddress,
+                        marginTop: AppConstants.ten,
+                        hint: StringUtils.emailHint,
+                        iconWidget: const Icon(
+                          Icons.email_outlined,
+                          color: AppColor.colorWhite,
+                        ),
+                        fontSize: AppConstants.fourteen,
+                        fontWeight: FontWeight.w500,
+                        radius: AppConstants.eight),
+                    CommonTextWidget(
+                        text: StringUtils.password,
+                        margintop: AppConstants.eighteen),
+                    CommonTextField(
+                        controller: tetPassword,
+                        obscureText: obscureText,
+                        suffixIcon: AppUtils.commonInkWell(
+                            child: !obscureText
+                                ? AppUtils.commonIcon(
+                                    icon: Icons.visibility,
+                                  )
+                                : AppUtils.commonIcon(
+                                    icon: Icons.visibility_off,
+                                  ),
+                            onTap: () {
+                              setState(() {
+                                obscureText = !obscureText;
+                              });
+                            }),
+                        inputTypes: TextInputType.visiblePassword,
+                        marginTop: AppConstants.ten,
+                        hint: StringUtils.password,
+                        iconWidget: const Icon(
+                          Icons.lock_outline,
+                          color: AppColor.colorWhite,
+                        ),
+                        fontSize: AppConstants.fourteen,
+                        fontWeight: FontWeight.w500,
+                        radius: AppConstants.eight),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: AppUtils.commonInkWell(
+                        onTap: onClickForgot,
+                        child: CommonTextWidget(
+                            textDecoration: TextDecoration.underline,
+                            text: StringUtils.forgotPassword,
+                            margintop: AppConstants.twenty),
+                      ),
+                    ),
+                    CommonButtonWidget(
+                        text: StringUtils.login,
+                        onPressed: onClickLogin,
+                        marginTop: AppConstants.twentyFour),
+                    Container(
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.only(top: AppConstants.thirtyFive),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppUtils.commonSizedBox(
+                            width: AppConstants.ninetySeven,
+                            child: Divider(
+                                color: AppColor.colorWhiteLight,
+                                height: AppConstants.two,
+                                thickness: AppConstants.two),
+                          ),
+                          CommonTextWidget(
+                              left: AppConstants.ten,
+                              right: AppConstants.ten,
+                              text: StringUtils.connectWith.toCapitalize()),
+                          Expanded(
+                            child: AppUtils.commonSizedBox(
+                              width: AppConstants.ninetySeven,
+                              child: Divider(
+                                  color: AppColor.colorWhiteLight,
+                                  height: AppConstants.two,
+                                  thickness: AppConstants.two),
                             ),
-                          );
-                        }),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        commonButton(
+                            top: AppConstants.sixteen,
+                            path: icFacebook,
+                            onTap: () {
+                              _login();
+                            }),
+                        commonButton(
+                            left: AppConstants.sixteen,
+                            top: AppConstants.sixteen,
+                            path: icGoogle,
+                            onTap: () {
+                              signInWithGoogle().then((result){
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return const SignupPage();
+                                    },
+                                  ),
+                                );
+                              });
+                             // signInWithGoogle();
+                            }),
+                        commonButton(
+                            left: AppConstants.sixteen,
+                            top: AppConstants.sixteen,
+                            path: icLinkedin,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (final BuildContext context) =>
+                                      LinkedInUserWidget(
+                                    appBar: AppBar(
+                                      title: const Text('OAuth User'),
+                                    ),
+                                    destroySession: logoutUser,
+                                    redirectUrl: redirectUrl,
+                                    clientId: clientId,
+                                    clientSecret: clientSecret,
+                                    projection: const [
+                                      ProjectionParameters.id,
+                                      ProjectionParameters.localizedFirstName,
+                                      ProjectionParameters.localizedLastName,
+                                      ProjectionParameters.firstName,
+                                      ProjectionParameters.lastName,
+                                      ProjectionParameters.profilePicture,
+                                    ],
+                                    onError: (final UserFailedAction e) {
+                                      print('Error: ${e.toString()}');
+                                      print('Error: ${e.stackTrace.toString()}');
+                                    },
+                                    onGetUserProfile:
+                                        (final UserSucceededAction linkedInUser) {
+                                      print(
+                                        'Access token ${linkedInUser.user.token.accessToken}',
+                                      );
+
+                                      print('User id: ${linkedInUser.user.userId}');
+
+                                      user = UserObject(
+                                        firstName: linkedInUser
+                                            ?.user?.firstName?.localized?.label,
+                                        lastName: linkedInUser
+                                            ?.user?.lastName?.localized?.label,
+                                        email: linkedInUser
+                                            ?.user
+                                            ?.email
+                                            ?.elements![0]
+                                            ?.handleDeep
+                                            ?.emailAddress,
+                                        profileImageUrl: linkedInUser
+                                            ?.user
+                                            ?.profilePicture
+                                            ?.displayImageContent
+                                            ?.elements![0]
+                                            ?.identifiers![0]
+                                            ?.identifier,
+                                      );
+
+                                      setState(() {
+                                        logoutUser = false;
+                                      });
+
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  fullscreenDialog: true,
+                                ),
+                              );
+                            }),
+                      ],
+                    ),
+                    Center(
+                      child: AppUtils.richText(
+                          top: AppConstants.thirty,
+                          text: StringUtils.anAccount,
+                          onTap: onClickSignUp,
+                          linkText: StringUtils.signup),
+                    ),
                   ],
                 ),
-                Center(
-                  child: AppUtils.richText(
-                      top: AppConstants.thirty,
-                      text: StringUtils.anAccount,
-                      onTap: onClickSignUp,
-                      linkText: StringUtils.signup),
-                ),
-              ],
+              ),
             ),
-          ),
+            isLoading ? AppUtils.showLoader(true) : SizedBox(),
+          ],
         ),
       ),
     );
@@ -333,7 +338,7 @@ class LoginPageState extends State<LoginPage> {
       AppUtils.showMessage(
           context: context, message: StringUtils.validPasswordRegex);
     }else {
-      AppUtils.showLoader(true);
+
       callLoginApi();
 
 
@@ -356,14 +361,15 @@ class LoginPageState extends State<LoginPage> {
       isLoading = true;
     });
     LoginModel loginModel =
-    await Provider.loginUser(tetEmail.text.toString(), tetPassword.text.toString(), context);
+    await LoginProvider.loginUser(tetEmail.text.toString(), tetPassword.text.toString(), context);
 
     if (loginModel.success != null && loginModel.success == true) {
       userInfo = loginModel.data;
       PreferenceHelper.setBool(PreferenceHelper.IS_LOGIN, true);
-
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil(RouteName.dashboard, (route) => false);
+      /*print('====userInfo${userInfo!.appView}');*/
+      AppUtils.redirectToNextScreen(context: context,screenName: RouteName.dashboard,arguments: false);
+    /*  Navigator.of(context)
+          .pushNamedAndRemoveUntil(RouteName.dashboard, (route) => false);*/
       AppUtils.showMessage(
           context: context, message: StringUtils.LOGIN_MESSAGE, backgroundColor: AppColor.colorGreen);
     } else {

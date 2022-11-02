@@ -36,7 +36,7 @@ class _ProgressIndicatorWidgetState extends State<ProgressIndicatorWidget>
   @override
   Widget build(BuildContext context) {
     return CircularProgressIndicator(
-      valueColor: AlwaysStoppedAnimation<Color>(AppColor.colorBlue),
+      valueColor: AlwaysStoppedAnimation<Color>(AppColor.colorWhite),
     );
   }
 }

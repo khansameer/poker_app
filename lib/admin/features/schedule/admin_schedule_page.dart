@@ -147,70 +147,74 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
-                          return SimpleDialog(
-                            contentPadding: EdgeInsets.zero,
-                            insetPadding: EdgeInsets.zero,
-                            titlePadding: EdgeInsets.zero,
-                            elevation: AppConstants.zero,
-                            backgroundColor: AppColor.colorCommonDialog,
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(AppConstants.twelve)),
-                            children: [
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width -
-                                    AppConstants.sixty,
-                                child: Container(
-                                    decoration: AppUtils.containerDecoration(
-                                        color: Colors.transparent,
-                                        radius: AppConstants.thirteen,
-                                        colorBorder: AppColor.colorWhiteLight,
-                                        borderWidth: AppConstants.three),
-                                    child: Column(
-                                      children: [
-                                        AppUtils.commonSizedBox(
-                                            height: AppConstants.twenty),
-                                        Container(
-                                          margin: AppUtils.commonAllEdgeInsets(
-                                              left: AppConstants.twenty,
-                                              right: AppConstants.twenty),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              CommonTextWidget(
-                                                left: AppConstants.ten,
-                                                text: StringUtils
-                                                    .reservationList /* "Reservation List"*/,
-                                                fontWeight: FontWeight.w800,
-                                                fontSize: AppConstants.eighteen,
+                          return StatefulBuilder(
+                            builder: (context,setStates) {
+                              return SimpleDialog(
+                                contentPadding: EdgeInsets.zero,
+                                insetPadding: EdgeInsets.zero,
+                                titlePadding: EdgeInsets.zero,
+                                elevation: AppConstants.zero,
+                                backgroundColor: AppColor.colorCommonDialog,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.circular(AppConstants.twelve)),
+                                children: [
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width -
+                                        AppConstants.sixty,
+                                    child: Container(
+                                        decoration: AppUtils.containerDecoration(
+                                            color: Colors.transparent,
+                                            radius: AppConstants.thirteen,
+                                            colorBorder: AppColor.colorWhiteLight,
+                                            borderWidth: AppConstants.three),
+                                        child: Column(
+                                          children: [
+                                            AppUtils.commonSizedBox(
+                                                height: AppConstants.twenty),
+                                            Container(
+                                              margin: AppUtils.commonAllEdgeInsets(
+                                                  left: AppConstants.twenty,
+                                                  right: AppConstants.twenty),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  CommonTextWidget(
+                                                    left: AppConstants.ten,
+                                                    text: StringUtils
+                                                        .reservationList /* "Reservation List"*/,
+                                                    fontWeight: FontWeight.w800,
+                                                    fontSize: AppConstants.eighteen,
+                                                  ),
+                                                  AppUtils.commonInkWell(
+                                                    onTap: () {
+                                                      AppUtils.onBack(context);
+                                                    },
+                                                    child: AppUtils.commonIcon(
+                                                      icon: Icons.close,
+                                                      color: AppColor.colorWhite,
+                                                      size: AppConstants.twentyFour,
+                                                    ),
+                                                  )
+                                                ],
                                               ),
-                                              AppUtils.commonInkWell(
-                                                onTap: () {
-                                                  AppUtils.onBack(context);
-                                                },
-                                                child: AppUtils.commonIcon(
-                                                  icon: Icons.close,
-                                                  color: AppColor.colorWhite,
-                                                  size: AppConstants.twentyFour,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        AppUtils.commonSizedBox(
-                                            height: AppConstants.twenty),
-                                        AppUtils.commonDivider(
-                                          endIndent: AppConstants.zero,
-                                          indent: AppConstants.zero,
-                                        ),
-                                        bindList(),
-                                      ],
-                                    )),
-                              )
-                            ],
+                                            ),
+                                            AppUtils.commonSizedBox(
+                                                height: AppConstants.twenty),
+                                            AppUtils.commonDivider(
+                                              endIndent: AppConstants.zero,
+                                              indent: AppConstants.zero,
+                                            ),
+                                            bindList(setStates),
+                                          ],
+                                        )),
+                                  )
+                                ],
+                              );
+                            }
                           );
                         },
                       );
@@ -249,7 +253,7 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
     );
   }
 
-  Widget bindList() {
+  Widget bindList(setS) {
     return Container(
       margin: AppUtils.commonAllEdgeInsets(
           left: AppConstants.twenty,
@@ -303,7 +307,7 @@ class ScheduleAdminPageState extends State<AdminSchedulePage> {
                         ),
                         trailing: AppUtils.commonInkWell(
                             onTap: () {
-                              setState(() {
+                              setS(() {
                                 scheduleList1.removeAt(index);
                               });
                             },

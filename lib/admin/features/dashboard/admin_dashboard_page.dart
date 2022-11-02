@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:poker/core/common/RatingDialog.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/route.dart';
 import 'package:poker/core/utils/app_color.dart';
@@ -41,20 +40,25 @@ class DashboardPageState extends State<AdminDashboardPage> {
 
   void onClickEvent() {}
 
-  void onClickMembers(){
-    AppUtils.redirectToNextScreen(context: context,screenName: RouteName.membersPage);
-  } void onClickCounter(){
-    AppUtils.redirectToNextScreen(context: context,screenName: RouteName.adminCounter);
+  void onClickMembers() {
+    AppUtils.redirectToNextScreen(
+        context: context, screenName: RouteName.membersPage);
   }
 
-  void onClickAddMember(){
-    AppUtils.redirectToNextScreen(context: context,screenName: RouteName.addMemberPage);
-  }
-  void onClickSetting(){
-    AppUtils.redirectToNextScreen(context: context,screenName: RouteName.adminSchedule);
+  void onClickCounter() {
+    AppUtils.redirectToNextScreen(
+        context: context, screenName: RouteName.adminCounter);
   }
 
+  void onClickAddMember() {
+    AppUtils.redirectToNextScreen(
+        context: context, screenName: RouteName.addMemberPage);
+  }
 
+  void onClickSetting() {
+    AppUtils.redirectToNextScreen(
+        context: context, screenName: RouteName.adminSchedule);
+  }
 
   loadVIew() {
     dashboardList.add(DashboardBean(
@@ -82,11 +86,12 @@ class DashboardPageState extends State<AdminDashboardPage> {
         icon: venue,
         text: StringUtils.accounting,
         imageTrans: icVenueTrans));
-    dashboardList.add(DashboardBean(
-        image: icLiveStrem,
-        icon: video,
-        text: StringUtils.liveStream,
-        imageTrans: icLiveStreamTrans),
+    dashboardList.add(
+      DashboardBean(
+          image: icLiveStrem,
+          icon: video,
+          text: StringUtils.liveStream,
+          imageTrans: icLiveStreamTrans),
     );
   }
 
@@ -100,9 +105,8 @@ class DashboardPageState extends State<AdminDashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       key: _scaffoldKey,
-   //   bottomNavigationBar: bottomNavigationBarWidget(),
+      //   bottomNavigationBar: bottomNavigationBarWidget(),
       body: Container(
         decoration: AppUtils.dashboard(),
         child: Container(
@@ -127,13 +131,12 @@ class DashboardPageState extends State<AdminDashboardPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-
                           Expanded(
                               child: Image.asset(
-                                icLogo,
-                                width: AppConstants.oneHundredTwentyTwo,
-                                height: AppConstants.eightyFour,
-                              )),
+                            icLogo,
+                            width: AppConstants.oneHundredTwentyTwo,
+                            height: AppConstants.eightyFour,
+                          )),
                         ],
                       ),
                       adminWelcomeTitle(),
@@ -142,7 +145,6 @@ class DashboardPageState extends State<AdminDashboardPage> {
                     ],
                   ),
                 ),
-
               ],
             ),
           ),
@@ -176,19 +178,16 @@ class DashboardPageState extends State<AdminDashboardPage> {
 
   Widget bottomNavigationBarWidget() {
     return Container(
-        padding: EdgeInsets.only(
-          top: 15,
-          bottom: 15
-        ),
+        padding: EdgeInsets.only(top: AppConstants.fifteen, bottom: AppConstants.fifteen),
         margin: EdgeInsets.only(
             top: AppConstants.twenty,
             left: AppConstants.fifteen,
             right: AppConstants.fifteen,
             bottom: AppConstants.twenty),
         decoration: AppUtils.containerDecoration(
-
-            color: AppColor.colorFbLight.withOpacity(1), radius: AppConstants.fifteen),
-        height: 100,
+            color: AppColor.colorFbLight.withOpacity(1),
+            radius: AppConstants.fifteen),
+        height: AppConstants.oneHundred,
         // color: AppColor.colorFbLight,
         child: Row(
           mainAxisSize: MainAxisSize.max,
@@ -196,16 +195,24 @@ class DashboardPageState extends State<AdminDashboardPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             commonBottomNavTabs(
-                path: icMembers, title: StringUtils.members, onTap: onClickMembers),
+                path: icMembers,
+                title: StringUtils.members,
+                onTap: onClickMembers),
             commonBottomNavTabs(
-                path: icCounter, title: StringUtils.counter,onTap: onClickCounter),
+                path: icCounter,
+                title: StringUtils.counter,
+                onTap: onClickCounter),
             commonBottomNavTabs(
-                path: icAddMember, title: StringUtils.addMember, onTap: onClickAddMember),
+                path: icAddMember,
+                title: StringUtils.addMember,
+                onTap: onClickAddMember),
             commonBottomNavTabs(
-                path: icSettings, title: StringUtils.settings,onTap: (){
-              AppUtils.redirectToNextScreen(
-                  context: context, screenName: RouteName.profile);
-            }),
+                path: icSettings,
+                title: StringUtils.settings,
+                onTap: () {
+                  AppUtils.redirectToNextScreen(
+                      context: context, screenName: RouteName.profile);
+                }),
           ],
         ));
   }
@@ -219,7 +226,8 @@ class DashboardPageState extends State<AdminDashboardPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-           decoration: AppUtils.containerDecoration(radius: 13,color: Color.fromRGBO(83, 67, 198, 1)),
+            decoration: AppUtils.containerDecoration(
+                radius: AppConstants.thirteen, color: Color.fromRGBO(83, 67, 198, 1)),
             child: AppUtils.commonImageAssetWidget(
                 width: AppConstants.forty,
                 boxFit: BoxFit.scaleDown,
@@ -285,7 +293,8 @@ class DashboardPageState extends State<AdminDashboardPage> {
           return GestureDetector(
             onTap: () {
               if (index == 0) {
-                AppUtils.redirectToNextScreen(context: context,screenName: RouteName.adminSchedule);
+                AppUtils.redirectToNextScreen(
+                    context: context, screenName: RouteName.adminSchedule);
               }
               if (index == 1) {
                 AppUtils.redirectToNextScreen(
@@ -293,7 +302,8 @@ class DashboardPageState extends State<AdminDashboardPage> {
               }
               if (index == 2) {
                 AppUtils.redirectToNextScreen(
-                    context: context, screenName: RouteName.adminCreditFilePage);
+                    context: context,
+                    screenName: RouteName.adminCreditFilePage);
               }
               if (index == 3) {
                 AppUtils.redirectToNextScreen(
@@ -304,12 +314,13 @@ class DashboardPageState extends State<AdminDashboardPage> {
                     context: context, screenName: RouteName.adminAccounting);
               }
               if (index == 5) {
-               AppUtils.redirectToNextScreen(
-                    context: context, screenName: RouteName.liveStream,arguments: true);
+                AppUtils.redirectToNextScreen(
+                    context: context,
+                    screenName: RouteName.liveStream,
+                    arguments: true);
               }
             },
             child: AppUtils.commonGridView(
-
                 imageTrans: dashboardList[index].imageTrans,
                 imagePath: dashboardList[index].image,
                 text: dashboardList[index].text,

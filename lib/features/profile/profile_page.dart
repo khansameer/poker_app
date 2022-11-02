@@ -3,10 +3,12 @@ import 'package:poker/core/common/common_bg_page.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/common/custom_profile_widget.dart';
 import 'package:poker/core/route.dart';
+import 'package:poker/core/utils/AppConstants.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
 import 'package:poker/core/utils/image_path.dart';
+import 'package:poker/core/utils/login_with_google.dart';
 import 'package:poker/core/utils/string_utils.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -14,14 +16,21 @@ class ProfilePage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+
+    String? name, email;
+
     return ProfilePageState();
   }
 }
 
 class ProfilePageState extends State<ProfilePage> {
+
+  String? name = userInfo!.name.toString();
+  String? email =userInfo!.email.toString();
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppUtils.commonAppBar(
@@ -58,13 +67,13 @@ class ProfilePageState extends State<ProfilePage> {
                 CommonTextWidget(
                   margintop: AppConstants.twenty,
                   fontSize: AppConstants.twenty,
-                  text: 'John Doe',
+                  text:name,
                   fontWeight: FontWeight.w700,
                 ),
                 CommonTextWidget(
                   margintop: AppConstants.ten,
                   fontSize: AppConstants.sixteen,
-                  text: 'johndoe@mail.com',
+                  text: email,
                   fontWeight: FontWeight.w500,
                 ),
                 SizedBox(
