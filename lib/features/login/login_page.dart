@@ -9,6 +9,9 @@ import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/common/common_textfield.dart';
 import 'package:poker/core/common/context_extension.dart';
 import 'package:poker/core/route.dart';
+import 'package:poker/core/services/provider/provider.dart';
+import 'package:poker/core/utils/AppConstants.dart';
+import 'package:poker/core/utils/PreferenceHelper.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/app_utils.dart';
@@ -17,6 +20,7 @@ import 'package:poker/core/utils/login_with_google.dart';
 import 'package:poker/core/utils/string_utils.dart';
 import 'package:poker/core/utils/validation.dart';
 import 'package:poker/features/login/Resource.dart';
+import 'package:poker/features/login/model/login_model.dart';
 import 'package:poker/features/signup/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -38,16 +42,18 @@ class LoginPageState extends State<LoginPage> {
   String clientSecret = 'rQEgboUHMLcQi59v';
   UserObject? user;
   bool logoutUser = false;
-   TextEditingController tetEmail = TextEditingController();
-  //static TextEditingController tetEmail = TextEditingController();
+
+  bool isLoading = false;
+
+  TextEditingController tetEmail = TextEditingController();
   TextEditingController tetPassword = TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
  //   tetEmail.clear();
-    tetEmail.text="admin@gmail.com";
-    tetPassword.text="Sameer@007";
+    tetEmail.text="sameer@gmail.com";
+    tetPassword.text="India@123";
   }
 
   @override
@@ -327,9 +333,12 @@ class LoginPageState extends State<LoginPage> {
       AppUtils.showMessage(
           context: context, message: StringUtils.validPasswordRegex);
     }else {
+      AppUtils.showLoader(true);
+      callLoginApi();
 
 
-      tetEmail.text == 'admin@gmail.com'
+
+      /*tetEmail.text == 'admin@gmail.com'
           ? AppUtils.redirectToNextScreen(
               context: context,
               screenName: RouteName.adminDashboard,
@@ -337,12 +346,33 @@ class LoginPageState extends State<LoginPage> {
           : AppUtils.redirectToNextScreen(
               context: context,
               screenName: RouteName.dashboard,
-              arguments: false);
+              arguments: false);*/
      /* tetEmail.clear();
       tetPassword.clear();*/
     }
   }
+  callLoginApi() async {
+    setState(() {
+      isLoading = true;
+    });
+    LoginModel loginModel =
+    await Provider.loginUser(tetEmail.text.toString(), tetPassword.text.toString(), context);
 
+    if (loginModel.success != null && loginModel.success == true) {
+      userInfo = loginModel.data;
+      PreferenceHelper.setBool(PreferenceHelper.IS_LOGIN, true);
+
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(RouteName.dashboard, (route) => false);
+      AppUtils.showMessage(
+          context: context, message: StringUtils.LOGIN_MESSAGE, backgroundColor: AppColor.colorGreen);
+    } else {
+      AppUtils.showMessage(context: context, message: loginModel.message.toString(),backgroundColor: AppColor.colorRedLight);
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
   void onClickForgot() {
     AppUtils.redirectToNextScreen(
         context: context, screenName: RouteName.verification);

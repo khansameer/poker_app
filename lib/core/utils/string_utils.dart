@@ -105,6 +105,8 @@ class StringUtils{
   static const String addNote ="Add Note";
   static const String editNote ="Edit Note";
   static const String showNote ="Show Note";
+  static String LOGIN_MESSAGE = "You are successfully Logged In";
+  //static const String showNote ="";
 
 
 

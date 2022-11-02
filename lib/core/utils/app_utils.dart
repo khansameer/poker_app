@@ -5,6 +5,7 @@ import 'package:poker/core/common/RatingDialog.dart';
 import 'package:poker/core/common/common_button_widget.dart';
 import 'package:poker/core/common/common_text_widget.dart';
 import 'package:poker/core/route.dart';
+import 'package:poker/core/utils/ProgressIndicatorWidget.dart';
 import 'package:poker/core/utils/app_color.dart';
 import 'package:poker/core/utils/app_constants.dart';
 import 'package:poker/core/utils/image_path.dart';
@@ -758,6 +759,15 @@ class AppUtils {
         ),
       );
 
+  }
+
+ static Widget showLoader(bool isLoading) {
+    return Visibility(
+      visible: isLoading,
+      child: Center(
+        child: ProgressIndicatorWidget(),
+      ),
+    );
   }
 
 }
