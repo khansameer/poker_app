@@ -365,9 +365,17 @@ class LoginPageState extends State<LoginPage> {
 
     if (loginModel.success != null && loginModel.success == true) {
       userInfo = loginModel.data;
-      PreferenceHelper.setBool(PreferenceHelper.IS_LOGIN, true);
+      print('====userInfo${userInfo!.email}');
+     // PreferenceHelper.setBool(PreferenceHelper.IS_LOGIN, true);
+      if(userInfo?.manager.toString().toLowerCase()=="n"){
+        AppUtils.redirectToNextScreen(context: context,screenName: RouteName.dashboard,arguments: false);
+      }
+      else
+        {
+          AppUtils.redirectToNextScreen(context: context,screenName: RouteName.adminDashboard,arguments: true);
+        }
       /*print('====userInfo${userInfo!.appView}');*/
-      AppUtils.redirectToNextScreen(context: context,screenName: RouteName.dashboard,arguments: false);
+
     /*  Navigator.of(context)
           .pushNamedAndRemoveUntil(RouteName.dashboard, (route) => false);*/
       AppUtils.showMessage(

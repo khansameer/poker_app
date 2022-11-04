@@ -27,20 +27,21 @@ class Data {
   String? name;
   String? email;
   int? currentTeamId;
-  String? appView;
+  String? manager;
   String? createdAt;
   String? updatedAt;
+  String? accessToken;
   String? profilePhotoUrl;
 
   Data(
       {this.id,
         this.name,
         this.email,
-
         this.currentTeamId,
-        //this.appView,
+        this.manager,
         this.createdAt,
         this.updatedAt,
+        this.accessToken,
         this.profilePhotoUrl});
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -48,10 +49,10 @@ class Data {
     name = json['name'];
     email = json['email'];
     currentTeamId = json['current_team_id'];
-
-    appView = json['app_view'];
+    manager = json['manager'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    accessToken = json['access_token'];
     profilePhotoUrl = json['profile_photo_url'];
   }
 
@@ -60,11 +61,11 @@ class Data {
     data['id'] = this.id;
     data['name'] = this.name;
     data['email'] = this.email;
-
     data['current_team_id'] = this.currentTeamId;
-    data['app_view'] = this.appView;
+    data['manager'] = this.manager;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
+    data['access_token'] = this.accessToken;
     data['profile_photo_url'] = this.profilePhotoUrl;
     return data;
   }

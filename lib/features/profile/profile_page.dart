@@ -27,6 +27,12 @@ class ProfilePageState extends State<ProfilePage> {
 
   String? name = userInfo!.name.toString();
   String? email =userInfo!.email.toString();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print('=========${userInfo!.email.toString()}');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +65,7 @@ class ProfilePageState extends State<ProfilePage> {
                     width: AppConstants.oneHundredTwentyTwo,
                     child: CustomProfileWidget(
                         isEdit: false,
+                        urlImage: userInfo!.profilePhotoUrl,
                         widht: AppConstants.oneHundred,
                         height: AppConstants.oneHundred,
                         onClicked: () {}),

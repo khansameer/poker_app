@@ -17,7 +17,7 @@ class CustomProfileWidget extends StatefulWidget {
   final VoidCallback onClicked;
   double? widht;
   double? height;
-
+  String? urlImage;
 
   CustomProfileWidget({
     Key? key,
@@ -25,6 +25,7 @@ class CustomProfileWidget extends StatefulWidget {
     this.isEdit = false,
     this.height,
     this.widht,
+    this.urlImage,
     required this.onClicked,
   }) : super(key: key);
 
@@ -37,7 +38,7 @@ class CustomProfileWidget extends StatefulWidget {
 class CustomProfileWidgetState extends State<CustomProfileWidget> {
   CroppedFile? imageFile;
   String? name = "";
-  String? urlImage;
+/*  String? urlImage;*/
 
   onImageSelected(CroppedFile file) {
     setState(() {
@@ -83,12 +84,14 @@ class CustomProfileWidgetState extends State<CustomProfileWidget> {
       ));
     }
 
-    if (urlImage != null) {
+    if (widget.urlImage != null) {
+      print('====${widget.urlImage.toString()}');
       return commonContainerBox(Image.network(
-        urlImage.toString(),
+        'https://ui-avatars.com/api/?name=S&color=7F9CF5&background=EBF4FF',
         width: widget.widht,
         height: widget.height,
         fit: BoxFit.cover,
+        scale: 1.0,
       ));
     } else {
       //when i am used  AppUtils.containerDecoration UI was not rendring perfact then i am used this normal box BoxDecoration
